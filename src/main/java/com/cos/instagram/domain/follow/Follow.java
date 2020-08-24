@@ -8,12 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
 import org.hibernate.annotations.CreationTimestamp;
-
-import com.cos.instagram.domain.image.Image;
-import com.cos.instagram.domain.like.Like;
-import com.cos.instagram.domain.like.Like.LikeBuilder;
 import com.cos.instagram.domain.user.User;
 
 import lombok.AllArgsConstructor;
