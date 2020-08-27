@@ -25,13 +25,16 @@ public class WebMvcConfig implements WebMvcConfigurer{
 	
 	@Override
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
+
 		resolvers.add(new HandlerMethodArgumentResolver() {
 
 			// 1. supportsParameter() 에서 true가 리턴되면!!
 			@Override
 			public boolean supportsParameter(MethodParameter parameter) {
-				boolean isLoginUserAnnotation = parameter.getParameterAnnotation(LoginUserAnnotation.class) != null;
-				boolean isUserClass = LoginUser.class.equals(parameter.getParameterType());
+				boolean isLoginUserAnnotation = 
+						parameter.getParameterAnnotation(LoginUserAnnotation.class) != null;
+				boolean isUserClass = 
+						LoginUser.class.equals(parameter.getParameterType());
 				return isLoginUserAnnotation && isUserClass;
 			}
 			

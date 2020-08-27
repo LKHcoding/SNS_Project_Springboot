@@ -1,6 +1,5 @@
 package com.cos.instagram.config.oauth;
 
-import java.util.function.Function;
 import java.util.function.Supplier;
 
 import javax.servlet.http.HttpSession;
@@ -64,12 +63,6 @@ public class PrincipalOAuth2UserService extends DefaultOAuth2UserService{
 		
 		// login할 때도 사실 OAuth에서 가져오는 정보이기 때문에 회원정보를 매번 업데이트 해주는 것이 좋다.
 		// 이때는 orElseGet전에 .map을 사용해서 update해주면 된다.
-		
-		/*
-		 * User user = userRepository.findByEmail(attributes.getEmail()) .map(entity ->
-		 * entity.update(attributes.getName(), attributes.getPicture()))
-		 * .orElse(attributes.toEntity());
-		 */
 		
 		User userEntity = 
 				userRepository.findByUsername(username)
