@@ -59,8 +59,8 @@ public class UserService {
 				});
 		
 		// 1. 이미지들과 전체 이미지 카운트
-		String q = "select im.id as id, im.imageUrl as imageUrl, im.userId as userId, (select count(*) from likes lk where lk.imageId = im.id) as likeCount, (select count(*) from comment ct where ct.imageId = im.id) as commentCount from image im where im.userId = 1";
-		Query query = em.createNativeQuery(q, "UserProfileImageRespDtoMapping");
+		String q = "select im.id as id, im.imageUrl as imageUrl, im.userId as userId, (select count(*) from likes lk where lk.imageId = im.id) as likeCount, (select count(*) from comment ct where ct.imageId = im.id) as commentCount from image im where im.userId = ?";
+		Query query = em.createNativeQuery(q, "UserProfileImageRespDtoMapping").setParameter(1, id);
 		List<UserProfileImageRespDto> imagesEntity = query.getResultList();
 		
 		imageCount = imagesEntity.size();
