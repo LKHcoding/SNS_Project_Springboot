@@ -58,6 +58,8 @@ public class PrincipalOAuth2UserService extends DefaultOAuth2UserService{
 		String provider = "facebook";
 		String providerId = oAuth2User.getAttribute("id");
 		String username = provider+"_"+providerId;
+		// 추가함
+		String name = oAuth2User.getAttribute("name");
 		String password = bCryptPasswordEncoder.encode(cosSecret);
 		String email = oAuth2User.getAttribute("email");
 		
@@ -72,6 +74,7 @@ public class PrincipalOAuth2UserService extends DefaultOAuth2UserService{
 						//회원가입
 						User user = User.builder()
 								.username(username)
+								.name(name)
 								.password(password)
 								.email(email)
 								.role(UserRole.USER)

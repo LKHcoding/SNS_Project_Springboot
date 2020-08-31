@@ -17,7 +17,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
-import com.cos.instagram.config.hanlder.ex.MyUsernameNotFoundException;
 import com.cos.instagram.config.oauth.PrincipalOAuth2UserService;
 import com.cos.instagram.util.Script;
 
