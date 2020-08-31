@@ -53,13 +53,17 @@ public class WebMvcConfig implements WebMvcConfigurer{
 	// 이미지 경로 찾기를 위해 추가 시작
 	@Value("${file.path}")
 	private String uploadFolder;
-
+	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		WebMvcConfigurer.super.addResourceHandlers(registry);
-
-		registry.addResourceHandler("/upload/**").addResourceLocations("file:///" + uploadFolder).setCachePeriod(3600)
-				.resourceChain(true).addResolver(new PathResourceResolver());
+	
+		registry
+			.addResourceHandler("/upload/**")
+			.addResourceLocations("file:///" + uploadFolder)
+			.setCachePeriod(3600)
+			.resourceChain(true)
+			.addResolver(new PathResourceResolver());
 	}
 	// 이미지 경로 찾기를 위해 추가 끝
 }

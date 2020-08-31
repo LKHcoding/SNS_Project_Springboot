@@ -51,4 +51,4 @@ cos:
   secret: 겟인데어
 
 file:
-  path: C:/src/jwtoauthwork/instagram/src/main/resources/upload/
+  path: C:/src/jwtoauthwork/instagram/upload/

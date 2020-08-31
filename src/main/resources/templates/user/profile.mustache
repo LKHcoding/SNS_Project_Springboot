@@ -12,21 +12,21 @@
 			<div class="profile__title">
 				<h1>{{respDto.user.username}}</h1>
 				{{^respDto.pageHost}}
-				<a href="#">
-					<button class="profile_edit_btn">팔로우</button>
-				</a>
+					<a href="#">
+						<button class="profile_edit_btn">팔로우</button>
+					</a>
 				{{/respDto.pageHost}}
 				
 				{{#respDto.pageHost}}
-				<a href="#">
-					<button class="profile_edit_btn">회원수정</button>
-				</a>
-				<a href="/image/uploadForm">
-					<button class="profile_edit_btn">사진등록</button>	
-				</a>
-				<a href="#">
-					<i class="fa fa-cog fa-lg"></i>
-				</a>
+					<a href="#">
+						<button class="profile_edit_btn">회원수정</button>
+					</a>
+					<a href="/image/uploadForm">
+						<button class="profile_edit_btn">사진등록</button>	
+					</a>
+					<a href="#">
+						<i class="fa fa-cog fa-lg"></i>
+					</a>
 				{{/respDto.pageHost}}
 				
 			</div>
@@ -61,10 +61,16 @@
 				<!-- 유저가 업로드한 Feed 사진 -->
 				{{#respDto.images}}
 					<div class="profile__photo">
-						<a href="image-detail.html"> <img src="/upload/{{imageUrl}}"></a>
+						<a href="#"> 
+							<img src="/upload/{{imageUrl}}">
+						</a>
 						<div class="profile__photo-overlay">
-							<span class="profile__photo-stat"> <i class="fa fa-heart"></i> ${image.likeCount}</span> 
-							<span class="profile__photo-stat"> <i class="fa fa-comment"></i> 22</span>
+							<span class="profile__photo-stat"> 
+								<i class="fa fa-heart"></i> {{likeCount}}
+							</span> 
+							<span class="profile__photo-stat"> 
+								<i class="fa fa-comment"></i> {{commentCount}}
+							</span>
 						</div>
 					</div>									
 				{{/respDto.images}}

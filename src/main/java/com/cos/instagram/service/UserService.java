@@ -3,17 +3,21 @@ package com.cos.instagram.service;
 import java.util.List;
 import java.util.function.Supplier;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cos.instagram.config.auth.dto.LoginUser;
 import com.cos.instagram.config.hanlder.ex.MyUserIdNotFoundException;
-import com.cos.instagram.domain.image.Image;
 import com.cos.instagram.domain.image.ImageRepository;
 import com.cos.instagram.domain.user.User;
 import com.cos.instagram.domain.user.UserRepository;
 import com.cos.instagram.web.dto.JoinReqDto;
+import com.cos.instagram.web.dto.UserProfileImageRespDto;
 import com.cos.instagram.web.dto.UserProfileRespDto;
 
 import lombok.RequiredArgsConstructor;
@@ -22,6 +26,8 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class UserService {
 	
+	@PersistenceContext
+	EntityManager em;
 	private final UserRepository userRepository;
 	private final ImageRepository imageRepository;
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -53,7 +59,10 @@ public class UserService {
 				});
 		
 		// 1. 이미지들과 전체 이미지 카운트
-		List<Image> imagesEntity = imageRepository.findByUserId(id);
+		String q = "select im.id as id, im.imageUrl as imageUrl, im.userId as userId, (select count(*) from likes lk where lk.imageId = im.id) as likeCount, (select count(*) from comment ct where ct.imageId = im.id) as commentCount from image im where im.userId = 1";
+		Query query = em.createNativeQuery(q, "UserProfileImageRespDtoMapping");
+		List<UserProfileImageRespDto> imagesEntity = query.getResultList();
+		
 		imageCount = imagesEntity.size();
 		
 		// 2. 팔로우 수 (수정해야됨)
@@ -68,7 +77,7 @@ public class UserService {
 				.followingCount(followingCount)
 				.imageCount(imageCount)
 				.user(userEntity)
-				.images(imagesEntity)
+				.images(imagesEntity) // 수정완료(Dto만듬) (댓글수, 좋아요수)
 				.build();
 		
 		return userProfileRespDto;
