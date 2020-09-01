@@ -12,9 +12,16 @@
 			<div class="profile__title">
 				<h1>{{respDto.user.username}}</h1>
 				{{^respDto.pageHost}}
-					<a href="#">
-						<button class="profile_edit_btn">팔로우</button>
-					</a>
+				    {{#respDto.followState}}
+				    	<a href="#">
+							<button class="profile_edit_btn">팔로우 취소</button>
+						</a>
+				    {{/respDto.followState}} 
+				    {{^respDto.followState}}
+				    	<a href="#">
+							<button class="profile_follow_btn">팔로우</button>
+						</a>
+				    {{/respDto.followState}} 
 				{{/respDto.pageHost}}
 				
 				{{#respDto.pageHost}}
