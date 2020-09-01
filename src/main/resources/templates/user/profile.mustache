@@ -14,12 +14,12 @@
 				{{^respDto.pageHost}}
 				    {{#respDto.followState}}
 				    	<a href="#">
-							<button class="profile_edit_btn">팔로우 취소</button>
+							<button onclick="unFollow({{respDto.user.id}})" class="profile_edit_btn">팔로우 취소</button>
 						</a>
 				    {{/respDto.followState}} 
 				    {{^respDto.followState}}
 				    	<a href="#">
-							<button class="profile_follow_btn">팔로우</button>
+							<button onclick="follow({{respDto.user.id}})" class="profile_follow_btn">팔로우</button>
 						</a>
 				    {{/respDto.followState}} 
 				{{/respDto.pageHost}}
@@ -106,5 +106,5 @@
 		})
 	})
 </script>
-
+<script src="/js/follow.js"></script>
 {{>layout/footer}}
