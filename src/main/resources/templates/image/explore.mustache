@@ -1,57 +1,34 @@
 {{>layout/header}}
-<main id="explore">
-	<ul class="explore__users u-default-box">
-		<li class="explore__user">
-			<div class="explore__content">
-				<img src="/images/avatar.jpg" />
-				<div class="explore__info">
-					<span class="explore__username">serranoarevalo</span> <span
-						class="explore__full-name">Nicolás Serrano Arévalo</span>
-				</div>
-			</div>
-			<button>Follow</button>
-		</li>
-		<li class="explore__user">
-			<div class="explore__content">
-				<img src="/images/avatar.jpg" />
-				<div class="explore__info">
-					<span class="explore__username">serranoarevalo</span> <span
-						class="explore__full-name">Nicolás Serrano Arévalo</span>
-				</div>
-			</div>
-			<button>Follow</button>
-		</li>
-		<li class="explore__user">
-			<div class="explore__content">
-				<img src="/images/avatar.jpg" />
-				<div class="explore__info">
-					<span class="explore__username">serranoarevalo</span> <span
-						class="explore__full-name">Nicolás Serrano Arévalo</span>
-				</div>
-			</div>
-			<button>Follow</button>
-		</li>
-		<li class="explore__user">
-			<div class="explore__content">
-				<img src="/images/avatar.jpg" />
-				<div class="explore__info">
-					<span class="explore__username">serranoarevalo</span> <span
-						class="explore__full-name">Nicolás Serrano Arévalo</span>
-				</div>
-			</div>
-			<button>Follow</button>
-		</li>
-		<li class="explore__user">
-			<div class="explore__content">
-				<img src="/images/avatar.jpg" />
-				<div class="explore__info">
-					<span class="explore__username">serranoarevalo</span> <span
-						class="explore__full-name">Nicolás Serrano Arévalo</span>
-				</div>
-			</div>
-			<button>Follow</button>
-		</li>
-	</ul>
+<main id="profile">
+		<div class="profile__photo-grid">
+				
+				<!-- 유저가 업로드한 Feed 사진 -->
+				{{#respDto.images}}
+					<div class="profile__photo">
+						<a href="#"> 
+							<img src="/upload/{{imageUrl}}">
+						</a>
+						<div class="profile__photo-overlay">
+							<span class="profile__photo-stat"> 
+								<i class="fa fa-heart"></i> {{likeCount}}
+							</span> 
+							<span class="profile__photo-stat"> 
+								<i class="fa fa-comment"></i> {{commentCount}}
+							</span>
+						</div>
+					</div>									
+				{{/respDto.images}}
+				
+		</div>	
 </main>
+
+<div class="profile__overlay">
+	<i class="fa fa-times"></i>
+	<div class="profile__overlay-container">
+		<a href="#" class="profile__overlay-link">Change password</a> 
+		<a href="/auth/logout" class="profile__overlay-link" id="logout">Log Out</a> 
+		<a href="#" class="profile__overlay-link" id="cancel">Cancel</a>
+	</div>
+</div>
 
 {{>layout/footer}}

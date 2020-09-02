@@ -3,9 +3,7 @@ package com.cos.instagram.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cos.instagram.domain.follow.Follow;
 import com.cos.instagram.domain.follow.FollowRepository;
-import com.cos.instagram.domain.user.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -14,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 public class FollowService {
 	private final FollowRepository followRepository;
 
-	// 서비스단에서 롤백하려면 throw를 runtimeException을 던져야됨.
+	// 서비스단에서 롤백하려면 throw를 runtimeException으로 던져야됨.
 	@Transactional
 	public void 팔로우(int loginUserId, int pageUserId) {
 		int result = followRepository.mFollow(loginUserId, pageUserId);
