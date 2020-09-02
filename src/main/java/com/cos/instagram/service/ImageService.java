@@ -30,6 +30,12 @@ public class ImageService {
 	private final TagRepository tagRepository;
 	private final UserRepository userRepository;
 	
+	@Transactional(readOnly = true)
+	public List<Image> 인기사진(int loginUserId) {
+		return imageRepository.mNonFollowImage(loginUserId);
+	}
+	
+	
 	@Value("${file.path}")
 	private String uploadFolder;
 	
