@@ -2,57 +2,28 @@
 
 <main id="explore">
 	<ul class="explore__users u-default-box">
+		{{#followingList}}
 		<li class="explore__user">
 			<div class="explore__content">
-				<img src="/images/avatar.jpg" />
+				<a href="/user/{{id}}">
+					<img src="/images/avatar.jpg" />
+				</a>
 				<div class="explore__info">
-					<span class="explore__username">serranoarevalo</span> <span
-						class="explore__full-name">Nicolás Serrano Arévalo</span>
+					<span class="explore__username">{{username}}</span> <span
+						class="explore__full-name">{{name}}</span>
 				</div>
 			</div>
-			<button>Follow</button>
+				{{^equalUserState}}
+					{{#followState}}
+						<button onclick="unFollow({{id}})" class="profile_edit_btn">팔로우취소</button>
+					{{/followState}}
+					{{^followState}}
+						<button onclick="follow({{id}})" class="profile_follow_btn">팔로우</button>
+					{{/followState}}
+				{{/equalUserState}}
 		</li>
-		<li class="explore__user">
-			<div class="explore__content">
-				<img src="/images/avatar.jpg" />
-				<div class="explore__info">
-					<span class="explore__username">serranoarevalo</span> <span
-						class="explore__full-name">Nicolás Serrano Arévalo</span>
-				</div>
-			</div>
-			<button>Follow</button>
-		</li>
-		<li class="explore__user">
-			<div class="explore__content">
-				<img src="/images/avatar.jpg" />
-				<div class="explore__info">
-					<span class="explore__username">serranoarevalo</span> <span
-						class="explore__full-name">Nicolás Serrano Arévalo</span>
-				</div>
-			</div>
-			<button>Follow</button>
-		</li>
-		<li class="explore__user">
-			<div class="explore__content">
-				<img src="/images/avatar.jpg" />
-				<div class="explore__info">
-					<span class="explore__username">serranoarevalo</span> <span
-						class="explore__full-name">Nicolás Serrano Arévalo</span>
-				</div>
-			</div>
-			<button>Follow</button>
-		</li>
-		<li class="explore__user">
-			<div class="explore__content">
-				<img src="/images/avatar.jpg" />
-				<div class="explore__info">
-					<span class="explore__username">serranoarevalo</span> <span
-						class="explore__full-name">Nicolás Serrano Arévalo</span>
-				</div>
-			</div>
-			<button>Follow</button>
-		</li>
+		{{/followingList}}
 	</ul>
 </main>
-
+<script src="/js/follow.js"></script>
 {{>layout/footer}}

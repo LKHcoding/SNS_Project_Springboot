@@ -9,11 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.cos.instagram.config.auth.PrincipalDetails;
 import com.cos.instagram.config.hanlder.ex.MyUsernameNotFoundException;
 
 @Controller
 public class TestController {
+	
+
 	
 	@GetMapping("/test/facebook")
 	public @ResponseBody String facebook(
