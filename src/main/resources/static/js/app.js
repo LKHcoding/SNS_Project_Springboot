@@ -18,6 +18,5 @@ $(document).ready(function() {
 
   $logoutBtn.click(function() {
     closePopup();
-    window.location = "index.html";
   });
 });
