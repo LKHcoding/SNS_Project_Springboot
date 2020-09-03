@@ -1,32 +1,54 @@
 {{>layout/header}}
 <main id="feed">
-	
+
+	{{#images}}
 	<div class="photo u-default-box">
 		<header class="photo__header">
-			<img src="/images/avatar.jpg" /> <span class="photo__username">serranoarevalo</span>
+			<img src="/images/avatar.jpg" /> 
+			<span class="photo__username">{{user.username}}</span>
 		</header>
-		<img src="/images/feedPhoto.jpg" />
+		<div class="photo_post_image"> <!-- 사진꽉채우기 css -->
+			<img src="/upload/{{imageUrl}}" />
+		</div>
 		<div class="photo__info">
 			<div class="photo__actions">
-				<span class="photo__action"> 
-					<i id="image-1" onclick="like()" class="fa fa-heart-o heart"></i>
+				<span class="photo__action">
+					{{#likeState}}
+						<i class="fa heart heart-clicked fa-heart" onclick="unLike({{id}})"></i>
+					{{/likeState}}
+					{{^likeState}}
+						<i class="fa fa-heart-o heart" onclick="like({{id}})"></i>
+					{{/likeState}}
 				</span> 
 				<span class="photo__action"> 
 					<i class="fa fa-comment-o"></i>
 				</span>
 			</div> 
-			<span class="photo__likes">5,103 likes</span>
+			
+			<div class="photo_tag">
+				{{#tags}}
+					#{{name}}
+				{{/tags}}
+			</div>
+			<span class="photo__likes">{{likeCount}} likes</span>
 			<ul class="photo__comments">
-				<li class="photo__comment"><span class="photo__comment-author">serranoarevalo</span> i love this!</li>
-				<li class="photo__comment"><span class="photo__comment-author">serranoarevalo</span> i don't love this!</li>
+				{{#comments}}
+				<li class="photo__comment">
+					<span class="photo__comment-author">{{user.username}}</span> {{content}}
+				</li>
+				{{/comments}}
 			</ul>
-			<span class="photo__date">1 hour ago</span>
+			<span class="photo__date">{{createDate}}</span>
+	
 			<div class="photo__add-comment-container">
 				<textarea placeholder="Add a comment..."></textarea>
 				<i class="fa fa-ellipsis-h"></i>
 			</div>
+			
 		</div>
 	</div>
+	{{/images}}
+	
 </main>
 
 <script src="/js/like.js"></script>

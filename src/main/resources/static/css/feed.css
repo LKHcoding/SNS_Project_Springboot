@@ -81,6 +81,7 @@
 }
 
 .photo__comments .photo__comment {
+  margin-top: 5px;
   margin-bottom: 10px;
 }
 

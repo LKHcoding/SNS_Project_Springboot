@@ -13,6 +13,8 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import com.cos.instagram.domain.image.Image;
 import com.cos.instagram.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,6 +32,7 @@ public class Comment {
 	private int id;
 	
 	private String content;
+
 	
 	@ManyToOne
 	@JoinColumn(name="imageId")

@@ -18,7 +18,7 @@
 .photo_user_info {
 	display: grid;
 	grid-template-columns : auto;
-	grid-gap : 6px 0;
+  grid-gap : 6px 0;
 }
 
 .photo__username {
@@ -81,6 +81,7 @@
 }
 
 .photo__comments .photo__comment {
+  margin-top: 5px;
   margin-bottom: 10px;
 }
 

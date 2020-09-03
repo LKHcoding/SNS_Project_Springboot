@@ -32,7 +32,7 @@ public class FollowService {
 		sb.append("from follow f inner join user u on f.toUserId = u.id ");
 		sb.append("and f.fromUserId = ?");
 		String q = sb.toString();
-		
+		System.out.println("팔로잉리스트 : "+q);
 		Query query = em.createNativeQuery(q, "FollowRespDtoMapping")
 				.setParameter(1, loginUserId)
 				.setParameter(2, loginUserId)

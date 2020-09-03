@@ -35,8 +35,11 @@ public class UserService {
 	
 	@Transactional
 	public void 회원가입(JoinReqDto joinReqDto) {
+		System.out.println("서비스 회원가입 들어옴");
+		System.out.println(joinReqDto);
 		String encPassword = 
 				bCryptPasswordEncoder.encode(joinReqDto.getPassword());
+		System.out.println("encPassword : "+encPassword);
 		joinReqDto.setPassword(encPassword);
 		userRepository.save(joinReqDto.toEntity());
 	}
