@@ -2,12 +2,13 @@
 <main id="profile">
 	<header class="profile__header">
 		<div class="avatar__container">
-			<form id="frm_profile_img" action="/user/profileUpload" method="post">
+			<form id="frm_profile_img" action="/user/profileUpload" method="post" enctype="multipart/form-data">
 				<input type="file" name="profileImage" style="display: none;" />
 			</form>
-			<img src="/images/avatar.jpg" id="profile_image"
-				style="cursor: pointer" />
+			<img src="/upload/{{#respDto.user.profileImage}}{{respDto.user.profileImage}}{{/respDto.user.profileImage}}" id="profile_image"
+				style="cursor: pointer" onerror="this.src='/images/avatar.jpg'"/>
 		</div>
+		
 		<div class="profile__info">
 			<div class="profile__title">
 				<h1>{{respDto.user.username}}</h1>
@@ -87,8 +88,7 @@
 
 <div class="profile__overlay">
 	<i class="fa fa-times"></i>
-	<div class="profile__overlay-container">
-		<a href="#" class="profile__overlay-link">Change password</a> 
+	<div class="profile__overlay-container"> 
 		<a href="/auth/logout" class="profile__overlay-link" id="logout">Log Out</a> 
 		<a href="#" class="profile__overlay-link" id="cancel">Cancel</a>
 	</div>

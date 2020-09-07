@@ -35,7 +35,6 @@ public class ImageControllerTest {
 	
 	@Before
 	public void setup() {
-		System.out.println("비포포포포포포");
 		mvc = MockMvcBuilders
 				.webAppContextSetup(context)
 				.apply(springSecurity())
@@ -44,10 +43,10 @@ public class ImageControllerTest {
 	
 	@Test
 	public void 회원가입() throws Exception{
-		String username = "ssarmango";
+		String username = "kakaofriends";
 		String password = "1234";
-		String email = "ssarmango@nate.com";
-		String name = "쌀만고";
+		String email = "kakaofriends@nate.com";
+		String name = "카카오프렌즈";
 
 		String url = "http://localhost:"+port+"/auth/join";
 		System.out.println("url : "+url);

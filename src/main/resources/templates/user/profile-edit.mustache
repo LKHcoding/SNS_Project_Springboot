@@ -8,47 +8,67 @@
 				<img src="/images/avatar.jpg" />
 			</div>
 			<!-- master comments -->
-			<h1 class="edit-profile__username">serranoarevalo</h1>
+			<h1 class="edit-profile__username">{{user.username}}</h1>
 		</header>
 
-		<form class="edit-profile__form">
+		<form id="frm" class="edit-profile__form">
+			<input type="hidden" name="id" value="{{user.id}}"/>
 			<div class="edit-profile__row">
-				<label class="edit-profile__label" for="name">Name</label> <input
-					id="name" type="text" value="Nicolás Serrano Arévalo">
+				<label class="edit-profile__label" for="name">Name</label> 
+				<input name="name" type="text" value="{{user.name}}">
 			</div>
 			<div class="edit-profile__row">
-				<label class="edit-profile__label" for="username">Username</label> <input
-					id="username" type="text">
+				<label class="edit-profile__label" for="username">Username</label> 
+				<input type="text" value="{{user.username}}" readonly>
 			</div>
 			<div class="edit-profile__row">
-				<label class="edit-profile__label" for="website">Website</label> <input
-					id="website" type="text">
+				<label class="edit-profile__label" for="website">Website</label> 
+				<input name="website" type="text" value="{{#user.website}}{{user.website}}{{/user.website}}">
 			</div>
 			<div class="edit-profile__row">
-				<label class="edit-profile__label" for="bio">Bio</label> <input
-					id="bio" type="text">
+				<label class="edit-profile__label" for="bio">Bio</label> 
+				<input name="bio" type="text" value="{{#user.bio}}{{user.bio}}{{/user.bio}}">
 			</div>
 			<div class="edit-profile__row">
-				<label class="edit-profile__label" for="email">Email</label> <input
-					id="email" type="email">
+				<label class="edit-profile__label" for="email">Email</label> 
+				<input type="email" value="{{user.email}}" readonly>
 			</div>
 			<div class="edit-profile__row">
-				<label class="edit-profile__label" for="phone-number">Phone
-					Number</label> <input id="phone-number" type="text">
+				<label class="edit-profile__label" for="phone-number">Phone Number</label> 
+				<input name="phone" type="text" value="{{#user.phone}}{{user.phone}}{{/user.phone}}">
 			</div>
 			<div class="edit-profile__row">
-				<label class="edit-profile__label" for="gender">Gender</label> <select
-					id="gender">
-					<option value="male">Male</option>
-					<option value="female">Female</option>
-					<option value="cant-remember" selected>Can't remember</option>
-				</select>
+				<label class="edit-profile__label" for="gender">Gender</label> 
+				<input name="gender" type="text" value="{{#user.gender}}{{user.gender}}{{/user.gender}}">
 			</div>
 			<div class="edit-profile__row">
-				<span></span> <input type="submit">
+				<span></span> 
+				<button onclick="userUpdate()" class="profile_follow_btn" type="button">
+					회원수정
+				</button>
 			</div>
 		</form>
 
 	</div>
 </main>
+<script>
+	function userUpdate(){
+		let data = $("#frm").serialize();
+		console.log(1, data);
+		
+		fetch("/user", {
+			method: "put",
+			body: data,
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded; charset=utf-8"
+			}
+		}).then(function(res){
+			return res.text();
+		}).then(function(res){
+			alert("회원수정 성공");
+			location.href = "/user/{{user.id}}";
+		});
+	}
+	
+</script>
 {{>layout/footer}}
