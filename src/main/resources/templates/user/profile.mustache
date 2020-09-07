@@ -4,6 +4,7 @@
 		<div class="avatar__container">
 			<form id="frm_profile_img" action="/user/profileUpload" method="post" enctype="multipart/form-data">
 				<input type="file" name="profileImage" style="display: none;" />
+				<input type="hidden" name="userId" value="{{respDto.user.id}}" />
 			</form>
 			<img src="/upload/{{#respDto.user.profileImage}}{{respDto.user.profileImage}}{{/respDto.user.profileImage}}" id="profile_image"
 				style="cursor: pointer" onerror="this.src='/images/avatar.jpg'"/>
