@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cos.instagram.domain.comment.Comment;
 import com.cos.instagram.domain.image.Image;
 import com.cos.instagram.domain.image.ImageRepository;
 import com.cos.instagram.domain.like.Likes;
@@ -34,14 +35,24 @@ public class ImageService {
 	@Transactional(readOnly = true)
 	public List<Image> 피드사진(int loginUserId){
 		List<Image> images = imageRepository.mFeeds(loginUserId);
+		
 		for (Image image : images) {
 			image.setLikeCount(image.getLikes().size());
+			
+			// 좋아요 상태 여부 등록
 			for (Likes like : image.getLikes()) {
 				if(like.getUser().getId() == loginUserId) {
 					image.setLikeState(true);
 				}
 			}
+			// 댓글 주인 여부 등록
+			for (Comment comment : image.getComments()) {
+				if(comment.getUser().getId() == loginUserId) {
+					comment.setCommentHost(true);
+				}
+			}
 		}
+		
 		return images;
 	}
 	

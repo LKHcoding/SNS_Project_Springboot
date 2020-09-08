@@ -20,4 +20,9 @@ public class CommentService {
 				commentRespDto.getImageId(), 
 				commentRespDto.getContent());
 	}
+	
+	@Transactional
+	public void 댓글삭제(int id) {
+		commentRepository.deleteById(id);
+	}
 }
