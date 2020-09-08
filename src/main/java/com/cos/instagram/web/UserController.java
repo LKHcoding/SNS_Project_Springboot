@@ -55,7 +55,6 @@ public class UserController {
 			userService.프로필사진업로드(loginUser, file);
 		}
 		
-		
 		return "redirect:/user/"+userId;
 	}
 }

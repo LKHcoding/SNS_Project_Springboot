@@ -33,7 +33,6 @@ public class Comment {
 	
 	private String content;
 
-	
 	@ManyToOne
 	@JoinColumn(name="imageId")
 	private Image image;

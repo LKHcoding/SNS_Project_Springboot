@@ -1,9 +1,14 @@
-function userUpdate(userId) {
+function commentSend() {
+	if ($("#content").val() === "") {
+		alert("댓글 입력이 필요합니다.");
+		return;
+	}
+
 	let data = $("#frm").serialize();
 	console.log(1, data);
 
-	fetch("/user", {
-		method: "put",
+	fetch("/comment", {
+		method: "post",
 		body: data,
 		headers: {
 			"Content-Type": "application/x-www-form-urlencoded; charset=utf-8"
@@ -11,7 +16,7 @@ function userUpdate(userId) {
 	}).then(function (res) {
 		return res.text();
 	}).then(function (res) {
-		alert("회원수정 성공");
-		location.href = "/user/" + userId;
+		alert("댓글 작성 성공");
+		location.reload();
 	});
 }

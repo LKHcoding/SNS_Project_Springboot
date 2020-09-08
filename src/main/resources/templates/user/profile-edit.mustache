@@ -43,7 +43,7 @@
 			</div>
 			<div class="edit-profile__row">
 				<span></span> 
-				<button onclick="userUpdate()" class="profile_follow_btn" type="button">
+				<button onclick="userUpdate({{user.id}})" class="profile_follow_btn" type="button">
 					회원수정
 				</button>
 			</div>
@@ -51,24 +51,5 @@
 
 	</div>
 </main>
-<script>
-	function userUpdate(){
-		let data = $("#frm").serialize();
-		console.log(1, data);
-		
-		fetch("/user", {
-			method: "put",
-			body: data,
-			headers: {
-				"Content-Type": "application/x-www-form-urlencoded; charset=utf-8"
-			}
-		}).then(function(res){
-			return res.text();
-		}).then(function(res){
-			alert("회원수정 성공");
-			location.href = "/user/{{user.id}}";
-		});
-	}
-	
-</script>
+<script src="/js/profile.js"></script>
 {{>layout/footer}}
