@@ -4,7 +4,7 @@
 	{{#images}}
 	<div class="photo u-default-box">
 		<header class="photo__header">
-			<img src="/upload/{{#user.profileImage}}{{user.profileImage}}{{/user.profileImage}}" /> 
+			<img src="/upload/{{#user.profileImage}}{{user.profileImage}}{{/user.profileImage}}"  onerror="this.src='/images/avatar.jpg'" /> 
 			<span class="photo__username">{{user.username}}</span>
 		</header>
 		<div class="photo_post_image"> <!-- 사진꽉채우기 css -->
