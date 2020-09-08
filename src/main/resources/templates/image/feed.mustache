@@ -20,9 +20,6 @@
 						<i class="fa fa-heart-o heart" onclick="like({{id}})"></i>
 					{{/likeState}}
 				</span> 
-				<span class="photo__action"> 
-					<i class="fa fa-comment-o"></i>
-				</span>
 			</div> 
 			
 			<div class="photo_tag">
@@ -52,13 +49,16 @@
 					<input type="hidden" name="imageId" value="{{id}}" />
 					<textarea id="content-{{id}}" name="content"  placeholder="Add a comment..."></textarea>
 				</form>	
-				<i onclick="commentSend({{id}})" class="fa fa-angle-down"></i>
+				<i onclick="commentSend({{id}})" class="fa fa-angle-right"></i>
 			</div>
 		</div>
 	</div>
 	{{/images}}
 	
 </main>
+<script>
+
+</script>
 <script src="/js/comment.js"></script>
 <script src="/js/like.js"></script>
 {{>layout/footer}}

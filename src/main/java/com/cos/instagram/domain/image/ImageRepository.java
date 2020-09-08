@@ -15,4 +15,7 @@ public interface ImageRepository extends JpaRepository<Image, Integer>{
 	
 	@Query(value="select * from image where userId in (select toUserId from follow where fromUserId = ?1)", nativeQuery = true)
 	List<Image> mFeeds(int loginUserId);
+	
+	@Query(value="select * from image where id in (select imageId from tag where name=?1)", nativeQuery = true)
+	List<Image> mFeeds(String tag);
 }

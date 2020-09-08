@@ -33,8 +33,13 @@ public class ImageService {
 	private final UserRepository userRepository;
 	
 	@Transactional(readOnly = true)
-	public List<Image> 피드사진(int loginUserId){
-		List<Image> images = imageRepository.mFeeds(loginUserId);
+	public List<Image> 피드사진(int loginUserId, String tag){
+		List<Image> images = null;
+		if(tag == null || tag.equals("")) {
+			images = imageRepository.mFeeds(loginUserId);
+		}else {
+			images = imageRepository.mFeeds(tag);
+		}
 		
 		for (Image image : images) {
 			image.setLikeCount(image.getLikes().size());

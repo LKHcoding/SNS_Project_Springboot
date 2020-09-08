@@ -108,6 +108,7 @@
   width: 95%;
   height: 18px;
   font-size: 14px;
+  overflow: hidden;
 }
 
 .photo__add-comment-container textarea:focus {

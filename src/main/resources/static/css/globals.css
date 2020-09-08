@@ -32,3 +32,7 @@ main {
   border: 1px solid rgba(0, 0, 0, .0975);
   border-radius: 3px;
 }
+
+i {
+	cursor: pointer;
+}
