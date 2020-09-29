@@ -1,5 +1,5 @@
 #login {
-  width: 75%;
+  width: 100%;
   margin: 60px auto;
   display: flex;
   align-items: center;
@@ -9,17 +9,41 @@
 }
 
 #login .login__column {
-  width: 47%;
+  width: 500px;
 }
 
 #login .login__column img {
-  max-width: 100%;
+  max-width: 500px;
+}
+
+@media (max-width: 890px) {
+  #login #disable__div {
+    display: none;
+  }
+
+  #login .login__column {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap:wrap;
+    flex-direction:column;
+
+  }
+  #login .login__column #main__loginbox {
+    width: 350px;
+    margin-top:45px;
+  }
+   #login .login__column #bottom__loginbox {
+    width: 430px;
+  }
 }
 
 .login__column .login__box {
   background: white;
   border: 1px solid #e6e6e6;
   margin-bottom: 10px;
+  width: 350px;
 }
 
 .login__column .login__box:nth-child(2) {
@@ -28,6 +52,7 @@
   justify-content: center;
   align-items: center;
   padding: 20px 0;
+  width:430px;
 }
 
 .login__column .login__t-box {
@@ -105,7 +130,7 @@ input[type="submit"] {
 }
 
 .login__box .login__divider:before {
-  content: '';
+  content: "";
   width: 40%;
   height: 1px;
   background-color: #999;
@@ -115,7 +140,7 @@ input[type="submit"] {
 }
 
 .login__box .login__divider:after {
-  content: '';
+  content: "";
   width: 40%;
   height: 1px;
   background-color: #999;

@@ -12,11 +12,11 @@
 </head>
 <body>
 	<main id="login">
-		<div class="login__column">
+		<div class="login__column" id="disable__div">
 			<img src="/images/phoneImage.png" />
 		</div>
 		<div class="login__column">
-			<div class="login__box">
+			<div class="login__box" id="main__loginbox">
 				<img src="/images/loginLogo.png" />
 				<form action="/auth/login" method="post" class="login__form">
 					<input type="text" name="username" placeholder="Username" required> 
@@ -27,7 +27,7 @@
 				<a href="/oauth2/authorization/facebook" class="login__fb-link"><i class="fa fa-facebook-square"></i> Log in
 					with Facebook</a> <a href="#" class="login__small-link">Forgot password?</a>
 			</div>
-			<div class="login__box">
+			<div class="login__box" id="bottom__loginbox">
 				<span class="login__text"> Don't have an account? <br />
 				</span> <a class="login__blue-link" href="/auth/joinForm">Sign up</a>
 			</div>
