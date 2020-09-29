@@ -20,7 +20,16 @@
 						<i class="fa fa-heart-o heart" onclick="like({{id}})"></i>
 					{{/likeState}}
 				</span> 
-			</div> 
+				
+				<span class="photo__action">
+					{{#likeState}}
+						<i class="fa heart heart-clicked fa-heart" onclick="unLike({{id}})"></i>
+					{{/likeState}}
+					{{^likeState}}
+						<i class="fa fa-comment-o" onclick="like({{id}})"></i>	{{! https://fontawesome.com/icons?d=gallery&q=user 아이콘 주기}}
+					{{/likeState}}
+				</span> 
+			</div>
 			
 			<div class="photo_tag">
 				{{#tags}}
