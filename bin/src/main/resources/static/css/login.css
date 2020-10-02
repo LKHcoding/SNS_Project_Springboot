@@ -26,14 +26,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-    flex-direction: column;
+    flex-wrap:wrap;
+    flex-direction:column;
+
   }
   #login .login__column #main__loginbox {
     width: 350px;
-    margin-top: 45px;
+    margin-top:45px;
   }
-  #login .login__column #bottom__loginbox {
+   #login .login__column #bottom__loginbox {
     width: 430px;
   }
 }
@@ -51,7 +52,7 @@
   justify-content: center;
   align-items: center;
   padding: 20px 0;
-  width: 430px;
+  width:430px;
 }
 
 .login__column .login__t-box {
@@ -85,46 +86,19 @@
   width: 100%;
 }
 
-.login__form input:not(submit) {
-  background-color: #fafafa;
-  height: 50px;
+.login__form input {
   box-sizing: border-box;
   display: block;
   width: 100%;
   padding: 10px 7px 7px 7px;
-  margin-bottom: 10px;
   font-size: 14px;
   border: 1px solid #efefef;
   border-radius: 3px;
 }
 
-/* 여기서부터 코딩 시작 */
-
 .login__form input:focus {
   outline: none;
   border-color: #999;
-}
-
-.group {
-  position: relative;
-}
-/* LABEL ======================================= */
-.login__form .group label {
-  color: #999;
-  font-size: 18px;
-  font-weight: normal;
-  position: absolute;
-  pointer-events: none;
-  left: 5px;
-  top: 13px;
-  transition: 0.2s ease all;
-}
-/* active state */
-.group input:focus ~ label,
-.group input:valid ~ label {
-  top: 2px;
-  font-size: 14px;
-  color: #5264ae;
 }
 
 .login__form input[type="submit"] {
@@ -134,9 +108,6 @@
   background-color: #3897f0;
   padding: 7px;
   cursor: pointer;
-
-  font-size: 14px;
-  height: 30px;
 }
 
 input[type="submit"] {

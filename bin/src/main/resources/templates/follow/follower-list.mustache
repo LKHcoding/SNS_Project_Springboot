@@ -1,0 +1,29 @@
+ {{>layout/header}}
+
+<main id="explore">
+	<ul class="explore__users u-default-box">
+		{{#followerList}}
+		<li class="explore__user">
+			<div class="explore__content">
+				<a href="/user/{{id}}">
+					<img src="/upload/{{#profileImage}}{{profileImage}}{{/profileImage}}" onerror="this.src='/images/avatar.jpg'" />
+				</a>
+				<div class="explore__info">
+					<span class="explore__username">{{username}}</span> <span
+						class="explore__full-name">{{name}}</span>
+				</div>
+			</div>
+				{{^equalUserState}}
+					{{#followState}}
+						<button onclick="unFollow({{id}})" class="profile_edit_btn">팔로우취소</button>
+					{{/followState}}
+					{{^followState}}
+						<button onclick="follow({{id}})" class="profile_follow_btn">팔로우</button>
+					{{/followState}}
+				{{/equalUserState}}
+		</li>
+		{{/followerList}}
+	</ul>
+</main>
+<script src="/js/follow.js"></script>
+{{>layout/footer}}

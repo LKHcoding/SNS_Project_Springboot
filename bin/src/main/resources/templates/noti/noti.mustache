@@ -1,0 +1,22 @@
+ {{>layout/header}}
+
+<main id="explore">
+	<ul class="explore__users u-default-box">
+
+		{{#notis}}
+		<li class="explore__user">
+			<div class="explore__content">
+				<a href="/user/{{fromUser.id}}">
+					<img src="/upload/{{#fromUser.profileImage}}{{fromUser.profileImage}}{{/fromUser.profileImage}}" onerror="this.src='/images/avatar.jpg'" />
+				</a>
+				<div class="explore__info">
+					<span class="explore__username">{{fromUser.name}}이 {{notiType.key}} 하였습니다.</span>
+				</div>
+			</div>
+		</li>
+		{{/notis}}
+
+	</ul>
+</main>
+<script src="/js/follow.js"></script>
+{{>layout/footer}}

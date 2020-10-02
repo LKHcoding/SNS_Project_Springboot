@@ -1,0 +1,54 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+    
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/insta?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: rootroot
+    
+  # 스프링에서 머스태치 세션 적용하려면 필요
+  mustache:
+    expose-session-attributes: true
+    
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      use-new-id-generator-mappings: false
+    show-sql: true
+      
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 2MB
+      
+  security:
+    user:
+      name: cos
+      password: 1234
+      
+    oauth2:
+      client:
+        registration:
+          facebook:
+            client-id: 1176498252715446
+            client-secret: 006f6435a2343bb6845c4ee7dbf43330
+            scope:
+            - email
+            - public_profile
+            
+cos:
+  secret: 겟인데어
+
+file:
+  path: D:/Springboot-Instagram-V3/upload/

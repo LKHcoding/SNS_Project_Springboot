@@ -12,33 +12,22 @@
 </head>
 <body>
 	<main id="login">
-		<div class="login__column" id="disable__div">
+		<div class="login__column">
 			<img src="/images/phoneImage.png" />
 		</div>
 		<div class="login__column">
-			<div class="login__box" id="main__loginbox">
+			<div class="login__box">
 				<img src="/images/loginLogo.png" />
-				<form action="/auth/login" method="post" class="login__form">
-					{{! placeholder 말고 highlighter로 변경할것 }}
-					<div class="group">
-						<input type="text" name="username" required> 
-     				<label>Name</label>
-					</div>
-					<div class="group">
-					<input type="password" name="password" required>
-					<label>password</label>
-					</div>
-
-
-						 <input type="submit" value="로그인">
+				<form action="feed.html" method="get" class="login__form">
+					<input type="text" name="username" placeholder="Username" required> <input type="password" name="password" placeholder="Password"
+						required> <input type="submit" value="Log in">
 				</form>
-				<span class="login__divider"> or </span> 
-				<a href="/oauth2/authorization/facebook" class="login__fb-link"><i class="fa fa-facebook-square"></i> Log in
+				<span class="login__divider"> or </span> <a href="http://facebook.com" class="login__fb-link"><i class="fa fa-facebook-square"></i> Log in
 					with Facebook</a> <a href="#" class="login__small-link">Forgot password?</a>
 			</div>
-			<div class="login__box" id="bottom__loginbox">
+			<div class="login__box">
 				<span class="login__text"> Don't have an account? <br />
-				</span> <a class="login__blue-link" href="/auth/joinForm">Sign up</a>
+				</span> <a class="login__blue-link" href="#">Sign up</a>
 			</div>
 			<div class="login__t-box">
 				<span class="login__text"> Get the app. </span>
