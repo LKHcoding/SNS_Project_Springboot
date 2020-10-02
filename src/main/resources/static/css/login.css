@@ -91,7 +91,7 @@
   box-sizing: border-box;
   display: block;
   width: 100%;
-  padding: 10px 7px 7px 7px;
+  padding: 10px 7px 0px 7px;
   margin-bottom: 10px;
   font-size: 14px;
   border: 1px solid #efefef;
@@ -116,7 +116,7 @@
   position: absolute;
   pointer-events: none;
   left: 5px;
-  top: 13px;
+  top: 14px;
   transition: 0.2s ease all;
 }
 /* active state */
