@@ -4,6 +4,18 @@
   align-items: center;
 }
 
+.side {
+  display: flex;
+  position: sticky;
+  justify-content:flex-end;
+  top:85px;
+  width:80px;
+  height:80px;
+  margin-top: -80px;
+  padding-bottom: 100px;
+  background-color:pink;
+}
+
 .photo {
   margin-bottom: 60px;
 }

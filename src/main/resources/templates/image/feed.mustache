@@ -1,16 +1,23 @@
 {{>layout/header}}
-<main id="feed">
 
+	<div class="side">
+		<h1>test</h1>
+	</div>
+
+<main id="feed">
 	{{#images}}
 	<div class="photo u-default-box">
+	
 		<header class="photo__header">
 			<img src="/upload/{{#user.profileImage}}{{user.profileImage}}{{/user.profileImage}}"  onerror="this.src='/images/avatar.jpg'" /> 
 			<span class="photo__username">{{user.username}}</span>
 		</header>
+		
 		<div class="photo_post_image"> <!-- 사진꽉채우기 css -->
 			<img src="/upload/{{imageUrl}}" />
 		</div>
 		<div class="photo__info">
+		
 			<div class="photo__actions">
 				<span class="photo__action">
 					{{#likeState}}
@@ -21,21 +28,23 @@
 					{{/likeState}}
 				</span> 
 				
-				<span class="photo__action">
+				<span class="photo__action">	{{! 메시지 아이콘 부분}}
 					{{#likeState}}
-						<i class="fa heart heart-clicked fa-heart" onclick="unLike({{id}})"></i>
+						<i class="fa comment comment-clicked fa-comment" onclick="undirect_message({{id}})"></i>
 					{{/likeState}}
 					{{^likeState}}
-						<i class="fa fa-comment-o" onclick="like({{id}})"></i>	{{! https://fontawesome.com/icons?d=gallery&q=user 아이콘 주기}}
+						<i class="fa fa-comment-o" onclick="commentSend({{id}})"></i>	{{! https://fontawesome.com/icons?d=gallery&q=user 아이콘 주기}}
 					{{/likeState}}
 				</span> 
 			</div>
+			
 			
 			<div class="photo_tag">
 				{{#tags}}
 					#{{name}}
 				{{/tags}}
 			</div>
+			
 			<span class="photo__likes">{{likeCount}} likes</span>
 			<br/><br/>
 			<ul class="photo__comments">
@@ -53,6 +62,8 @@
 	
 			<div class="photo__add-comment-container">
 				
+				
+				
 				<form id="frm-{{id}}" style="width:100%;">
 					<input type="hidden" name="userId" value="{{loginUser.id}}" />
 					<input type="hidden" name="imageId" value="{{id}}" />
@@ -63,8 +74,8 @@
 		</div>
 	</div>
 	{{/images}}
-	
 </main>
+
 <script>
 
 </script>
