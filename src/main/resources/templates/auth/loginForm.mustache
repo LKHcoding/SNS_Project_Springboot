@@ -23,9 +23,18 @@
 			<div class="login__box" id="main__loginbox">
 				<img src="/images/loginLogo.png" />
 				<form action="/auth/login" method="post" class="login__form">
-					<input type="text" name="username" placeholder="Username" required> 
-					<input type="password" name="password" placeholder="Password"
-						required> <input type="submit" value="Log in">
+					{{! placeholder 말고 highlighter로 변경할것 }}
+					<div class="group">
+						<input type="text" name="username" required> 
+     				<label>Name</label>
+					</div>
+					<div class="group">
+					<input type="password" name="password" required>
+					<label>password</label>
+					</div>
+
+
+						 <input type="submit" value="로그인">
 				</form>
 				<span class="login__divider"> or </span> 
 				<a href="/oauth2/authorization/facebook" class="login__fb-link"><i class="fa fa-facebook-square"></i> Log in

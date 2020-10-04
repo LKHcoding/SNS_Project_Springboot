@@ -1,0 +1,56 @@
+{{>layout/header}}
+
+<main id="edit-profile">
+	<div class="edit-profile__container u-default-box">
+
+		<header class="edit-profile__header">
+			<div class="fucker-container">
+				<img src="/upload/{{#user.profileImage}}{{user.profileImage}}{{/user.profileImage}}" 
+				onerror="this.src='/images/avatar.jpg'" />
+			</div>
+			<!-- master comments -->
+			<h1 class="edit-profile__username">{{user.username}}</h1>
+		</header>
+
+		<form id="frm" class="edit-profile__form">
+			<input type="hidden" name="id" value="{{user.id}}"/>
+			<div class="edit-profile__row">
+				<label class="edit-profile__label" for="name">Name</label> 
+				<input name="name" type="text" value="{{user.name}}">
+			</div>
+			<div class="edit-profile__row">
+				<label class="edit-profile__label" for="username">Username</label> 
+				<input type="text" value="{{user.username}}" readonly>
+			</div>
+			<div class="edit-profile__row">
+				<label class="edit-profile__label" for="website">Website</label> 
+				<input name="website" type="text" value="{{#user.website}}{{user.website}}{{/user.website}}">
+			</div>
+			<div class="edit-profile__row">
+				<label class="edit-profile__label" for="bio">Bio</label> 
+				<input name="bio" type="text" value="{{#user.bio}}{{user.bio}}{{/user.bio}}">
+			</div>
+			<div class="edit-profile__row">
+				<label class="edit-profile__label" for="email">Email</label> 
+				<input type="email" value="{{user.email}}" readonly>
+			</div>
+			<div class="edit-profile__row">
+				<label class="edit-profile__label" for="phone-number">Phone Number</label> 
+				<input name="phone" type="text" value="{{#user.phone}}{{user.phone}}{{/user.phone}}">
+			</div>
+			<div class="edit-profile__row">
+				<label class="edit-profile__label" for="gender">Gender</label> 
+				<input name="gender" type="text" value="{{#user.gender}}{{user.gender}}{{/user.gender}}">
+			</div>
+			<div class="edit-profile__row">
+				<span></span> 
+				<button onclick="userUpdate({{user.id}})" class="profile_follow_btn" type="button">
+					회원수정
+				</button>
+			</div>
+		</form>
+
+	</div>
+</main>
+<script src="/js/profile.js"></script>
+{{>layout/footer}}

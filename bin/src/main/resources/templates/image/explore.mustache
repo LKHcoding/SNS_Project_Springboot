@@ -1,0 +1,15 @@
+{{>layout/header}}
+<main id="profile">
+		<div class="profile__photo-grid">
+				{{#images}}
+				<!-- 유저가 업로드한 Feed 사진 -->
+					<div class="profile__photo">
+						<a href="/user/{{user.id}}"> 
+							<img src="/upload/{{imageUrl}}">
+						</a>	
+					</div>									
+					{{/images}}
+		</div>	
+</main>
+
+{{>layout/footer}}
