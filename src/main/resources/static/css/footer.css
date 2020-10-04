@@ -2,12 +2,12 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
-  max-width: 900px;
+  max-width: 1200px;
   font-weight: 600;
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 12px;
   flex-wrap: wrap;
   margin-bottom: 55px;
 }
