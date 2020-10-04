@@ -13,11 +13,11 @@
 <body>
 	<main id="login">
 		<div class="login__column" id="disable__div">
-			
-			
-			<img src="/images/phoneImage.png" />
-
-			
+			<img class="changing__image" src="/images/phoneImage.png" />
+			<img class="changing__image2" src="/images/phoneImage2.png" />
+			<img class="changing__image3" src="/images/phoneImage3.png" />
+			<img class="changing__image4" src="/images/phoneImage4.png" />
+			<img class="changing__image5" src="/images/phoneImage5.png" />
 		</div>
 		<div class="login__column">
 			<div class="login__box" id="main__loginbox">
@@ -26,26 +26,24 @@
 					{{! placeholder 말고 highlighter로 변경할것 }}
 					<div class="group">
 						<input type="text" name="username" required> 
-     				<label>Name</label>
+     				<label>사용자 이름</label>
 					</div>
 					<div class="group">
 					<input type="password" name="password" required>
-					<label>password</label>
+					<label>비밀번호</label>
 					</div>
-
-
 						 <input type="submit" value="로그인">
 				</form>
-				<span class="login__divider"> or </span> 
-				<a href="/oauth2/authorization/facebook" class="login__fb-link"><i class="fa fa-facebook-square"></i> Log in
-					with Facebook</a> <a href="#" class="login__small-link">Forgot password?</a>
+				<span class="login__divider"> 또는 </span> 
+				<a href="/oauth2/authorization/facebook" class="login__fb-link"><i class="fa fa-facebook-square"></i> Facebook으로 로그인</a>
+				 <a href="#" class="login__small-link">비밀번호를 잊으셨나요?</a>
 			</div>
 			<div class="login__box" id="bottom__loginbox">
-				<span class="login__text"> Don't have an account? <br />
-				</span> <a class="login__blue-link" href="/auth/joinForm">Sign up</a>
+				<span class="login__text"> 계정이 없으신가요? <br />
+				</span> <a class="login__blue-link" href="/auth/joinForm">가입하기</a>
 			</div>
 			<div class="login__t-box">
-				<span class="login__text"> Get the app. </span>
+				<span class="login__text"> 앱을 다운로드하세요. </span>
 				<div class="login__appstores">
 					<img src="/images/ios.png" class="login__appstore" /> <img src="/images/android.png" class="login__appstore" />
 				</div>

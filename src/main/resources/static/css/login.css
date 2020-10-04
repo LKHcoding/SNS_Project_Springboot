@@ -3,18 +3,129 @@
   margin: 60px auto;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   max-width: 900px;
   flex-wrap: nowrap;
 }
 
 #login .login__column {
-  width: 500px;
+  width: 420px;
+  height: 590px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-top: 40px;
+  margin-bottom: 115px;
 }
 
 #login .login__column img {
   max-width: 500px;
 }
+
+/* ---로그인화면 이미지 겹친다음에 부드럽게 넘기는 소스 시작--- */
+#login .login__column .changing__image {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 1;
+  animation: image1 30s linear infinite;
+}
+@keyframes image1 {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+#login .login__column .changing__image2 {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 2;
+  animation: image2 30s linear infinite;
+}
+@keyframes image2 {
+  0% {
+    opacity: 1;
+  }
+  76% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+#login .login__column .changing__image3 {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 3;
+  animation: image3 30s linear infinite;
+}
+@keyframes image3 {
+  0% {
+    opacity: 1;
+  }
+  56% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+#login .login__column .changing__image4 {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 4;
+  animation: image4 30s linear infinite;
+}
+@keyframes image4 {
+  0% {
+    opacity: 1;
+  }
+  36% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+#login .login__column .changing__image5 {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 5;
+  animation: image5 30s linear infinite;
+}
+@keyframes image5 {
+  0% {
+    opacity: 1;
+  }
+  16% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0;
+  }
+  96% {
+    opacity: 0;
+  }
+}
+/* ---로그인화면 이미지 겹친다음에 부드럽게 넘기는 소스 끝--- */
 
 @media (max-width: 890px) {
   #login #disable__div {
@@ -26,32 +137,34 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     flex-direction: column;
   }
   #login .login__column #main__loginbox {
-    width: 350px;
+    width: 300px;
     margin-top: 45px;
   }
   #login .login__column #bottom__loginbox {
-    width: 430px;
+    width: 380px;
   }
 }
 
 .login__column .login__box {
   background: white;
   border: 1px solid #e6e6e6;
-  margin-bottom: 10px;
-  width: 350px;
+  margin-bottom: 0px;
+  margin-top: 10px;
+  width: 280px;
 }
 
 .login__column .login__box:nth-child(2) {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px 0;
-  width: 430px;
+  width: 360px;
+  height: 25px;
 }
 
 .login__column .login__t-box {
@@ -59,14 +172,18 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  padding: 0px;
+  margin: 0px;
 }
 
 .login__appstores {
-  margin-top: 20px;
+  padding: 0px;
+  margin: 0px;
 }
 
 .login__appstores .login__appstore {
-  height: 37px;
+  height: 40px;
+  margin-top: 20px;
 }
 
 .login__box .login__blue-link {
@@ -81,18 +198,18 @@
 }
 
 .login__box .login__form {
-  margin-top: 10px;
+  margin-top: 30px;
   width: 100%;
 }
 
 .login__form input:not(submit) {
   background-color: #fafafa;
-  height: 50px;
+  height: 40px;
   box-sizing: border-box;
   display: block;
   width: 100%;
   padding: 10px 7px 0px 7px;
-  margin-bottom: 10px;
+  margin-bottom: 7px;
   font-size: 14px;
   border: 1px solid #efefef;
   border-radius: 3px;
@@ -111,7 +228,7 @@
 /* LABEL ======================================= */
 .login__form .group label {
   color: #999;
-  font-size: 18px;
+  font-size: 13px;
   font-weight: normal;
   position: absolute;
   pointer-events: none;
@@ -122,8 +239,9 @@
 /* active state */
 .group input:focus ~ label,
 .group input:valid ~ label {
-  top: 2px;
-  font-size: 14px;
+  top: 4px;
+  left: 7px;
+  font-size: 10px;
   color: #5264ae;
 }
 
@@ -134,9 +252,9 @@
   background-color: #3897f0;
   padding: 7px;
   cursor: pointer;
-
   font-size: 14px;
-  height: 30px;
+  height: 31px;
+  margin-top:15px;
 }
 
 input[type="submit"] {
@@ -148,8 +266,8 @@ input[type="submit"] {
 }
 
 .login__box .login__divider {
-  margin-top: 20px;
-  margin-bottom: 15px;
+  margin-top: 10px;
+  margin-bottom: 30px;
   text-transform: uppercase;
   font-weight: 600;
   color: #999;
