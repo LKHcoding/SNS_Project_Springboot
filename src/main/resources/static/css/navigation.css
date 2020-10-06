@@ -1,11 +1,15 @@
 .navigation {
+  position: fixed;
+  width: 100%;
+  top:0px;
   background: white;
   border-bottom: 1px solid rgba(0, 0, 0, .0975);
-  height: 80px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 40px;
+  z-index: 8;
 }
 
 .navigation input {
@@ -27,6 +31,7 @@
 .navigation .navigation__links {
   display: flex;
   justify-content: flex-end;
+  margin-right:60px;
 }
 
 .navigation__links .navigation__link {

@@ -2,18 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.side {
-  display: flex;
-  position: sticky;
-  justify-content:flex-end;
-  top:85px;
-  width:80px;
-  height:80px;
-  margin-top: -80px;
-  padding-bottom: 100px;
-  background-color:pink;
+  margin-top:100px;
 }
 
 .photo {
@@ -134,4 +123,22 @@
 .heart-clicked {
   color: red;
   animation: .5s pump infinite linear;
+}
+
+.feed_all {
+  border:1px solid black;
+  display: flex;
+  
+}
+
+.recomend_only {
+  position:sticky;
+  
+}
+
+.feed_olny {
+  display: flex;
+  z-index: -1;
+  position: relative;
+  flex-direction: column;
 }

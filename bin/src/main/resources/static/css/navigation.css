@@ -36,6 +36,7 @@
   margin-left: 20px;
   animation: .5s drop ease-out forwards;
   opacity: 0;
+  border: 1px solid black;
 }
 
 .navigation__links .navigation__link:nth-child(2) {

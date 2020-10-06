@@ -4,14 +4,14 @@
   margin-right: auto;
   max-width: 1000px;
   font-size: 16px;
-} 
+}
 
 .profile__stat a {
 	text-decoration: none;
 	color: #0092CF;
 }
 
-/* userProfileUpload 수정 */
+/* userProfileUpload ?�정 */
 #profile .profile__header {
   display: grid;
   grid-template-columns: 30% 70%;
@@ -19,7 +19,7 @@
   margin-bottom: 50px;
 } 
 
-/* 삭제 */
+/* ??�� */
 /* .profile__header .profile__info {
   width: 70%;
 } */
@@ -30,7 +30,7 @@
   align-items: center;
 }
 
-/* userProfileUpload 수정 */
+/* userProfileUpload ?�정 */
 .avatar__container img {
   width: 150px;
   height: 150px;
@@ -38,7 +38,7 @@
   animation: 6s potato infinite ease-in-out;
 }
 
-/* userProfileUpload 수정 */
+/* userProfileUpload ?�정 */
 .profile__photo-grid {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
@@ -46,7 +46,7 @@
 	grid-gap: 10px;
 }
 
-/* userProfileUpload 수정 */
+/* userProfileUpload ?�정 */
 .profile__info .profile__title,
 .profile__info .profile__stats {
   display: grid;
@@ -56,7 +56,7 @@
   margin-bottom: 30px;
 }
 
-/* userProfileUpload 수정 */
+/* userProfileUpload ?�정 */
 .profile__stat {
   display: grid;
   grid-template-columns: auto auto;
@@ -64,7 +64,7 @@
   text-align: center;
 }
 
-/* userProfileUpload 수정 */
+/* userProfileUpload ?�정 */
 @media (max-width: 700px) {
   #profile .profile__header {
     grid-template-columns: auto;
@@ -160,7 +160,7 @@
 	margin-bottom: 5px;
 }
 
-/* 삭제 */
+/* ??�� */
 /* .profile__photo-row .profile__photo {
   width: 32%;
 } */
@@ -202,7 +202,7 @@
   opacity: 1;
 }
 
-/* 삭제 */
+/* ??�� */
 /* .profile__photo-row {
   display: flex;
   justify-content: space-between;
