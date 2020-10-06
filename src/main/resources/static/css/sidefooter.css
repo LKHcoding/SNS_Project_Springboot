@@ -1,0 +1,22 @@
+
+
+footer .side_footer__list {
+  display: inline-block;
+  line-height: 18px;
+  word-break: keep-all;
+  margin-right:0px;
+  margin-bottom:5px;
+}
+
+.side_footer__list .side_footer__item {
+  display: inline;
+  margin-right: 10px;
+}
+
+.side_footer__item .side_footer__link {
+  color: #003569;
+}
+
+footer .side_footer__copyright {
+  color: #999;
+}
