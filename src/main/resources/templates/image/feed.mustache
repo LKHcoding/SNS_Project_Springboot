@@ -16,24 +16,17 @@
 				<img src="/upload/{{imageUrl}}" />
 			</div>
 			<div class="photo__info">
-			
 				<div class="photo__actions">
 					<span class="photo__action">
 						{{#likeState}}
-							<i class="fa heart heart-clicked fa-heart" onclick="unLike({{id}})"></i>
+							<i class="fa heart heart-clicked fa-heart " onclick="unLike({{id}})"></i>
 						{{/likeState}}
 						{{^likeState}}
 							<i class="fa fa-heart-o heart" onclick="like({{id}})"></i>
 						{{/likeState}}
 					</span> 
-					
 					<span class="photo__action">	{{! 메시지 아이콘 부분}}
-						{{#likeState}}
-							<i class="fa comment comment-clicked fa-comment" onclick="undirect_message({{id}})"></i>
-						{{/likeState}}
-						{{^likeState}}
 							<i class="fa fa-comment-o" onclick="commentSend({{id}})"></i>	{{! https://fontawesome.com/icons?d=gallery&q=user 아이콘 주기}}
-						{{/likeState}}
 					</span> 
 				</div>
 				
@@ -77,13 +70,13 @@
 			<div class="sticky_side">
 				<div class="fixed_side">
 					<div class="side">
-						<b>회원님을 위한 추천 기능</b><br><br>
-						<p>instargram</p><br>
-						<p>test</p><br>
-						<p>parkyoungun<p><br>
-						<p>test1</p><br>
-						<p>test2</p><br>
-						<p>test3</p><br>
+						<div><b>회원님을 위한 추천 기능</b><br><br></div>
+						<div><p>instargram</p><br></div>
+						<div><p>test</p><br></div>
+						<div><p>parkyoungun<p><br></div>
+						<div><p>test1</p><br></div>
+						<div><p>test2</p><br></div>
+						<div><p>test3</p><br></div>
 					</div>
 				<div>
 				{{>layout/footer}}
