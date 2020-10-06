@@ -4,7 +4,7 @@
   margin-right: auto;
   max-width: 1000px;
   font-size: 16px;
-}
+} 
 
 .profile__stat a {
 	text-decoration: none;
@@ -17,7 +17,7 @@
   grid-template-columns: 30% 70%;
   justify-content: center;
   margin-bottom: 50px;
-}
+} 
 
 /* 삭제 */
 /* .profile__header .profile__info {
@@ -46,7 +46,6 @@
 	grid-gap: 10px;
 }
 
-
 /* userProfileUpload 수정 */
 .profile__info .profile__title,
 .profile__info .profile__stats {
@@ -70,16 +69,20 @@
   #profile .profile__header {
     grid-template-columns: auto;
   }
+
   .profile__photo-grid {
   	grid-template-columns: auto;
   }
+
   .avatar__container {
   	margin-top: 20px;
   	text-align: center;
   }
+
   .profile__info {
 	margin-top: 20px;
   }
+
   .profile__stat {
   grid-template-columns: auto;
 }
@@ -125,11 +128,12 @@
   from {
     transform: rotate(0turn);
   }
+
   to {
     transform: rotate(1turn);
   }
 }
-
+ 
 .profile__stats .profile__stat {
   margin-right: 45px;
 }
@@ -151,7 +155,7 @@
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
-
+ 
 .profile__bio p {
 	margin-bottom: 5px;
 }
@@ -192,7 +196,7 @@
 
 .profile__photo-overlay .profile__photo-stat:first-child {
   margin-right: 20px;
-}
+} 
 
 .profile__photo:hover .profile__photo-overlay {
   opacity: 1;
@@ -203,12 +207,12 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
-} */
+} */ 
 
 .profile__photo-stat i.fa-heart {
   transform: scale(40);
   animation: .5s pump infinite linear;
-}
+} 
 
 @keyframes pump {
   0% {
@@ -230,7 +234,18 @@
   top: 0;
   left: 0;
   display: none;
-}
+} 
+
+
+.profile__overlay1 {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  display: none;
+} 
 
 .profile__overlay i {
   position: absolute;
@@ -241,6 +256,15 @@
   cursor: pointer;
 }
 
+.profile__overlay1 i {
+  left: 20px;
+  top: 25px;
+  color: black;
+  font-size: 30px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
 .profile__overlay-container {
   display: flex;
   align-items: center;
@@ -248,6 +272,16 @@
   height: 100%;
   flex-direction: column;
 }
+
+#profile__overlay-container1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  flex-direction: column;
+  border-radius: 15px; 
+}
+
 
 .profile__overlay-link {
   background: white;
@@ -257,6 +291,31 @@
   color: inherit;
   border-bottom: 1px solid #e6e6e6;
   transition: background .5s ease-out;
+}
+
+.profile__overlay-link2 {
+  background: white;
+  width: 400px;
+  text-align: center;
+  font-weight: 700;
+  padding: 20px 0;
+  font-size: 20px;
+  color: inherit;
+  border-bottom: 1px solid #e6e6e6;
+  transition: background .5s ease-out;
+}
+
+.profile__overlay-link3 {
+  background: white;
+  width: 400px;
+  height: 300px;
+  text-align: center;
+  font-weight: 700;
+  padding: 20px 0;
+  color: inherit;
+  border-bottom: 1px solid #e6e6e6;
+  transition: background .5s ease-out;
+  overflow-x:hidden;overflow-y:scroll;
 }
 
 .profile__overlay-link:hover {
