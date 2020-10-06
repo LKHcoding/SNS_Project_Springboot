@@ -236,7 +236,7 @@
   position: absolute;
   right: 25px;
   top: 25px;
-  color: white;
+  color: blue;
   font-size: 28px;
   cursor: pointer;
 }
@@ -255,7 +255,7 @@
   text-align: center;
   padding: 20px 0;
   color: inherit;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 3px solid #e6e6e6;
   transition: background .5s ease-out;
 }
 
