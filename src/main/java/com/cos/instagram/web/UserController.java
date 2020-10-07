@@ -23,14 +23,14 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	
+
 	@GetMapping("/user/{id}")
 	public String profile(@PathVariable int id, @LoginUserAnnotation LoginUser loginUser, Model model) {
 		UserProfileRespDto userProfileRespDto = userService.회원프로필(id, loginUser);
 		model.addAttribute("respDto", userProfileRespDto);
 		return "user/profile";
 	}
-	
+
 	@GetMapping("/user/profileEdit")
 	public String profileEdit(
 			@LoginUserAnnotation LoginUser loginUser,
@@ -39,13 +39,13 @@ public class UserController {
 		model.addAttribute("user", userEntity);
 		return "user/profile-edit";
 	}
-	
+
 	@PutMapping("/user")
 	public ResponseEntity<?> userUpdate(User user){
 		userService.회원수정(user);
 		return new ResponseEntity<String>("ok", HttpStatus.OK);
 	}
-	
+
 	// 원래는 put으로 하는게 맞는데 편하게 하기 위해
 	@PostMapping("/user/profileUpload")
 	public String userProfileUpload(@RequestParam("profileImage") MultipartFile file,
@@ -54,9 +54,19 @@ public class UserController {
 		if(userId == loginUser.getId()) {
 			userService.프로필사진업로드(loginUser, file);
 		}
-		
+
 		return "redirect:/user/"+userId;
 	}
+
+	//영운 댓글기능 구현중
+	@GetMapping("/user/feed-comment/{userid}")
+	public String feedcomment(@PathVariable int userid, @LoginUserAnnotation LoginUser loginUser, Model model) {
+		UserProfileRespDto userProfileRespDto = userService.회원프로필(userid, loginUser);
+		model.addAttribute("respDto", userProfileRespDto);
+		return "user/feed-comment";
+	}
+
+
 }
 
 
