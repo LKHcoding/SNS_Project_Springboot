@@ -15,7 +15,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   flex-direction: column;
   margin-top: 40px;
   margin-bottom: 115px;
@@ -127,7 +127,7 @@
 }
 /* ---로그인화면 이미지 겹친다음에 부드럽게 넘기는 소스 끝--- */
 
-@media (max-width: 890px) {
+@media (max-width: 850px) {
   #login #disable__div {
     display: none;
   }
@@ -254,7 +254,7 @@
   cursor: pointer;
   font-size: 14px;
   height: 31px;
-  margin-top:15px;
+  margin-top: 15px;
 }
 
 input[type="submit"] {

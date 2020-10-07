@@ -27,3 +27,8 @@ footer .footer__list {
 footer .footer__copyright {
   color: #999;
 }
+@media (max-width: 850px) {
+  footer{
+  	max-width:560px;
+  }
+}
