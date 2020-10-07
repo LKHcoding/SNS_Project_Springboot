@@ -1,0 +1,10 @@
+.fixed_side {
+    position: sticky;
+    top:53px;
+	height : 400px;
+	width : 350px;
+	margin-left:5px;
+}
+
+.side {
+}

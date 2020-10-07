@@ -1,15 +1,18 @@
 {{>layout/header}}
 <main id="profile">
 	<header class="profile__header">
+	
 		<div class="avatar__container">
+		
 			<form id="frm_profile_img" action="/user/profileUpload" method="post" enctype="multipart/form-data">
 				<input type="file" name="profileImage" style="display: none;" />
 				<input type="hidden" name="userId" value="{{respDto.user.id}}" />
 			</form>
+			
 			<img src="/upload/{{#respDto.user.profileImage}}{{respDto.user.profileImage}}{{/respDto.user.profileImage}}" id="profile_image"
 				style="cursor: pointer" onerror="this.src='/images/avatar.jpg'" />
 		</div>
-		
+
 		<div class="profile__info">
 			<div class="profile__title">
 				<h1>{{respDto.user.username}}</h1>
@@ -25,29 +28,33 @@
 						</a>
 				    {{/respDto.followState}} 
 				{{/respDto.pageHost}}
-				
 				{{#respDto.pageHost}}
+				
 					<a href="/image/uploadForm">
 						<button class="profile_edit_btn">사진등록</button>	
 					</a>
+
 					<a href="#">
 						<i class="fa fa-cog fa-lg"></i>
 					</a>
 				{{/respDto.pageHost}}
-				
 			</div>
+
 			<ul class="profile__stats">
 				<li class="profile__stat"><span class="profile__stat-number">{{respDto.imageCount}}</span>
 					게시물</li>
 				<li class="profile__stat"><span class="profile__stat-number">{{respDto.followerCount}}</span>
-					<a href="/follow/followerList/{{respDto.user.id}}">팔로워</a></li>
+					<a href="#" class="followerClick">팔로워
+					</a>
 				<li class="profile__stat"><span class="profile__stat-number">{{respDto.followingCount}}</span>
 					<a href="/follow/followingList/{{respDto.user.id}}">팔로우</a></li>
 			</ul>
+			
 			<p class="profile__bio">
 				<span class="profile__fullname">
 					{{respDto.user.name}}
 				</span>
+
 				<span>
 					{{#respDto.user.bio}}
 						{{respDto.user.bio}}
@@ -62,25 +69,26 @@
 			</p>
 		</div>
 	</header>
-		<div class="profile__photo-grid">
-				
+	
+		<div class="profile__photo-grid">				
 				<!-- 유저가 업로드한 Feed 사진 -->
 				{{#respDto.images}}
 					<div class="profile__photo">
 						<a href="#"> 
 							<img src="/upload/{{imageUrl}}">
 						</a>
+
 						<div class="profile__photo-overlay">
 							<span class="profile__photo-stat"> 
 								<i class="fa fa-heart"></i> {{likeCount}}
 							</span> 
+
 							<span class="profile__photo-stat"> 
 								<i class="fa fa-comment"></i> {{commentCount}}
 							</span>
 						</div>
 					</div>									
 				{{/respDto.images}}
-				
 		</div>	
 </main>
 
@@ -90,6 +98,13 @@
 	    <a href="/user/profileEdit" class="profile__overlay-link" id="logout">회원 수정</a>
 		<a href="/auth/logout" class="profile__overlay-link" id="logout">로그아웃</a> 
 		<a href="#" class="profile__overlay-link" id="cancel">취소</a>
+	</div>
+</div>
+
+<div class="profile__overlay1">
+	<div id="profile__overlay-container1"> 
+	<a class="profile__overlay-link2" id="logout">팔로워 	<i class="fa fa-times"></i></a>
+	<a href="#" class="profile__overlay-link3" id="cancel">취소</a>
 	</div>
 </div>
 
@@ -104,6 +119,17 @@
 			$("#frm_profile_img").submit();
 		})
 	})
+
 </script>
+
+<script>
+    $(function(){
+         $('#profile__overlay-link3').thinScrollbar();
+    });
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="/js/thinScrollbar.js"></script>
+
 <script src="/js/follow.js"></script>
 {{>layout/footer}}
