@@ -1,29 +1,36 @@
- {{>layout/header}}
-
-<main id="explore">
-	<ul class="explore__users u-default-box">
-		{{#followerList}}
-		<li class="explore__user">
-			<div class="explore__content">
-				<a href="/user/{{id}}">
-					<img src="/upload/{{#profileImage}}{{profileImage}}{{/profileImage}}" onerror="this.src='/images/avatar.jpg'" />
-				</a>
-				<div class="explore__info">
-					<span class="explore__username">{{username}}</span> <span
-						class="explore__full-name">{{name}}</span>
+ <html>
+ 	<head th:replace="layout/header :: header"></head>
+ 	<body>
+  	<nav th:replace="layout/header :: menu"></nav>  	
+	<main id="explore">
+		<ul class="explore__users u-default-box">
+			<li class="explore__user" th:each="followerList  : ${followerList}">
+				<div class="explore__content">
+					<!-- <a th:href="@{/user/{id}(id=${pageID})}">  -->
+					<a th:href="@{|/user/${followerList.id}|}"> 
+					<img src="/upload/{{#profileImage}}{{profileImage}}{{/profileImage}}"
+	
+						onerror="this.src='/images/avatar.jpg'" />
+					</a>
+					<div class="explore__info">
+						<span class="explore__username" th:text="${followerList.username}"></span> <span
+							class="explore__full-name" th:text="${followerList.name}"></span>
+					</div>
 				</div>
-			</div>
-				{{^equalUserState}}
+				<td th:href="${followerList.equalUserState}"></td>
+				{{^equalUserState}} 
 					{{#followState}}
-						<button onclick="unFollow({{id}})" class="profile_edit_btn">팔로우취소</button>
-					{{/followState}}
-					{{^followState}}
-						<button onclick="follow({{id}})" class="profile_follow_btn">팔로우</button>
-					{{/followState}}
+						<button th:onclick="|unFollow(${followerList.id})|" class="profile_edit_btn">팔로우취소</button>
+					{{/followState}} 
+							{{^followState}}
+						<button th:onclick="|follow(${followerList.id})|" class="profile_follow_btn">팔로우취소</button>								
+					{{/followState}} 
 				{{/equalUserState}}
-		</li>
-		{{/followerList}}
-	</ul>
-</main>
-<script src="/js/follow.js"></script>
-{{>layout/footer}}
+			</li>
+		</ul>
+	</main>
+	<script src="/js/follow.js"></script>
+	<footer th:replace="layout/footer :: footer"></footer>
+  </body>
+</html>
+
