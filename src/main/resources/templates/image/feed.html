@@ -1,119 +1,116 @@
 <!-- {{>layout/header}} -->
 <!DOCTYPE html>
-<html
-  xmlns:th="http://www.thymeleaf.org"
-  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
->
-  <header th:replace="layout/header :: header"></header>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head th:replace="layout/header :: header"></head>
+<body>
+	<nav th:replace="layout/header :: menu"></nav>
+	<main id="feed">
+		<div class="feed_all">
+			<div class="feed_only">
+				<!-- {{#images}} -->
+				<tbody>
+					<tr th:each="images : ${images}">
+						<td th:text="${images.imageUrl}">Mark</td>
+					</tr>
+				</tbody>
+				<div class="photo u-default-box" th:each="images : ${images}">
+					<header class="photo__header">
+						<img
+							src="/upload/{{#user.profileImage}}{{user.profileImage}}{{/user.profileImage}}"
+							onerror="this.src='/images/avatar.jpg'" /> <span
+							class="photo__username">{{user.username}}</span>
+					</header>
 
-  <main id="feed">
-    <div class="feed_all">
-      <div class="feed_only">
-        {{#images}}
-        <div class="photo u-default-box">
-          <header class="photo__header">
-            <img
-              src="/upload/{{#user.profileImage}}{{user.profileImage}}{{/user.profileImage}}"
-              onerror="this.src='/images/avatar.jpg'"
-            />
-            <span class="photo__username">{{user.username}}</span>
-          </header>
+					<div class="photo_post_image">
+						<!-- 사진꽉채우기 css -->
+						<img src="/upload/{{imageUrl}}" />
+					</div>
+					<div class="photo__info">
+						<div class="photo__actions">
+							<span class="photo__action"> {{#likeState}} <i
+								class="fa heart heart-clicked fa-heart"
+								onclick="unLike({{id}});"></i>
+								{{/likeState}} {{^likeState}} <i class="fa fa-heart-o heart"
+								onclick="like({{id}});"></i> {{/likeState}}
+							</span> <span class="photo__action"> {{! 메시지 아이콘 부분}} <a
+								href="/user/{{loginUser.id}}"><i
+									class="fa fa-comment-o"></i></a> {{!
+								https://fontawesome.com/icons?d=gallery&q=user 아이콘 주기}}
+							</span>
+						</div>
 
-          <div class="photo_post_image">
-            <!-- 사진꽉채우기 css -->
-            <img src="/upload/{{imageUrl}}" />
-          </div>
-          <div class="photo__info">
-            <div class="photo__actions">
-              <span class="photo__action">
-                {{#likeState}}
-                <i
-                  class="fa heart heart-clicked fa-heart"
-                  onclick="unLike({{id}});"
-                ></i>
-                {{/likeState}} {{^likeState}}
-                <i class="fa fa-heart-o heart" onclick="like({{id}});"></i>
-                {{/likeState}}
-              </span>
-              <span class="photo__action">
-                {{! 메시지 아이콘 부분}}
-                <a href="/user/{{loginUser.id}}"
-                  ><i class="fa fa-comment-o"></i
-                ></a>
-                {{! https://fontawesome.com/icons?d=gallery&q=user 아이콘 주기}}
-              </span>
-            </div>
+						<div class="photo_tag">
+							{{#tags}} <a href="/image/feed?tag={{name}}">#{{name}}</a>
+							{{/tags}}
+						</div>
 
-            <div class="photo_tag">
-              {{#tags}}
-              <a href="/image/feed?tag={{name}}">#{{name}}</a>
-              {{/tags}}
-            </div>
+						<span class="photo__likes">{{likeCount}} likes</span> <br />
+						<br />
+						<ul class="photo__comments">
+							{{#comments}}
+							<li class="photo__comment"><span
+								class="photo__comment-author">{{user.username}}</span> <span
+								style="font-size: 12px">{{content}}</span> {{#commentHost}} <i
+								onclick="commentDelete({{id}});" class="fa fa-trash"></i>
+								{{/commentHost}}</li> {{/comments}}
+						</ul>
+						<span class="photo__date">{{createDate}}</span>
 
-            <span class="photo__likes">{{likeCount}} likes</span>
-            <br /><br />
-            <ul class="photo__comments">
-              {{#comments}}
-              <li class="photo__comment">
-                <span class="photo__comment-author">{{user.username}}</span>
-                <span style="font-size: 12px">{{content}}</span>
-                {{#commentHost}}
-                <i onclick="commentDelete({{id}});" class="fa fa-trash"></i>
-                {{/commentHost}}
-              </li>
-              {{/comments}}
-            </ul>
-            <span class="photo__date">{{createDate}}</span>
+						<div class="photo__add-comment-container">
+							<form id="frm-{{id}}" style="width: 100%">
+								<input type="hidden" name="userId" value="{{loginUser.id}}" />
+								<input type="hidden" name="imageId" value="{{id}}" />
+								<textarea id="content-{{id}}" name="content"
+									placeholder="Add a comment..."></textarea>
+							</form>
+							<i onclick="commentSend({{id}});" class="fa fa-angle-right"></i>
+						</div>
+					</div>
+				</div>
+				<!-- {{/images}} -->
+			</div>
+			<div class="sticky_side">
+				<div class="fixed_side">
+					<div class="side">
+						<div>
+							<b>회원님을 위한 추천 기능</b><br />
+							<br />
+						</div>
+						<div>
+							<a href="#">instargram</a><br />
+						</div>
+						<div>
+							<p>test</p>
+							<br />
+						</div>
+						<div>
+							<p>parkyoungun</p>
+							<p>
+								<br />
+							</p>
+						</div>
+						<div>
+							<p>test1</p>
+							<br />
+						</div>
+						<div>
+							<p>test2</p>
+							<br />
+						</div>
+						<div>
+							<p>test3</p>
+							<br />
+						</div>
+					</div>
+					<div>{{>layout/sidefooter}}</div>
+				</div>
+			</div>
+		</div>
+	</main>
 
-            <div class="photo__add-comment-container">
-              <form id="frm-{{id}}" style="width: 100%">
-                <input type="hidden" name="userId" value="{{loginUser.id}}" />
-                <input type="hidden" name="imageId" value="{{id}}" />
-                <textarea
-                  id="content-{{id}}"
-                  name="content"
-                  placeholder="Add a comment..."
-                ></textarea>
-              </form>
-              <i onclick="commentSend({{id}});" class="fa fa-angle-right"></i>
-            </div>
-          </div>
-        </div>
-        {{/images}}
-      </div>
-      <div class="sticky_side">
-        <div class="fixed_side">
-          <div class="side">
-            <div><b>회원님을 위한 추천 기능</b><br /><br /></div>
-            <div><a href="#">instargram</a><br /></div>
-            <div>
-              <p>test</p>
-              <br />
-            </div>
-            <div>
-              <p>parkyoungun</p>
-              <p><br /></p>
-            </div>
-            <div>
-              <p>test1</p>
-              <br />
-            </div>
-            <div>
-              <p>test2</p>
-              <br />
-            </div>
-            <div>
-              <p>test3</p>
-              <br />
-            </div>
-          </div>
-          <div>{{>layout/sidefooter}}</div>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <script></script>
-  <script src="/js/comment.js"></script>
-  <script src="/js/like.js"></script>
+	<script></script>
+	<script src="/js/comment.js"></script>
+	<script src="/js/like.js"></script>
+</body>
 </html>

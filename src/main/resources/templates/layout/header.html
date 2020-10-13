@@ -13,17 +13,12 @@
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       rel="stylesheet"
     />
-    <link
-      rel="shortcut icon"
-      href="/images/favicon.ico"
-    />
-    <link
-      rel="stylesheet"
-      href="/css/styles.css"
-    />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
+    <link rel="stylesheet" href="/css/styles.css" />
   </head>
+
   <body>
-    <nav class="navigation">
+    <nav class="navigation" th:fragment="menu">
       <a href="/">
         <img src="/images/logo.png" />
       </a>
@@ -34,16 +29,16 @@
         </button>
       </form>
       <div class="navigation__links">
-        <a href="/image/explore" class="navigation__link">
+        <a th:href="|/image/explore|" class="navigation__link">
           <i class="fa fa-compass"></i>
         </a>
-        <a href="/noti/${loginUser.id}" class="navigation__link follow_popup">
+        <a th:href="|/noti/${session.loginUser.id}|" class="navigation__link follow_popup">
           <i class="fa fa-heart-o"></i>
         </a>
-        <a href="/noti/${loginUser.id}" class="navigation__link follow_popup">
+        <a th:href="|/noti/${session.loginUser.id}|" class="navigation__link follow_popup">
           <i class="fa fa-paper-plane-o"></i>
         </a>
-        <a href="/user/${loginUser.id}" class="navigation__link">
+        <a th:href="|/user/${session.loginUser.id}|" class="navigation__link">
           <i class="fa fa-user-o"></i>
         </a>
       </div>
