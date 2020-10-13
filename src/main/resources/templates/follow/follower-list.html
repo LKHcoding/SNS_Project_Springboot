@@ -8,9 +8,7 @@
 				<div class="explore__content">
 					<!-- <a th:href="@{/user/{id}(id=${pageID})}">  -->
 					<a th:href="@{|/user/${followerList.id}|}"> 
-					<img src="/upload/{{#profileImage}}{{profileImage}}{{/profileImage}}"
-	
-						onerror="this.src='/images/avatar.jpg'" />
+					<img src="/upload/{{#profileImage}}{{profileImage}}{{/profileImage}}" onerror="this.src='/images/avatar.jpg'" />
 					</a>
 					<div class="explore__info">
 						<span class="explore__username" th:text="${followerList.username}"></span> <span
@@ -18,6 +16,8 @@
 					</div>
 				</div>
 				<td th:href="${followerList.equalUserState}"></td>
+		
+				
 				{{^equalUserState}} 
 					{{#followState}}
 						<button th:onclick="|unFollow(${followerList.id})|" class="profile_edit_btn">팔로우취소</button>
