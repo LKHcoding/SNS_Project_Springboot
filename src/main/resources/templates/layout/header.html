@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org"
-  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
-  <head th:replace="layout/header :: header">
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+>
+  <head th:fragment="header">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -14,12 +16,10 @@
     <link
       rel="shortcut icon"
       href="/images/favicon.ico"
-      th:href="@{/images/favicon.ico}"
     />
     <link
       rel="stylesheet"
       href="/css/styles.css"
-      th:href="@{/css/styles.css]"
     />
   </head>
   <body>
