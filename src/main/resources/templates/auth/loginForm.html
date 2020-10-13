@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +24,7 @@
 			<div class="login__box" id="main__loginbox">
 				<img src="/images/loginLogo.png" />
 				<form action="/auth/login" method="post" class="login__form">
-					{{! placeholder 말고 highlighter로 변경할것 }}
+					<!-- {{! placeholder 말고 highlighter로 변경할것 }} -->
 					<div class="group">
 						<input type="text" name="username" required> 
      				<label>사용자 이름</label>
@@ -50,5 +51,6 @@
 			</div>
 		</div>
 	</main>
-
-	{{>layout/footer}}
+	<footer th:>
+	
+	</footer>

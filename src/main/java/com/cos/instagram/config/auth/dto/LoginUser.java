@@ -4,7 +4,7 @@ import com.cos.instagram.domain.user.User;
 
 import lombok.Data;
 
-@Data	
+@Data
 public class LoginUser {
 	private int id;
 	private String username;
@@ -13,7 +13,7 @@ public class LoginUser {
 	private String role;
 	private String provider;
 	private String providerId;
-	
+
 	public LoginUser(User user) {
 		this.id = user.getId();
 		this.username = user.getUsername();
@@ -23,10 +23,8 @@ public class LoginUser {
 		this.provider = user.getProvider();
 		this.providerId = user.getProviderId();
 	}
-	
+
 	public User getUser() {
-		return User.builder()
-				.id(id)
-				.build();
+		return User.builder().id(id).build();
 	}
 }
