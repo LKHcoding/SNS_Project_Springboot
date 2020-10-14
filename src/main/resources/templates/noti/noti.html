@@ -1,22 +1,42 @@
- {{>layout/header}}
-
-<main id="explore">
-	<ul class="explore__users u-default-box">
-
-		{{#notis}}
-		<li class="explore__user">
-			<div class="explore__content">
-				<a href="/user/{{fromUser.id}}">
-					<img src="/upload/{{#fromUser.profileImage}}{{fromUser.profileImage}}{{/fromUser.profileImage}}" onerror="this.src='/images/avatar.jpg'" />
-				</a>
-				<div class="explore__info">
-					<span class="explore__username">{{fromUser.name}}이 {{notiType.key}} 하였습니다.</span>
-				</div>
-			</div>
-		</li>
-		{{/notis}}
-
-	</ul>
-</main>
-<script src="/js/follow.js"></script>
-{{>layout/footer}}
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+>
+  <head th:replace="layout/header :: header"></head>
+  <!-- {{>layout/header}} -->
+  <body>
+    <nav th:replace="layout/header :: menu"></nav>
+    <main id="explore">
+      <ul class="explore__users u-default-box" th:each=" i : ${notis}">
+        <!-- {{#notis}} -->
+        <li class="explore__user">
+          <div class="explore__content">
+            <a
+              href="/user/fromUser/id"
+              th:href="|/user/${session.loginUser.id}|"
+            >
+              <!-- <a href="/user/{{fromUser.id}}"> -->
+              <img
+                src="/upload/#{fromUser.profileImage}{fromUser.profileImage}{/fromUser.profileImage}"
+                onerror="this.src='/images/avatar.jpg'"
+              />
+              <!-- <img src="/upload/{{#fromUser.profileImage}}{{fromUser.profileImage}}{{/fromUser.profileImage}}" onerror="this.src='/images/avatar.jpg'" /> -->
+            </a>
+            <div class="explore__info">
+              <span class="explore__username">
+                <p th:text="${user}+'이'"></p>
+                <p th:text="${notiType}+'하였습니다.'"></p>
+                <!-- {{fromUser.name}}이 {{notiType.key}} 하였습니다. -->
+              </span>
+            </div>
+          </div>
+        </li>
+        <!-- {{/notis}} -->
+      </ul>
+    </main>
+    <script src="/js/follow.js"></script>
+    <!-- {{>layout/footer}} -->
+    <footer th:replace="layout/footer :: footer"></footer>
+  </body>
+</html>
