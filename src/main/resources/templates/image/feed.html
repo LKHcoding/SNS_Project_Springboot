@@ -18,7 +18,7 @@
                 onerror="this.src='/images/avatar.jpg'"
               />
               <span class="photo__username" th:text="${images.user.username}"
-                >{{user.username}}</span
+                >{{user.username}}여긴유저이름나오는곳</span
               >
             </header>
 
@@ -49,18 +49,26 @@
                   <!--  {{/likeState}} -->
                 </span>
                 <span class="photo__action">
-                  <!-- {{! 메시지 아이콘 부분} -->
-                  <a th:href="/user/{{loginUser.id}}"
+                  <!-- {{! 메시지 아이콘 부분}} -->
+                  <!-- <a href="/user/{{loginUser.id}}" -->
+                  <a th:href="|/user/${session.loginUser.id}|"
                     ><i class="fa fa-comment-o"></i
                   ></a>
-                  {{! https://fontawesome.com/icons?d=gallery&q=user 아이콘
-                  주기}}
+                  <!--  {{! https://fontawesome.com/icons?d=gallery&q=user 아이콘
+                  주기}} -->
                 </span>
               </div>
 
-              <div class="photo_tag">
-                {{#tags}} <a href="/image/feed?tag={{name}}">#{{name}}</a>
-                {{/tags}}
+              <div class="photo_tag" th:each="tags : ${images.tags}">
+                <!-- {{#tags}} -->
+                <!-- <a th:href="/image/feed?tag={{name}}">asd</a> -->
+                <a
+                  th:href="|/image/feed?tag=${tags.name}|"
+                  th:text="|#${tags.name}|"
+                  >asd<!-- #{{name}} --></a
+                >
+
+                <!--  {{/tags}} -->
               </div>
 
               <span class="photo__likes">{{likeCount}} likes</span> <br />
