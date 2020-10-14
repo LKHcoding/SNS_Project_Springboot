@@ -31,63 +31,102 @@
 
         <div class="profile__info">
           <div class="profile__title">
-            <h1>{{respDto.user.username}}</h1>
-            {{^respDto.pageHost}} {{#respDto.followState}}
-            <a href="#">
-              <button
-                th:onclick="|unFollow(${respDto.user.id})|"
-                class="profile_edit_btn"
-              >
-                팔로우 취소
-              </button>
-              <!-- <button th:onclick="|unFollow(${list.id})|" class="profile_edit_btn">팔로우취소</button> -->
-            </a>
-            {{/respDto.followState}} {{^respDto.followState}}
-            <a href="#">
-              <button
-                th:onclick="|follow(${respDto.user.id})|"
-                class="profile_follow_btn"
-              >
-                팔로우
-              </button>
-            </a>
-            {{/respDto.followState}} {{/respDto.pageHost}} {{#respDto.pageHost}}
-
-            <a href="/image/uploadForm">
-              <button class="profile_edit_btn">사진등록</button>
-            </a>
-
-            <a href="#">
-              <i class="fa fa-cog fa-lg"></i>
-            </a>
-            {{/respDto.pageHost}}
+            <h1 th:text="${respDto.user.username}"></h1>
+            <!-- <h1>{{respDto.user.username}}</h1> -->
+            <div th:each=" i: ${respDto.pageHost} ">
+              <!-- {{^respDto.pageHost}}  -->
+              <div th:each=" i2: ${respDto.followState} ">
+                <!-- {{#respDto.followState}} -->
+                <a th:href="|#|">
+                  <!-- <a href="#"> -->
+                  <button
+                    th:onclick="|unFollow(${respDto.user.id})|"
+                    class="profile_edit_btn"
+                  >
+                    팔로우 취소
+                  </button>
+                  <!-- <button th:onclick="|unFollow(${list.id})|" class="profile_edit_btn">팔로우취소</button> -->
+                </a>
+              </div>
+              <!-- {{/respDto.followState}}  -->
+              <div th:each=" i3: ${respDto.followState} ">
+                <!-- {{^respDto.followState}} -->
+                <a th:href="|#|">
+                  <!-- <a href="#"> -->
+                  <button
+                    th:onclick="|follow(${respDto.user.id})|"
+                    class="profile_follow_btn"
+                  >
+                    팔로우
+                  </button>
+                </a>
+              </div>
+              <!-- {{/respDto.followState}} -->
+            </div>
+            <!-- {{/respDto.pageHost}}  -->
+            <div th:each=" i4: ${respDto.pageHost} ">
+              <!-- {{#respDto.pageHost}} -->
+              <a th:href="|/image/uploadForm|">
+                <!-- <a href="/image/uploadForm"> -->
+                <button class="profile_edit_btn">사진등록</button>
+              </a>
+              <a th:href="|#|">
+                <!-- th:replace="user/profile :: modal" -->
+                <!-- <a th:href="|#|">  -->
+                <!-- <a href="#"> -->
+                <i class="fa fa-cog fa-lg"
+                  ><a th:href="|#|" th:insert="user/profile :: modal"></a
+                ></i>
+              </a>
+            </div>
+            <!-- {{/respDto.pageHost}} -->
           </div>
 
           <ul class="profile__stats">
             <li class="profile__stat">
-              <span class="profile__stat-number">{{respDto.imageCount}}</span>
+              <span
+                class="profile__stat-number"
+                th:text="${respDto.imageCount}"
+              >
+                <!-- {{respDto.imageCount}}  -->
+              </span>
               게시물
             </li>
             <li class="profile__stat">
-              <span class="profile__stat-number"
-                >{{respDto.followerCount}}</span
+              <span
+                class="profile__stat-number"
+                th:text="${respDto.followerCount}"
               >
-              <a href="#" class="followerClick">팔로워 </a>
+                <!-- {{respDto.followerCount}} -->
+              </span>
+              <a th:href="|#|" class="followerClick">팔로워 </a>
+              <!-- <a href="#" class="followerClick">팔로워 </a> -->
             </li>
 
             <li class="profile__stat">
-              <span class="profile__stat-number"
-                >{{respDto.followingCount}}</span
+              <span
+                class="profile__stat-number"
+                th:text="${respDto.followingCount}"
               >
-              <a href="/follow/followingList/{{respDto.user.id}}">팔로우</a>
+                <!-- {{respDto.followingCount}} -->
+              </span>
+              <a th:href="|/follow/followingList/${respDto.user.id}|">팔로우</a>
+              <!-- <a href="/follow/followingList/{{respDto.user.id}}">팔로우</a> -->
             </li>
           </ul>
 
           <p class="profile__bio">
-            <span class="profile__fullname"> {{respDto.user.name}} </span>
+            <span class="profile__fullname" th:text="${respDto.user.name}">
+              <!-- {{respDto.user.name}} -->
+            </span>
 
             <span>
-              {{#respDto.user.bio}} {{respDto.user.bio}} {{/respDto.user.bio}}
+              <div th:each=" i5: ${respDto.user.bio} ">
+                <!-- {{#respDto.user.bio}}  -->
+                <p th:text="${i5}"></p>
+                <!-- {{respDto.user.bio}} -->
+              </div>
+              <!-- {{/respDto.user.bio}} -->
             </span>
             <br /><br />
             {{#respDto.user.website}}
@@ -101,39 +140,46 @@
 
       <div class="profile__photo-grid">
         <!-- 유저가 업로드한 Feed 사진 -->
-        {{#respDto.images}}
-        <div class="profile__photo">
-          <a href="#">
-            <img src="/upload/{{imageUrl}}" />
-          </a>
+        <div th:each=" i6: ${respDto.images} ">
+          <!-- {{#respDto.images}} -->
+          <div class="profile__photo">
+            <a href="#">
+              <img th:src="@{|/upload/${i6.imageUrl}|}" />
+              <!-- <img src="/upload/{{imageUrl}}" /> -->
+            </a>
 
-          <div class="profile__photo-overlay">
-            <span class="profile__photo-stat">
-              <i class="fa fa-heart"></i> {{likeCount}}
-            </span>
+            <div class="profile__photo-overlay">
+              <span class="profile__photo-stat">
+                <i class="fa fa-heart"></i>
+                <p th:text="${i6.likeCount}">AA</p>
+                <!-- {{likeCount}} -->
+              </span>
 
-            <span class="profile__photo-stat">
-              <i class="fa fa-comment"></i> {{commentCount}}
-            </span>
+              <span class="profile__photo-stat">
+                <i class="fa fa-comment"></i>
+                <p th:text="${i6.commentCount}">AA</p>
+                <!-- {{commentCount}} -->
+              </span>
+            </div>
           </div>
         </div>
-        {{/respDto.images}}
+        <!-- {{/respDto.images}} -->
       </div>
     </main>
-
-    <div class="profile__overlay">
-      <i class="fa fa-times"></i>
-      <div class="profile__overlay-container">
-        <a href="/user/profileEdit" class="profile__overlay-link" id="logout"
-          >회원 수정</a
-        >
-        <a href="/auth/logout" class="profile__overlay-link" id="logout"
-          >로그아웃</a
-        >
-        <a href="#" class="profile__overlay-link" id="cancel">취소</a>
+    <nav th:fragment="modal">
+      <div class="profile__overlay">
+        <i class="fa fa-times"></i>
+        <div class="profile__overlay-container">
+          <a href="/user/profileEdit" class="profile__overlay-link" id="logout"
+            >회원 수정</a
+          >
+          <a href="/auth/logout" class="profile__overlay-link" id="logout"
+            >로그아웃</a
+          >
+          <a href="#" class="profile__overlay-link" id="cancel">취소</a>
+        </div>
       </div>
-    </div>
-
+    </nav>
     <div class="profile__overlay1">
       <div id="profile__overlay-container1">
         <a class="profile__overlay-link2" id="logout"
