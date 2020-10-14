@@ -11,39 +11,46 @@
       <div class="feed_all">
         <div class="feed_only">
           <!-- {{#images}} -->
-          <tbody>
-            <tr th:each="images : ${images}">
-              <td th:text="${images.imageUrl}">Mark</td>
-            </tr>
-          </tbody>
           <div class="photo u-default-box" th:each="images : ${images}">
             <header class="photo__header">
               <img
                 src="/upload/{{#user.profileImage}}{{user.profileImage}}{{/user.profileImage}}"
                 onerror="this.src='/images/avatar.jpg'"
               />
-              <span class="photo__username">{{user.username}}</span>
+              <span class="photo__username" th:text="${images.user.username}"
+                >{{user.username}}</span
+              >
             </header>
 
             <div class="photo_post_image">
-              <!-- 사진꽉채우기 css -->
-              <img src="/upload/{{imageUrl}}" />
+              <!-- ?�진꽉채?�기 css -->
+              <!-- <img src="/upload/{{imageUrl}}" /> -->
+              <img th:src="@{|/upload/${images.imageUrl}|}" />
             </div>
             <div class="photo__info">
               <div class="photo__actions">
+                <!-- <span class="photo__action" th:if="${images.likeState == true}"> -->
                 <span class="photo__action">
-                  {{#likeState}}
+                  <!--  {{#likeState}} -->
                   <i
+                    th:if="${images.likeState == true}"
                     class="fa heart heart-clicked fa-heart"
-                    onclick="unLike({{id}});"
+                    th:onclick="|unLike(${images.id});|"
                   ></i>
-                  {{/likeState}} {{^likeState}}
-                  <i class="fa fa-heart-o heart" onclick="like({{id}});"></i>
-                  {{/likeState}}
+                  <!--  {{/likeState}} 
+                  
+                  {{^likeState}} -->
+                  <!-- <i class="fa fa-heart-o heart" th:onclick="like({{id}});"></i> -->
+                  <i
+                    th:unless="${images.likeState == true}"
+                    class="fa fa-heart-o heart"
+                    th:onclick="|like(${images.id});|"
+                  ></i>
+                  <!--  {{/likeState}} -->
                 </span>
                 <span class="photo__action">
-                  {{! 메시지 아이콘 부분}}
-                  <a href="/user/{{loginUser.id}}"
+                  <!-- {{! 메시지 아이콘 부분} -->
+                  <a th:href="/user/{{loginUser.id}}"
                     ><i class="fa fa-comment-o"></i
                   ></a>
                   {{! https://fontawesome.com/icons?d=gallery&q=user 아이콘

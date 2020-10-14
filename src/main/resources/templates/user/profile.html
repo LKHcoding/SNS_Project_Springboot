@@ -1,4 +1,4 @@
-{{>layout/header}}
+<header th:replace="layout/header :: header"></header>
 <main id="profile">
 	<header class="profile__header">
 	
@@ -19,12 +19,13 @@
 				{{^respDto.pageHost}}
 				    {{#respDto.followState}}
 				    	<a href="#">
-							<button onclick="unFollow({{respDto.user.id}})" class="profile_edit_btn">팔로우 취소</button>
+							<button th:onclick="|unFollow(${respDto.user.id})|" class="profile_edit_btn">팔로우 취소</button>
+							<!-- <button th:onclick="|unFollow(${list.id})|" class="profile_edit_btn">팔로우취소</button> -->
 						</a>
 				    {{/respDto.followState}} 
 				    {{^respDto.followState}}
 				    	<a href="#">
-							<button onclick="follow({{respDto.user.id}})" class="profile_follow_btn">팔로우</button>
+							<button th:onclick="|follow(${respDto.user.id})|" class="profile_follow_btn">팔로우</button>
 						</a>
 				    {{/respDto.followState}} 
 				{{/respDto.pageHost}}
@@ -132,4 +133,4 @@
 <script src="/js/thinScrollbar.js"></script>
 
 <script src="/js/follow.js"></script>
-{{>layout/footer}}
+<footer th:replace="layout/footer :: footer"></footer>
