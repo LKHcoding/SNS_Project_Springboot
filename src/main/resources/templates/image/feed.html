@@ -59,19 +59,27 @@
                 </span>
               </div>
 
-              <div class="photo_tag" th:each="tags : ${images.tags}">
+              <div class="photo_tag" style="display: flex">
                 <!-- {{#tags}} -->
                 <!-- <a th:href="/image/feed?tag={{name}}">asd</a> -->
-                <a
-                  th:href="|/image/feed?tag=${tags.name}|"
-                  th:text="|#${tags.name}|"
-                  >asd<!-- #{{name}} --></a
+                <div
+                  th:each="tags : ${images.tags}"
+                  style="display: flex; width: fit-content; margin-right: 4px"
                 >
-
+                  <a
+                    th:href="|/image/feed?tag=${tags.name}|"
+                    th:text="|#${tags.name}|"
+                    >asd<!-- #{{name}} --></a
+                  >
+                </div>
                 <!--  {{/tags}} -->
               </div>
-
-              <span class="photo__likes">{{likeCount}} likes</span> <br />
+              <div th:if="${images.likeCount} != 0">
+                <span class="photo__likes" th:text="|${images.likeCount}명|"
+                  >{{likeCount}} likes</span
+                >이 좋아합니다
+              </div>
+              <br />
               <br />
               <ul class="photo__comments">
                 {{#comments}}
