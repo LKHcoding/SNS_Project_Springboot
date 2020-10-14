@@ -1,136 +1,171 @@
-<header th:replace="layout/header :: header"></header>
-<main id="profile">
-	<header class="profile__header">
-	
-		<div class="avatar__container">
-		
-			<form id="frm_profile_img" action="/user/profileUpload" method="post" enctype="multipart/form-data">
-				<input type="file" name="profileImage" style="display: none;" />
-				<input type="hidden" name="userId" value="{{respDto.user.id}}" />
-			</form>
-			
-			<img src="/upload/{{#respDto.user.profileImage}}{{respDto.user.profileImage}}{{/respDto.user.profileImage}}" id="profile_image"
-				style="cursor: pointer" onerror="this.src='/images/avatar.jpg'" />
-		</div>
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+>
+  <head th:replace="layout/header :: header"></head>
+  <!-- {{>layout/header}} -->
+  <body>
+    <nav th:replace="layout/header :: menu"></nav>
+    <main id="profile">
+      <header class="profile__header">
+        <div class="avatar__container">
+          <form
+            id="frm_profile_img"
+            action="/user/profileUpload"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <input type="file" name="profileImage" style="display: none" />
+            <input type="hidden" name="userId" th:value="${respDto.user.id}" />
+            <!-- <input type="hidden" name="userId" value="{{respDto.user.id}}" /> -->
+          </form>
 
-		<div class="profile__info">
-			<div class="profile__title">
-				<h1>{{respDto.user.username}}</h1>
-				{{^respDto.pageHost}}
-				    {{#respDto.followState}}
-				    	<a href="#">
-							<button th:onclick="|unFollow(${respDto.user.id})|" class="profile_edit_btn">팔로우 취소</button>
-							<!-- <button th:onclick="|unFollow(${list.id})|" class="profile_edit_btn">팔로우취소</button> -->
-						</a>
-				    {{/respDto.followState}} 
-				    {{^respDto.followState}}
-				    	<a href="#">
-							<button th:onclick="|follow(${respDto.user.id})|" class="profile_follow_btn">팔로우</button>
-						</a>
-				    {{/respDto.followState}} 
-				{{/respDto.pageHost}}
-				{{#respDto.pageHost}}
-				
-					<a href="/image/uploadForm">
-						<button class="profile_edit_btn">사진등록</button>	
-					</a>
+          <img
+            src="/upload/{{#respDto.user.profileImage}}{{respDto.user.profileImage}}{{/respDto.user.profileImage}}"
+            id="profile_image"
+            style="cursor: pointer"
+            onerror="this.src='/images/avatar.jpg'"
+          />
+        </div>
 
-					<a href="#">
-						<i class="fa fa-cog fa-lg"></i>
-					</a>
-				{{/respDto.pageHost}}
-			</div>
+        <div class="profile__info">
+          <div class="profile__title">
+            <h1>{{respDto.user.username}}</h1>
+            {{^respDto.pageHost}} {{#respDto.followState}}
+            <a href="#">
+              <button
+                th:onclick="|unFollow(${respDto.user.id})|"
+                class="profile_edit_btn"
+              >
+                팔로우 취소
+              </button>
+              <!-- <button th:onclick="|unFollow(${list.id})|" class="profile_edit_btn">팔로우취소</button> -->
+            </a>
+            {{/respDto.followState}} {{^respDto.followState}}
+            <a href="#">
+              <button
+                th:onclick="|follow(${respDto.user.id})|"
+                class="profile_follow_btn"
+              >
+                팔로우
+              </button>
+            </a>
+            {{/respDto.followState}} {{/respDto.pageHost}} {{#respDto.pageHost}}
 
-			<ul class="profile__stats">
-				<li class="profile__stat"><span class="profile__stat-number">{{respDto.imageCount}}</span>
-					게시물</li>
-				<li class="profile__stat"><span class="profile__stat-number">{{respDto.followerCount}}</span>
-					<a href="#" class="followerClick">팔로워
-					</a>
-				<li class="profile__stat"><span class="profile__stat-number">{{respDto.followingCount}}</span>
-					<a href="/follow/followingList/{{respDto.user.id}}">팔로우</a></li>
-			</ul>
-			
-			<p class="profile__bio">
-				<span class="profile__fullname">
-					{{respDto.user.name}}
-				</span>
+            <a href="/image/uploadForm">
+              <button class="profile_edit_btn">사진등록</button>
+            </a>
 
-				<span>
-					{{#respDto.user.bio}}
-						{{respDto.user.bio}}
-					{{/respDto.user.bio}}
-				</span>
-				<br/><br/>
-				{{#respDto.user.website}}
-				<a href="{{respDto.user.website}}" class="profile__link">
-					{{respDto.user.website}}
-				</a>
-				{{/respDto.user.website}}
-			</p>
-		</div>
-	</header>
-	
-		<div class="profile__photo-grid">				
-				<!-- 유저가 업로드한 Feed 사진 -->
-				{{#respDto.images}}
-					<div class="profile__photo">
-						<a href="#"> 
-							<img src="/upload/{{imageUrl}}">
-						</a>
+            <a href="#">
+              <i class="fa fa-cog fa-lg"></i>
+            </a>
+            {{/respDto.pageHost}}
+          </div>
 
-						<div class="profile__photo-overlay">
-							<span class="profile__photo-stat"> 
-								<i class="fa fa-heart"></i> {{likeCount}}
-							</span> 
+          <ul class="profile__stats">
+            <li class="profile__stat">
+              <span class="profile__stat-number">{{respDto.imageCount}}</span>
+              게시물
+            </li>
+            <li class="profile__stat">
+              <span class="profile__stat-number"
+                >{{respDto.followerCount}}</span
+              >
+              <a href="#" class="followerClick">팔로워 </a>
+            </li>
 
-							<span class="profile__photo-stat"> 
-								<i class="fa fa-comment"></i> {{commentCount}}
-							</span>
-						</div>
-					</div>									
-				{{/respDto.images}}
-		</div>	
-</main>
+            <li class="profile__stat">
+              <span class="profile__stat-number"
+                >{{respDto.followingCount}}</span
+              >
+              <a href="/follow/followingList/{{respDto.user.id}}">팔로우</a>
+            </li>
+          </ul>
 
-<div class="profile__overlay">
-	<i class="fa fa-times"></i>
-	<div class="profile__overlay-container"> 
-	    <a href="/user/profileEdit" class="profile__overlay-link" id="logout">회원 수정</a>
-		<a href="/auth/logout" class="profile__overlay-link" id="logout">로그아웃</a> 
-		<a href="#" class="profile__overlay-link" id="cancel">취소</a>
-	</div>
-</div>
+          <p class="profile__bio">
+            <span class="profile__fullname"> {{respDto.user.name}} </span>
 
-<div class="profile__overlay1">
-	<div id="profile__overlay-container1"> 
-	<a class="profile__overlay-link2" id="logout">팔로워 	<i class="fa fa-times"></i></a>
-	<a href="#" class="profile__overlay-link3" id="cancel">취소</a>
-	</div>
-</div>
+            <span>
+              {{#respDto.user.bio}} {{respDto.user.bio}} {{/respDto.user.bio}}
+            </span>
+            <br /><br />
+            {{#respDto.user.website}}
+            <a href="{{respDto.user.website}}" class="profile__link">
+              {{respDto.user.website}}
+            </a>
+            {{/respDto.user.website}}
+          </p>
+        </div>
+      </header>
 
-<script>
-	$(function() {
-		//이미지 클릭시 업로드창 실행
-		$('#profile_image').click(function() {
-			$("input[name='profileImage']").click();
-		})
-		//업로드 파일체인지가 됬을경우 실행되는 이벤트  form태그에 fileProfile은 hidden으로 넣어줌
-		$("input[name='profileImage']").change(function(e) {
-			$("#frm_profile_img").submit();
-		})
-	})
+      <div class="profile__photo-grid">
+        <!-- 유저가 업로드한 Feed 사진 -->
+        {{#respDto.images}}
+        <div class="profile__photo">
+          <a href="#">
+            <img src="/upload/{{imageUrl}}" />
+          </a>
 
-</script>
+          <div class="profile__photo-overlay">
+            <span class="profile__photo-stat">
+              <i class="fa fa-heart"></i> {{likeCount}}
+            </span>
 
-<script>
-    $(function(){
-         $('#profile__overlay-link3').thinScrollbar();
-    });
-</script>
+            <span class="profile__photo-stat">
+              <i class="fa fa-comment"></i> {{commentCount}}
+            </span>
+          </div>
+        </div>
+        {{/respDto.images}}
+      </div>
+    </main>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="/js/thinScrollbar.js"></script>
+    <div class="profile__overlay">
+      <i class="fa fa-times"></i>
+      <div class="profile__overlay-container">
+        <a href="/user/profileEdit" class="profile__overlay-link" id="logout"
+          >회원 수정</a
+        >
+        <a href="/auth/logout" class="profile__overlay-link" id="logout"
+          >로그아웃</a
+        >
+        <a href="#" class="profile__overlay-link" id="cancel">취소</a>
+      </div>
+    </div>
 
-<script src="/js/follow.js"></script>
-<footer th:replace="layout/footer :: footer"></footer>
+    <div class="profile__overlay1">
+      <div id="profile__overlay-container1">
+        <a class="profile__overlay-link2" id="logout"
+          >팔로워 <i class="fa fa-times"></i
+        ></a>
+        <a href="#" class="profile__overlay-link3" id="cancel">취소</a>
+      </div>
+    </div>
+
+    <script>
+      $(function () {
+        //이미지 클릭시 업로드창 실행
+        $("#profile_image").click(function () {
+          $("input[name='profileImage']").click();
+        });
+        //업로드 파일체인지가 됬을경우 실행되는 이벤트  form태그에 fileProfile은 hidden으로 넣어줌
+        $("input[name='profileImage']").change(function (e) {
+          $("#frm_profile_img").submit();
+        });
+      });
+    </script>
+
+    <script>
+      $(function () {
+        $("#profile__overlay-link3").thinScrollbar();
+      });
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/js/thinScrollbar.js"></script>
+
+    <script src="/js/follow.js"></script>
+    <footer th:replace="layout/footer :: footer"></footer>
+  </body>
+</html>

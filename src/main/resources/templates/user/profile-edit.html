@@ -10,18 +10,23 @@
         />
       </div>
       <!-- master comments -->
-      <h1 class="edit-profile__username">{{user.username}}</h1>
+      <h1 class="edit-profile__username" th:text="${user.username}">
+        <!-- {{user.username}} -->
+      </h1>
     </header>
 
     <form id="frm" class="edit-profile__form">
-      <input type="hidden" name="id" value="{{user.id}}" />
+      <input type="hidden" name="id" th:value="${user.id}" />
+      <!-- <input type="hidden" name="id" value="{{user.id}}" /> -->
       <div class="edit-profile__row">
         <label class="edit-profile__label" for="name">Name</label>
-        <input name="name" type="text" value="{{user.name}}" />
+        <input name="name" type="text" th:value="${user.name}" />
+        <!-- <input name="name" type="text" value="{{user.name}}" /> -->
       </div>
       <div class="edit-profile__row">
         <label class="edit-profile__label" for="username">Username</label>
-        <input type="text" value="{{user.username}}" readonly />
+        <input type="text" th:value="${user.username}" readonly />
+        <!-- <input type="text" value="{{user.username}}" readonly /> -->
       </div>
       <div class="edit-profile__row">
         <label class="edit-profile__label" for="website">Website</label>
@@ -41,7 +46,8 @@
       </div>
       <div class="edit-profile__row">
         <label class="edit-profile__label" for="email">Email</label>
-        <input type="email" value="{{user.email}}" readonly />
+        <input type="email" th:value="${user.email}" readonly />
+        <!-- <input type="email" value="{{user.email}}" readonly /> -->
       </div>
       <div class="edit-profile__row">
         <label class="edit-profile__label" for="phone-number"
@@ -64,10 +70,15 @@
       <div class="edit-profile__row">
         <span></span>
         <button
-          onclick="userUpdate({{user.id}})"
+          th:onclick="|userUpdate(${user.id})|"
           class="profile_follow_btn"
           type="button"
         >
+          <!-- <button
+          onclick="userUpdate({{user.id}})"
+          class="profile_follow_btn"
+          type="button"
+        > -->
           회원수정
         </button>
       </div>
