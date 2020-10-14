@@ -1,28 +1,22 @@
- {{>layout/header}}
-
-<main id="explore">
-	<ul class="explore__users u-default-box">
-		{{#followingList}}
-		<li class="explore__user">
+ <html>
+ 	<head th:replace="layout/header :: header"></head>
+ 	<body>
+  	<nav th:replace="layout/header :: menu"></nav>  	
+	<main id="explore">
+	<ul class="explore__users u-default-box">	
+		<li class="explore__user" th:each="list2  : ${followingList}">
 			<div class="explore__content">
-				<a href="/user/{{id}}">
+				<a th:href="@{|/user/${list2.id}|}">
 					<img src="/upload/{{#profileImage}}{{profileImage}}{{/profileImage}}" onerror="this.src='/images/avatar.jpg'" />
 				</a>
 				<div class="explore__info">
-					<span class="explore__username">{{username}}</span> <span
-						class="explore__full-name">{{name}}</span>
+					<span class="explore__username" th:text="${list2.username}"></span> <span
+						class="explore__full-name" th:text="${list2.name}"></span>
 				</div>
 			</div>
-				{{^equalUserState}}
-					{{#followState}}
-						<button onclick="unFollow({{id}})" class="profile_edit_btn">팔로우취소</button>
-					{{/followState}}
-					{{^followState}}
-						<button onclick="follow({{id}})" class="profile_follow_btn">팔로우</button>
-					{{/followState}}
-				{{/equalUserState}}
-		</li>
-		{{/followingList}}
+			<button th:if="${list2.followState == true}" class="profile_follow_btn" th:onclick="|unFollow(${list2.id});|">팔로우취소</button>
+			<button th:unless="${list2.followState == true}"	class="profile_edit_btn" th:onclick="|follow(${list2.id});|">팔로우</button>
+		</li>		
 	</ul>
 </main>
 <script src="/js/follow.js"></script>

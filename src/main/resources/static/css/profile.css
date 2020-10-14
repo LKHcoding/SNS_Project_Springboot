@@ -7,19 +7,19 @@
 }
 
 .profile__stat a {
-	text-decoration: none;
-	color: #0092CF;
+  text-decoration: none;
+  color: #0092cf;
 }
 
-/* userProfileUpload ?�정 */
+/* userProfileUpload ?˜ì • */
 #profile .profile__header {
   display: grid;
   grid-template-columns: 30% 70%;
   justify-content: center;
   margin-bottom: 50px;
-} 
+}
 
-/* ??�� */
+/* ?? œ */
 /* .profile__header .profile__info {
   width: 70%;
 } */
@@ -30,7 +30,7 @@
   align-items: center;
 }
 
-/* userProfileUpload ?�정 */
+/* userProfileUpload ?˜ì • */
 .avatar__container img {
   width: 150px;
   height: 150px;
@@ -38,15 +38,15 @@
   animation: 6s potato infinite ease-in-out;
 }
 
-/* userProfileUpload ?�정 */
+/* userProfileUpload ?˜ì • */
 .profile__photo-grid {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	justify-content: center;
-	grid-gap: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  grid-gap: 10px;
 }
 
-/* userProfileUpload ?�정 */
+/* userProfileUpload ?˜ì • */
 .profile__info .profile__title,
 .profile__info .profile__stats {
   display: grid;
@@ -56,7 +56,7 @@
   margin-bottom: 30px;
 }
 
-/* userProfileUpload ?�정 */
+/* userProfileUpload ?˜ì • */
 .profile__stat {
   display: grid;
   grid-template-columns: auto auto;
@@ -64,28 +64,28 @@
   text-align: center;
 }
 
-/* userProfileUpload ?�정 */
+/* userProfileUpload ?˜ì • */
 @media (max-width: 700px) {
   #profile .profile__header {
     grid-template-columns: auto;
   }
 
   .profile__photo-grid {
-  	grid-template-columns: auto;
+    grid-template-columns: auto;
   }
 
   .avatar__container {
-  	margin-top: 20px;
-  	text-align: center;
+    margin-top: 20px;
+    text-align: center;
   }
 
   .profile__info {
-	margin-top: 20px;
+    margin-top: 20px;
   }
 
   .profile__stat {
-  grid-template-columns: auto;
-}
+    grid-template-columns: auto;
+  }
 }
 
 .profile__title h1 {
@@ -98,14 +98,14 @@
 }
 
 .profile_follow_btn {
-  color:white;
+  color: white;
   background: #3c88de;
   border: 0;
   font-weight: 600;
   padding: 5px 15px;
   border-radius: 3px;
   font-size: 14px;
-  border: 1px solid rgba(0, 0, 0, .0975);
+  border: 1px solid rgba(0, 0, 0, 0.0975);
 }
 
 .profile_edit_btn {
@@ -115,7 +115,7 @@
   background: transparent;
   border-radius: 3px;
   font-size: 14px;
-  border: 1px solid rgba(0, 0, 0, .0975);
+  border: 1px solid rgba(0, 0, 0, 0.0975);
 }
 
 .profile__title i {
@@ -133,7 +133,7 @@
     transform: rotate(1turn);
   }
 }
- 
+
 .profile__stats .profile__stat {
   margin-right: 45px;
 }
@@ -152,23 +152,23 @@
 }
 
 .profile__bio {
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
- 
-.profile__bio p {
-	margin-bottom: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
-/* ??�� */
+.profile__bio p {
+  margin-bottom: 5px;
+}
+
+/* ?? œ */
 /* .profile__photo-row .profile__photo {
   width: 32%;
 } */
 
 .profile__photo a img {
   max-width: 100%;
-  width:100%;
-  height:300px;
+  width: 100%;
+  height: 300px;
 }
 
 .profile__photo {
@@ -186,7 +186,7 @@
   align-items: center;
   color: white;
   opacity: 0;
-  transition: opacity .5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .profile__photo-overlay .profile__photo-stat {
@@ -196,23 +196,23 @@
 
 .profile__photo-overlay .profile__photo-stat:first-child {
   margin-right: 20px;
-} 
+}
 
 .profile__photo:hover .profile__photo-overlay {
   opacity: 1;
 }
 
-/* ??�� */
+/* ?? œ */
 /* .profile__photo-row {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
-} */ 
+} */
 
 .profile__photo-stat i.fa-heart {
   transform: scale(40);
-  animation: .5s pump infinite linear;
-} 
+  animation: 0.5s pump infinite linear;
+}
 
 @keyframes pump {
   0% {
@@ -234,8 +234,7 @@
   top: 0;
   left: 0;
   display: none;
-} 
-
+}
 
 .profile__overlay1 {
   width: 100%;
@@ -245,7 +244,7 @@
   top: 0;
   left: 0;
   display: none;
-} 
+}
 
 .profile__overlay i {
   position: absolute;
@@ -279,9 +278,8 @@
   justify-content: center;
   height: 100%;
   flex-direction: column;
-  border-radius: 15px; 
+  border-radius: 15px;
 }
-
 
 .profile__overlay-link {
   background: white;
@@ -290,7 +288,7 @@
   padding: 20px 0;
   color: inherit;
   border-bottom: 1px solid #e6e6e6;
-  transition: background .5s ease-out;
+  transition: background 0.5s ease-out;
 }
 
 .profile__overlay-link2 {
@@ -302,7 +300,7 @@
   font-size: 20px;
   color: inherit;
   border-bottom: 1px solid #e6e6e6;
-  transition: background .5s ease-out;
+  transition: background 0.5s ease-out;
 }
 
 .profile__overlay-link3 {
@@ -314,8 +312,9 @@
   padding: 20px 0;
   color: inherit;
   border-bottom: 1px solid #e6e6e6;
-  transition: background .5s ease-out;
-  overflow-x:hidden;overflow-y:scroll;
+  transition: background 0.5s ease-out;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .profile__overlay-link:hover {
