@@ -23,7 +23,7 @@
             </header>
 
             <div class="photo_post_image">
-              <!-- 사진꽉채우기 css -->
+              <!-- ?�진꽉채?�기 css -->
               <!-- <img src="/upload/{{imageUrl}}" /> -->
               <img th:src="@{|/upload/${images.imageUrl}|}" />
             </div>
@@ -82,29 +82,53 @@
               <br />
               <br />
               <ul class="photo__comments">
-                {{#comments}}
-                <li class="photo__comment">
-                  <span class="photo__comment-author">{{user.username}}</span>
-                  <span style="font-size: 12px">{{content}}</span>
-                  {{#commentHost}}
-                  <i onclick="commentDelete({{id}});" class="fa fa-trash"></i>
-                  {{/commentHost}}
-                </li>
-                {{/comments}}
+                <div th:each="comments : ${images.comments}">
+                  <!-- {{#comments}} -->
+                  <li class="photo__comment">
+                    <span
+                      class="photo__comment-author"
+                      th:text="${comments.user.username}"
+                      >{{user.username}}</span
+                    >
+                    <span style="font-size: 12px" th:text="${comments.content}"
+                      >{{content}}</span
+                    >
+                    <span th:if="${comments.commentHost} == true">
+                      <!-- {{#commentHost}} -->
+                      <!-- <i onclick="commentDelete({{id}});" class="fa fa-trash"></i> -->
+                      <i
+                        th:onclick="|commentDelete('${comments.id}');|"
+                        class="fa fa-trash"
+                      ></i>
+                      <!-- {{/commentHost}} -->
+                    </span>
+                  </li>
+                  <!-- {{/comments}} -->
+                </div>
               </ul>
-              <span class="photo__date">{{createDate}}</span>
+              <span class="photo__date" th:text="${images.createDate}"
+                >{{createDate}}</span
+              >
 
               <div class="photo__add-comment-container">
-                <form id="frm-{{id}}" style="width: 100%">
-                  <input type="hidden" name="userId" value="{{loginUser.id}}" />
-                  <input type="hidden" name="imageId" value="{{id}}" />
+                <!-- <form id="frm-{{id}}" style="width: 100%"> -->
+                <form th:id="|frm-${images.id}|" style="width: 100%">
+                  <input
+                    type="hidden"
+                    name="userId"
+                    th:value="${session.loginUser.id}"
+                  />
+                  <input type="hidden" name="imageId" th:value="${images.id}" />
                   <textarea
-                    id="content-{{id}}"
+                    th:id="|content-${images.id}|"
                     name="content"
                     placeholder="Add a comment..."
                   ></textarea>
                 </form>
-                <i onclick="commentSend({{id}});" class="fa fa-angle-right"></i>
+                <i
+                  th:onclick="|commentSend('${images.id}');|"
+                  class="fa fa-angle-right"
+                ></i>
               </div>
             </div>
           </div>
@@ -141,7 +165,9 @@
                 <br />
               </div>
             </div>
-            <div>{{>layout/sidefooter}}</div>
+            <div>
+              <footer th:replace="layout/sidefooter :: sidefooter"></footer>
+            </div>
           </div>
         </div>
       </div>
