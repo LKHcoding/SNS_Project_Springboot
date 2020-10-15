@@ -13,10 +13,7 @@
           <!-- {{#notis}} -->
           <li class="explore__user">
             <div class="explore__content">
-              <a
-                href="/user/fromUser/id"
-                th:href="|/user/${session.loginUser.id}|"
-              >
+              <a href="/user/fromUser/id" th:href="|/user/${i.fromUser.id}|">
                 <!-- <a href="/user/{{fromUser.id}}"> -->
                 <img
                   src="/upload/#{fromUser.profileImage}{fromUser.profileImage}{/fromUser.profileImage}"
