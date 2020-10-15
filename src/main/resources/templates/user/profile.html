@@ -75,8 +75,8 @@
                 <!-- <a th:href="|#|">  -->
                 <!-- <a href="#"> -->
                 <i class="fa fa-cog fa-lg"
-                  ><a th:href="|#|" th:insert="user/profile :: modal"></a
-                ></i>
+                  >
+                </i>
               </a>
             </div>
             <!-- {{/respDto.pageHost}} -->
@@ -166,20 +166,19 @@
         <!-- {{/respDto.images}} -->
       </div>
     </main>
-    <nav th:fragment="modal">
-      <div class="profile__overlay">
-        <i class="fa fa-times"></i>
-        <div class="profile__overlay-container">
-          <a href="/user/profileEdit" class="profile__overlay-link" id="logout"
-            >회원 수정</a
-          >
-          <a href="/auth/logout" class="profile__overlay-link" id="logout"
-            >로그아웃</a
-          >
-          <a href="#" class="profile__overlay-link" id="cancel">취소</a>
-        </div>
+    <div class="profile__overlay" th:fragment="modal">
+      <i class="fa fa-times"></i>
+      <div class="profile__overlay-container">
+        <a href="/user/profileEdit" class="profile__overlay-link" id="logout"
+          >회원 수정</a
+        >
+        <a href="/auth/logout" class="profile__overlay-link" id="logout"
+          >로그아웃</a
+        >
+        <a href="#" class="profile__overlay-link" id="cancel">취소</a>
       </div>
-    </nav>
+    </div>
+
     <div class="profile__overlay1">
       <div id="profile__overlay-container1">
         <a class="profile__overlay-link2" id="logout"
