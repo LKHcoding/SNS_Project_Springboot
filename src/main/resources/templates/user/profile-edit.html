@@ -30,11 +30,8 @@
       </div>
       <div class="edit-profile__row">
         <label class="edit-profile__label" for="website">Website</label>
-        <input
-          name="website"
-          type="text"
-          value="{{#user.website}}{{user.website}}{{/user.website}}"
-        />
+        <input name="website" type="text" th:value="${user.website}" />
+        <!-- value="{{#user.website}}{{user.website}}{{/user.website}}" -->
       </div>
       <div class="edit-profile__row">
         <label class="edit-profile__label" for="bio">Bio</label>

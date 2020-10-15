@@ -8,30 +8,32 @@
   <body>
     <nav th:replace="layout/header :: menu"></nav>
     <main id="explore">
-      <ul class="explore__users u-default-box" th:each=" i : ${notis}">
-        <!-- {{#notis}} -->
-        <li class="explore__user">
-          <div class="explore__content">
-            <a
-              href="/user/fromUser/id"
-              th:href="|/user/${session.loginUser.id}|"
-            >
-              <!-- <a href="/user/{{fromUser.id}}"> -->
-              <img
-                src="/upload/#{fromUser.profileImage}{fromUser.profileImage}{/fromUser.profileImage}"
-                onerror="this.src='/images/avatar.jpg'"
-              />
-              <!-- <img src="/upload/{{#fromUser.profileImage}}{{fromUser.profileImage}}{{/fromUser.profileImage}}" onerror="this.src='/images/avatar.jpg'" /> -->
-            </a>
-            <div class="explore__info">
-              <span class="explore__username">
-                <p th:text="${user}+'이'"></p>
-                <p th:text="${notiType}+'하였습니다.'"></p>
-                <!-- {{fromUser.name}}이 {{notiType.key}} 하였습니다. -->
-              </span>
+      <ul class="explore__users u-default-box">
+        <div th:each=" i : ${notis}">
+          <!-- {{#notis}} -->
+          <li class="explore__user">
+            <div class="explore__content">
+              <a
+                href="/user/fromUser/id"
+                th:href="|/user/${session.loginUser.id}|"
+              >
+                <!-- <a href="/user/{{fromUser.id}}"> -->
+                <img
+                  src="/upload/#{fromUser.profileImage}{fromUser.profileImage}{/fromUser.profileImage}"
+                  onerror="this.src='/images/avatar.jpg'"
+                />
+                <!-- <img src="/upload/{{#fromUser.profileImage}}{{fromUser.profileImage}}{{/fromUser.profileImage}}" onerror="this.src='/images/avatar.jpg'" /> -->
+              </a>
+              <div class="explore__info">
+                <span class="explore__username">
+                  <p th:text="${i.fromUser.name}+'이'"></p>
+                  <p th:text="${i.notiType.key}+' 하였습니다.'"></p>
+                  <!-- {{fromUser.name}}이 {{notiType.key}} 하였습니다. -->
+                </span>
+              </div>
             </div>
-          </div>
-        </li>
+          </li>
+        </div>
         <!-- {{/notis}} -->
       </ul>
     </main>
