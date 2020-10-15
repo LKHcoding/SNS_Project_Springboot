@@ -33,12 +33,11 @@
           <div class="profile__title">
             <h1 th:text="${respDto.user.username}"></h1>
             <!-- <h1>{{respDto.user.username}}</h1> -->
-            <div th:each=" i: ${respDto.pageHost} ">
+            <div th:if=" ${respDto.pageHost} == false ">
               <!-- {{^respDto.pageHost}}  -->
-              <div th:each=" i2: ${respDto.followState} ">
+              <div th:if=" ${respDto.followState} == true">
                 <!-- {{#respDto.followState}} -->
-                <a th:href="|#|">
-                  <!-- <a href="#"> -->
+                <a href="#">
                   <button
                     th:onclick="|unFollow(${respDto.user.id})|"
                     class="profile_edit_btn"
@@ -49,7 +48,7 @@
                 </a>
               </div>
               <!-- {{/respDto.followState}}  -->
-              <div th:each=" i3: ${respDto.followState} ">
+              <div th:if=" ${respDto.followState} == false ">
                 <!-- {{^respDto.followState}} -->
                 <a th:href="|#|">
                   <!-- <a href="#"> -->
@@ -64,20 +63,22 @@
               <!-- {{/respDto.followState}} -->
             </div>
             <!-- {{/respDto.pageHost}}  -->
-            <div th:each=" i4: ${respDto.pageHost} ">
+            <div th:if=" ${respDto.pageHost} == true ">
               <!-- {{#respDto.pageHost}} -->
               <a th:href="|/image/uploadForm|">
                 <!-- <a href="/image/uploadForm"> -->
                 <button class="profile_edit_btn">사진등록</button>
               </a>
+
+              <!-- th:replace="user/profile :: modal" -->
+              <!-- <a th:href="|#|">  -->
+              <!-- <a href="#"> -->
               <a th:href="|#|">
-                <!-- th:replace="user/profile :: modal" -->
-                <!-- <a th:href="|#|">  -->
-                <!-- <a href="#"> -->
-                <i class="fa fa-cog fa-lg"
-                  ><a th:href="|#|" th:insert="user/profile :: modal"></a
-                ></i>
+                <i class="fa fa-cog fa-lg"></i>
               </a>
+              <!-- <i class="fa fa-cog fa-lg"
+                ><a th:href="|#|" th:insert="user/profile :: modal"></a
+              ></i> -->
             </div>
             <!-- {{/respDto.pageHost}} -->
           </div>
@@ -99,7 +100,7 @@
               >
                 <!-- {{respDto.followerCount}} -->
               </span>
-              <a th:href="|#|" class="followerClick">팔로워 </a>
+              <a th:href="|/follow/followerList/${respDto.user.id}|">팔로워</a>
               <!-- <a href="#" class="followerClick">팔로워 </a> -->
             </li>
 
@@ -129,11 +130,13 @@
               <!-- {{/respDto.user.bio}} -->
             </span>
             <br /><br />
-            {{#respDto.user.website}}
-            <a href="{{respDto.user.website}}" class="profile__link">
-              {{respDto.user.website}}
+            <!-- {{#respDto.user.website}} -->
+            <a th:href="|${respDto.user.website}|" class="profile__link">
+              <!-- <a href="{{respDto.user.website}}" class="profile__link"> -->
+              <p th:text="${respDto.user.website}"></p>
+              <!-- {{respDto.user.website}} -->
             </a>
-            {{/respDto.user.website}}
+            <!-- {{/respDto.user.website}} -->
           </p>
         </div>
       </header>
@@ -151,13 +154,13 @@
             <div class="profile__photo-overlay">
               <span class="profile__photo-stat">
                 <i class="fa fa-heart"></i>
-                <p th:text="${i6.likeCount}">AA</p>
+                <i th:text="${i6.likeCount}">좋아요 갯수</i>
                 <!-- {{likeCount}} -->
               </span>
 
               <span class="profile__photo-stat">
                 <i class="fa fa-comment"></i>
-                <p th:text="${i6.commentCount}">AA</p>
+                <i th:text="${i6.commentCount}">댓글 갯수</i>
                 <!-- {{commentCount}} -->
               </span>
             </div>
@@ -166,20 +169,18 @@
         <!-- {{/respDto.images}} -->
       </div>
     </main>
-    <nav th:fragment="modal">
-      <div class="profile__overlay">
-        <i class="fa fa-times"></i>
-        <div class="profile__overlay-container">
-          <a href="/user/profileEdit" class="profile__overlay-link" id="logout"
-            >회원 수정</a
-          >
-          <a href="/auth/logout" class="profile__overlay-link" id="logout"
-            >로그아웃</a
-          >
-          <a href="#" class="profile__overlay-link" id="cancel">취소</a>
-        </div>
+    <div class="profile__overlay">
+      <i class="fa fa-times"></i>
+      <div class="profile__overlay-container">
+        <a href="/user/profileEdit" class="profile__overlay-link" id="logout"
+          >회원 수정</a
+        >
+        <a href="/auth/logout" class="profile__overlay-link" id="logout"
+          >로그아웃</a
+        >
+        <a href="#" class="profile__overlay-link" id="cancel">취소</a>
       </div>
-    </nav>
+    </div>
     <div class="profile__overlay1">
       <div id="profile__overlay-container1">
         <a class="profile__overlay-link2" id="logout"
