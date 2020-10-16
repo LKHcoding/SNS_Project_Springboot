@@ -9,6 +9,17 @@
     <main id="profile">
       <header class="profile__header">
         <div class="avatar__container">
+          <img
+            th:src="|/upload/${respDto.user.profileImage}|"
+            style="cursor: pointer"
+            onerror="this.src='/images/avatar.jpg'"
+            data-toggle="modal"
+            data-target="#myModal2"
+          />
+        </div>
+
+        <!-- avatar__container 원본소스 시작 -->
+        <!-- <div class="avatar__container">
           <form
             id="frm_profile_img"
             action="/user/profileUpload"
@@ -25,7 +36,8 @@
             style="cursor: pointer"
             onerror="this.src='/images/avatar.jpg'"
           />
-        </div>
+        </div> -->
+        <!-- avatar__container 원본소스 끝 -->
 
         <div class="profile__info">
           <div class="profile__title">
@@ -148,7 +160,7 @@
             </span>
             <br /><br />
             <a th:href="|${respDto.user.website}|" class="profile__link">
-              <p th:text="${respDto.user.website}"></p>
+              <span th:text="${respDto.user.website}"></span>
             </a>
           </p>
         </div>
@@ -232,6 +244,59 @@
     </div>
     <!-- 새로만들 모달창 끝 -->
 
+    <!-- 프로필이미지 클릭모달창 -->
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal2">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <!-- <div class="modal-header">
+            <h4 class="modal-title">Modal Heading</h4>
+            <button type="button" class="close" data-dismiss="modal">×</button>
+          </div> -->
+
+          <!-- Modal body -->
+          <div class="modal-body for__profile__modal">프로필 사진 바꾸기</div>
+          <form
+            id="frm_profile_img"
+            action="/user/profileUpload"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <input type="file" name="profileImage" style="display: none" />
+            <input type="hidden" name="userId" th:value="${respDto.user.id}" />
+          </form>
+          <a
+            class="modal-body"
+            style="color: dodgerblue; font-weight: 600"
+            id="profile_image"
+          >
+            사진 업로드
+          </a>
+          <a
+            class="modal-body"
+            style="color: red; font-weight: 600"
+            id="profile__image__delete"
+          >
+            현재 사진 삭제
+          </a>
+          <a class="modal-body" href="" data-dismiss="modal"> 취소 </a>
+
+          <!-- Modal footer -->
+          <!-- <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <!-- 프로필이미지 클릭모달창 -->
+
     <script>
       $(function () {
         //이미지 클릭시 업로드창 실행
@@ -240,6 +305,9 @@
         });
         //업로드 파일체인지가 됬을경우 실행되는 이벤트  form태그에 fileProfile은 hidden으로 넣어줌
         $("input[name='profileImage']").change(function (e) {
+          $("#frm_profile_img").submit();
+        });
+        $("#profile__image__delete").click(function () {
           $("#frm_profile_img").submit();
         });
       });

@@ -352,10 +352,16 @@
   user-select: none;
   vertical-align: middle;
   width: 100%;
-  line-height: 50px;
+  line-height: 40px;
   text-decoration: none !important;
   color: black;
 }
 .modal-content :first-child {
   border-top: 0px;
+}
+.for__profile__modal {
+  pointer-events: none;
+  font-weight: 600;
+  font-size: large;
+  line-height: 80px;
 }
