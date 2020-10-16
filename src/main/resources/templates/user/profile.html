@@ -20,7 +20,7 @@
           </form>
 
           <img
-            src="/upload/{{#respDto.user.profileImage}}{{respDto.user.profileImage}}{{/respDto.user.profileImage}}"
+            th:src="|/upload/${respDto.user.profileImage}|"
             id="profile_image"
             style="cursor: pointer"
             onerror="this.src='/images/avatar.jpg'"
