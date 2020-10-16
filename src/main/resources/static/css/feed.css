@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top:100px;
+  margin-top: 100px;
+  margin-left: 10px;
 }
 
 .photo {
@@ -17,29 +18,29 @@
 }
 
 .photo_user_info {
-	display: grid;
-	grid-template-columns : auto;
-  grid-gap : 6px 0;
+  display: grid;
+  grid-template-columns: auto;
+  grid-gap: 6px 0;
 }
 
 .photo__username {
-	font-weight: 600;
+  font-weight: 600;
 }
 
-/* 수정 좋아요 카운트 증가 */ 
+/* 수정 좋아요 카운트 증가 */
 .photo_caption {
-	margin-top: 6px;
-	margin-bottom: 6px;
+  margin-top: 6px;
+  margin-bottom: 6px;
 }
 
 .photo_tag {
-	color: #0092CF;	
-	margin-bottom: 6px;
+  color: #0092cf;
+  margin-bottom: 6px;
 }
 
 .photo_post_image img {
-	width: 600px;
-	max-height: 600px;
+  width: 600px;
+  max-height: 600px;
 }
 
 .photo__header img {
@@ -71,7 +72,7 @@
   cursor: pointer;
 }
 
-/* 수정 좋아요 카운트 증가 */ 
+/* 수정 좋아요 카운트 증가 */
 .photo__info .photo__likes {
   font-weight: 600;
   padding-bottom: 15px;
@@ -95,7 +96,7 @@
 .photo__info .photo__add-comment-container {
   margin-top: 15px;
   width: 100%;
-  border-top: 1px solid rgba(0, 0, 0, .0975);
+  border-top: 1px solid rgba(0, 0, 0, 0.0975);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -122,17 +123,15 @@
 
 .heart-clicked {
   color: red;
-  animation: .5s pump infinite linear;
+  animation: 0.5s pump infinite linear;
 }
 
 .feed_all {
   display: flex;
-  
 }
 
 .recomend_only {
-  position:sticky;
-  
+  position: sticky;
 }
 
 .feed_olny {
