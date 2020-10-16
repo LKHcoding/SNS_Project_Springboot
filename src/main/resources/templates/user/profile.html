@@ -11,10 +11,10 @@
         <div class="avatar__container">
           <img
             th:src="|/upload/${respDto.user.profileImage}|"
-            style="cursor: pointer"
             onerror="this.src='/images/avatar.jpg'"
             data-toggle="modal"
             data-target="#myModal2"
+            th:styleappend="${respDto.pageHost} ? 'cursor:pointer' : 'cursor: default'"
           />
         </div>
 
@@ -246,7 +246,7 @@
 
     <!-- 프로필이미지 클릭모달창 -->
     <!-- The Modal -->
-    <div class="modal fade" id="myModal2">
+    <div class="modal fade" id="myModal2" th:if="${respDto.pageHost}">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <!-- Modal Header -->
