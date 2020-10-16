@@ -4,7 +4,6 @@
   xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
 >
   <head th:replace="layout/header :: header"></head>
-  <!-- {{>layout/header}} -->
   <body>
     <nav th:replace="layout/header :: menu"></nav>
     <main id="profile">
@@ -18,7 +17,6 @@
           >
             <input type="file" name="profileImage" style="display: none" />
             <input type="hidden" name="userId" th:value="${respDto.user.id}" />
-            <!-- <input type="hidden" name="userId" value="{{respDto.user.id}}" /> -->
           </form>
 
           <img
@@ -32,11 +30,8 @@
         <div class="profile__info">
           <div class="profile__title">
             <h1 th:text="${respDto.user.username}"></h1>
-            <!-- <h1>{{respDto.user.username}}</h1> -->
             <div th:if=" ${respDto.pageHost} == false ">
-              <!-- {{^respDto.pageHost}}  -->
               <div th:if=" ${respDto.followState} == true">
-                <!-- {{#respDto.followState}} -->
                 <a href="#">
                   <button
                     th:onclick="|unFollow(${respDto.user.id})|"
@@ -44,14 +39,10 @@
                   >
                     팔로우 취소
                   </button>
-                  <!-- <button th:onclick="|unFollow(${list.id})|" class="profile_edit_btn">팔로우취소</button> -->
                 </a>
               </div>
-              <!-- {{/respDto.followState}}  -->
               <div th:if=" ${respDto.followState} == false ">
-                <!-- {{^respDto.followState}} -->
                 <a th:href="|#|">
-                  <!-- <a href="#"> -->
                   <button
                     th:onclick="|follow(${respDto.user.id})|"
                     class="profile_follow_btn"
@@ -60,28 +51,54 @@
                   </button>
                 </a>
               </div>
-              <!-- {{/respDto.followState}} -->
             </div>
-            <!-- {{/respDto.pageHost}}  -->
             <div th:if=" ${respDto.pageHost} == true ">
-              <!-- {{#respDto.pageHost}} -->
-              <a th:href="|/image/uploadForm|">
-                <!-- <a href="/image/uploadForm"> -->
+              <a href="/image/uploadForm">
                 <button class="profile_edit_btn">사진등록</button>
               </a>
 
-              <!-- th:replace="user/profile :: modal" -->
-              <!-- <a th:href="|#|">  -->
-              <!-- <a href="#"> -->
-              <a th:href="|#|">
+              <!-- 원래 있던 톱니바퀴 아이콘 시작-->
+              <!-- <a th:href="#">
                 <i class="fa fa-cog fa-lg"></i>
+              </a> -->
+              <!-- 원래 있던 톱니바퀴 아이콘 끝 -->
+
+              <a
+                class="wpO6b"
+                type="button"
+                data-toggle="modal"
+                data-target="#myModal"
+              >
+                <div class="QBdPU">
+                  <svg
+                    aria-label="옵션"
+                    class="_8-yf5"
+                    fill="#262626"
+                    height="24"
+                    viewBox="0 0 48 48"
+                    width="24"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M46.7 20.6l-2.1-1.1c-.4-.2-.7-.5-.8-1-.5-1.6-1.1-3.2-1.9-4.7-.2-.4-.3-.8-.1-1.2l.8-2.3c.2-.5 0-1.1-.4-1.5l-2.9-2.9c-.4-.4-1-.5-1.5-.4l-2.3.8c-.4.1-.8.1-1.2-.1-1.4-.8-3-1.5-4.6-1.9-.4-.1-.8-.4-1-.8l-1.1-2.2c-.3-.5-.8-.8-1.3-.8h-4.1c-.6 0-1.1.3-1.3.8l-1.1 2.2c-.2.4-.5.7-1 .8-1.6.5-3.2 1.1-4.6 1.9-.4.2-.8.3-1.2.1l-2.3-.8c-.5-.2-1.1 0-1.5.4L5.9 8.8c-.4.4-.5 1-.4 1.5l.8 2.3c.1.4.1.8-.1 1.2-.8 1.5-1.5 3-1.9 4.7-.1.4-.4.8-.8 1l-2.1 1.1c-.5.3-.8.8-.8 1.3V26c0 .6.3 1.1.8 1.3l2.1 1.1c.4.2.7.5.8 1 .5 1.6 1.1 3.2 1.9 4.7.2.4.3.8.1 1.2l-.8 2.3c-.2.5 0 1.1.4 1.5L8.8 42c.4.4 1 .5 1.5.4l2.3-.8c.4-.1.8-.1 1.2.1 1.4.8 3 1.5 4.6 1.9.4.1.8.4 1 .8l1.1 2.2c.3.5.8.8 1.3.8h4.1c.6 0 1.1-.3 1.3-.8l1.1-2.2c.2-.4.5-.7 1-.8 1.6-.5 3.2-1.1 4.6-1.9.4-.2.8-.3 1.2-.1l2.3.8c.5.2 1.1 0 1.5-.4l2.9-2.9c.4-.4.5-1 .4-1.5l-.8-2.3c-.1-.4-.1-.8.1-1.2.8-1.5 1.5-3 1.9-4.7.1-.4.4-.8.8-1l2.1-1.1c.5-.3.8-.8.8-1.3v-4.1c.4-.5.1-1.1-.4-1.3zM24 41.5c-9.7 0-17.5-7.8-17.5-17.5S14.3 6.5 24 6.5 41.5 14.3 41.5 24 33.7 41.5 24 41.5z"
+                      fill-rule="evenodd"
+                    ></path>
+                  </svg>
+                </div>
               </a>
-              <!-- <i class="fa fa-cog fa-lg"
-                ><a th:href="|#|" th:insert="user/profile :: modal"></a
-              ></i> -->
             </div>
-            <!-- {{/respDto.pageHost}} -->
           </div>
+
+          <!-- 모달창 버튼 시작 -->
+          <!-- <a
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#myModal"
+          >
+            Open modal
+          </a> -->
+          <!-- 모달창 버튼 끝 -->
 
           <ul class="profile__stats">
             <li class="profile__stat">
@@ -89,7 +106,6 @@
                 class="profile__stat-number"
                 th:text="${respDto.imageCount}"
               >
-                <!-- {{respDto.imageCount}}  -->
               </span>
               게시물
             </li>
@@ -98,10 +114,8 @@
                 class="profile__stat-number"
                 th:text="${respDto.followerCount}"
               >
-                <!-- {{respDto.followerCount}} -->
               </span>
               <a th:href="|/follow/followerList/${respDto.user.id}|">팔로워</a>
-              <!-- <a href="#" class="followerClick">팔로워 </a> -->
             </li>
 
             <li class="profile__stat">
@@ -109,34 +123,24 @@
                 class="profile__stat-number"
                 th:text="${respDto.followingCount}"
               >
-                <!-- {{respDto.followingCount}} -->
               </span>
               <a th:href="|/follow/followingList/${respDto.user.id}|">팔로우</a>
-              <!-- <a href="/follow/followingList/{{respDto.user.id}}">팔로우</a> -->
             </li>
           </ul>
 
           <p class="profile__bio">
             <span class="profile__fullname" th:text="${respDto.user.name}">
-              <!-- {{respDto.user.name}} -->
             </span>
 
             <span>
               <div th:each=" i5: ${respDto.user.bio} ">
-                <!-- {{#respDto.user.bio}}  -->
                 <p th:text="${i5}"></p>
-                <!-- {{respDto.user.bio}} -->
               </div>
-              <!-- {{/respDto.user.bio}} -->
             </span>
             <br /><br />
-            <!-- {{#respDto.user.website}} -->
             <a th:href="|${respDto.user.website}|" class="profile__link">
-              <!-- <a href="{{respDto.user.website}}" class="profile__link"> -->
               <p th:text="${respDto.user.website}"></p>
-              <!-- {{respDto.user.website}} -->
             </a>
-            <!-- {{/respDto.user.website}} -->
           </p>
         </div>
       </header>
@@ -144,31 +148,28 @@
       <div class="profile__photo-grid">
         <!-- 유저가 업로드한 Feed 사진 -->
         <div th:each=" i6: ${respDto.images} ">
-          <!-- {{#respDto.images}} -->
           <div class="profile__photo">
             <a href="#">
               <img th:src="@{|/upload/${i6.imageUrl}|}" />
-              <!-- <img src="/upload/{{imageUrl}}" /> -->
             </a>
 
             <div class="profile__photo-overlay">
               <span class="profile__photo-stat">
                 <i class="fa fa-heart"></i>
                 <i th:text="${i6.likeCount}">좋아요 갯수</i>
-                <!-- {{likeCount}} -->
               </span>
 
               <span class="profile__photo-stat">
                 <i class="fa fa-comment"></i>
                 <i th:text="${i6.commentCount}">댓글 갯수</i>
-                <!-- {{commentCount}} -->
               </span>
             </div>
           </div>
         </div>
-        <!-- {{/respDto.images}} -->
       </div>
     </main>
+
+    <!-- 기존 모달창 시작 -->
     <div class="profile__overlay">
       <i class="fa fa-times"></i>
       <div class="profile__overlay-container">
@@ -189,6 +190,38 @@
         <a href="#" class="profile__overlay-link3" id="cancel">취소</a>
       </div>
     </div>
+    <!-- 기존 모달창 끝 -->
+
+    <!-- 새로만들 모달창 -->
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <!-- <div class="modal-header">
+            <h4 class="modal-title">Modal Heading</h4>
+            <button type="button" class="close" data-dismiss="modal">×</button>
+          </div> -->
+
+          <!-- Modal body -->
+          <a class="modal-body" href="/user/profileEdit"> 회원 수정 </a>
+          <a class="modal-body" href="/auth/logout"> 로그아웃 </a>
+          <a class="modal-body" href="" data-dismiss="modal"> 취소 </a>
+
+          <!-- Modal footer -->
+          <!-- <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <!-- 새로만들 모달창 끝 -->
 
     <script>
       $(function () {
