@@ -52,9 +52,18 @@
                 </a>
               </div>
             </div>
-            <div th:if=" ${respDto.pageHost} == true ">
-              <a href="/image/uploadForm">
+            <div th:if=" ${respDto.pageHost} == true " style="margin-top: 7px">
+              <a
+                href="/image/uploadForm"
+                style="text-decoration: none; margin-right: 2px"
+              >
                 <button class="profile_edit_btn">사진등록</button>
+              </a>
+              <a
+                href="/user/profileEdit"
+                style="text-decoration: none; margin-right: 2px"
+              >
+                <button class="profile_edit_btn">프로필 편집</button>
               </a>
 
               <!-- 원래 있던 톱니바퀴 아이콘 시작-->
