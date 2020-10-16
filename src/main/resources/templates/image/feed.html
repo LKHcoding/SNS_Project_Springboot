@@ -51,12 +51,25 @@
                 <span class="photo__action">
                   <!-- {{! 메시지 아이콘 부분}} -->
                   <!-- <a href="/user/{{loginUser.id}}" -->
-                  <a th:href="|/user/${session.loginUser.id}|"
+                  <!-- <a th:href="|/user/${session.loginUser.id}|" -->
+                  <a th:href="|/user/${images.user.id}|"
                     ><i class="fa fa-comment-o"></i
                   ></a>
                   <!--  {{! https://fontawesome.com/icons?d=gallery&q=user 아이콘
                   주기}} -->
                 </span>
+              </div>
+              <div th:if="${images.likeCount} != 0" style="margin-bottom: 3px">
+                <span class="photo__likes" th:text="|${images.likeCount}명|"
+                  >좋아요 수(몇명)</span
+                >이 좋아합니다
+              </div>
+
+              <div th:if="${images.caption}!= null" style="margin-bottom: 4px">
+                <span class="photo__likes" th:text="${images.user.username}"
+                  >글작성자이름
+                </span>
+                <span th:text="${images.caption}">글내용</span>
               </div>
 
               <div class="photo_tag" style="display: flex">
@@ -74,13 +87,6 @@
                 </div>
                 <!--  {{/tags}} -->
               </div>
-              <div th:if="${images.likeCount} != 0">
-                <span class="photo__likes" th:text="|${images.likeCount}명|"
-                  >{{likeCount}} likes</span
-                >이 좋아합니다
-              </div>
-              <br />
-              <br />
               <ul class="photo__comments">
                 <div th:each="comments : ${images.comments}">
                   <!-- {{#comments}} -->
