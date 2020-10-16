@@ -58,15 +58,10 @@ public class UserController {
 		return "redirect:/user/"+userId;
 	}
 
-	//영운 댓글기능 구현중
-	@GetMapping("/user/feed-comment/{userid}")
-	public String feedcomment(@PathVariable int userid, @LoginUserAnnotation LoginUser loginUser, Model model) {
-		UserProfileRespDto userProfileRespDto = userService.회원프로필(userid, loginUser);
-		model.addAttribute("respDto", userProfileRespDto);
+	@GetMapping("user/feedComment/{id}")
+	public String FeedComment(){
 		return "user/feed-comment";
 	}
-
-
 }
 
 
