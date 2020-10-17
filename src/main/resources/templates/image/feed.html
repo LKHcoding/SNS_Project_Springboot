@@ -15,6 +15,7 @@
             <header class="photo__header">
               <img
                 src="/upload/{{#user.profileImage}}{{user.profileImage}}{{/user.profileImage}}"
+                th:src="|/upload/${images.user.profileImage}|"
                 onerror="this.src='/images/avatar.jpg'"
               />
               <span class="photo__username" th:text="${images.user.username}"
