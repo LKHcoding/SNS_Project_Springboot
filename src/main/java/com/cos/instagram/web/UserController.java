@@ -32,36 +32,31 @@ public class UserController {
 	}
 
 	@GetMapping("/user/profileEdit")
-	public String profileEdit(
-			@LoginUserAnnotation LoginUser loginUser,
-			Model model) {
+	public String profileEdit(@LoginUserAnnotation LoginUser loginUser, Model model) {
 		User userEntity = userService.회원정보(loginUser);
 		model.addAttribute("user", userEntity);
 		return "user/profile-edit";
 	}
 
 	@PutMapping("/user")
-	public ResponseEntity<?> userUpdate(User user){
+	public ResponseEntity<?> userUpdate(User user) {
 		userService.회원수정(user);
 		return new ResponseEntity<String>("ok", HttpStatus.OK);
 	}
 
 	// 원래는 put으로 하는게 맞는데 편하게 하기 위해
 	@PostMapping("/user/profileUpload")
-	public String userProfileUpload(@RequestParam("profileImage") MultipartFile file,
-			int userId,
-			@LoginUserAnnotation LoginUser loginUser){
-		if(userId == loginUser.getId()) {
+	public String userProfileUpload(@RequestParam("profileImage") MultipartFile file, int userId,
+			@LoginUserAnnotation LoginUser loginUser) {
+		if (userId == loginUser.getId()) {
 			userService.프로필사진업로드(loginUser, file);
 		}
 
-		return "redirect:/user/"+userId;
+		return "redirect:/user/" + userId;
 	}
 
-	@GetMapping("user/feedComment/{id}")
-	public String FeedComment(){
-		return "user/feed-comment";
+	@GetMapping("user/board/{imageid}")
+	public String FeedComment() {
+		return "user/board";
 	}
 }
-
-
