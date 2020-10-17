@@ -365,3 +365,12 @@
   font-size: large;
   line-height: 80px;
 }
+/* modal 창을 열면 패딩이 맘대로 생기는 현상 방지용 소스 시작 */
+body.modal-open {
+  overflow: auto;
+}
+
+body.modal-open[style] {
+  padding-right: 0px !important;
+}
+/* modal 창을 열면 패딩이 맘대로 생기는 현상 방지용 소스 끝 */
