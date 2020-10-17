@@ -23,41 +23,42 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- 모달창 만들기 위한 bootstrap4 링크들 끝 -->
-    
-    <link rel="stylesheet" href="/css/styles.css" />
 
+    <link rel="stylesheet" href="/css/styles.css" />
   </head>
 
   <body>
-    <nav class="navigation" th:fragment="menu">
-      <a href="/">
-        <img src="/images/logo.png" />
-      </a>
-      <form action="/image/feed" method="get">
-        <input name="tag" type="text" placeholder="Search" />
-        <button style="background-color: white; border: 0">
-          <i class="fa fa-search" style="font-size: 15px"></i>
-        </button>
-      </form>
-      <div class="navigation__links">
-        <a th:href="|/image/explore|" class="navigation__link">
-          <i class="fa fa-compass"></i>
+    <nav th:fragment="menu" id="nav__background">
+      <div class="navigation">
+        <a href="/">
+          <img src="/images/logo2.png" />
         </a>
-        <a
-          th:href="|/noti/${session.loginUser.id}|"
-          class="navigation__link follow_popup"
-        >
-          <i class="fa fa-heart-o"></i>
-        </a>
-        <a
-          th:href="|/noti/${session.loginUser.id}|"
-          class="navigation__link follow_popup"
-        >
-          <i class="fa fa-paper-plane-o"></i>
-        </a>
-        <a th:href="|/user/${session.loginUser.id}|" class="navigation__link">
-          <i class="fa fa-user-o"></i>
-        </a>
+        <form action="/image/feed" method="get">
+          <input name="tag" type="text" placeholder="검색" />
+          <button style="background-color: white; border: 0">
+            <i class="fa fa-search" style="font-size: 15px"></i>
+          </button>
+        </form>
+        <div class="navigation__links">
+          <a th:href="|/image/explore|" class="navigation__link">
+            <i class="fa fa-compass"></i>
+          </a>
+          <a
+            th:href="|/noti/${session.loginUser.id}|"
+            class="navigation__link follow_popup"
+          >
+            <i class="fa fa-heart-o"></i>
+          </a>
+          <a
+            th:href="|/noti/${session.loginUser.id}|"
+            class="navigation__link follow_popup"
+          >
+            <i class="fa fa-paper-plane-o"></i>
+          </a>
+          <a th:href="|/user/${session.loginUser.id}|" class="navigation__link">
+            <i class="fa fa-user-o"></i>
+          </a>
+        </div>
       </div>
     </nav>
   </body>

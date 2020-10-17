@@ -6,6 +6,9 @@
   .navigation input {
     display: none;
   }
+  .navigation button {
+    display: none;
+  }
 
   .photo .photo__add-comment-container {
     display: none;

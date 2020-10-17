@@ -173,18 +173,19 @@
             <a href="#">
               <img th:src="@{|/upload/${i6.imageUrl}|}" />
             </a>
+            <a href="#">
+              <div class="profile__photo-overlay">
+                <span class="profile__photo-stat">
+                  <i class="fa fa-heart"></i>
+                  <i th:text="${i6.likeCount}">좋아요 갯수</i>
+                </span>
 
-            <div class="profile__photo-overlay">
-              <span class="profile__photo-stat">
-                <i class="fa fa-heart"></i>
-                <i th:text="${i6.likeCount}">좋아요 갯수</i>
-              </span>
-
-              <span class="profile__photo-stat">
-                <i class="fa fa-comment"></i>
-                <i th:text="${i6.commentCount}">댓글 갯수</i>
-              </span>
-            </div>
+                <span class="profile__photo-stat">
+                  <i class="fa fa-comment"></i>
+                  <i th:text="${i6.commentCount}">댓글 갯수</i>
+                </span>
+              </div>
+            </a>
           </div>
         </div>
       </div>
@@ -213,7 +214,7 @@
     </div>
     <!-- 기존 모달창 끝 -->
 
-    <!-- 새로만들 모달창 -->
+    <!-- 새로만든 모달창 -->
     <!-- The Modal -->
     <div class="modal fade" id="myModal">
       <div class="modal-dialog modal-dialog-centered">
@@ -242,7 +243,7 @@
         </div>
       </div>
     </div>
-    <!-- 새로만들 모달창 끝 -->
+    <!-- 새로만든 모달창 끝 -->
 
     <!-- 프로필이미지 클릭모달창 -->
     <!-- The Modal -->
