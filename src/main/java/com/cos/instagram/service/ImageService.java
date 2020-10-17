@@ -31,76 +31,71 @@ public class ImageService {
 	private final ImageRepository imageRepository;
 	private final TagRepository tagRepository;
 	private final UserRepository userRepository;
-	
+
 	@Transactional(readOnly = true)
-	public List<Image> 피드사진(int loginUserId, String tag){
+	public List<Image> 피드사진(int loginUserId, String tag) {
 		List<Image> images = null;
-		if(tag == null || tag.equals("")) {
+		if (tag == null || tag.equals("")) {
 			images = imageRepository.mFeeds(loginUserId);
-		}else {
+		} else {
 			images = imageRepository.mFeeds(tag);
 		}
-		
+
 		for (Image image : images) {
 			image.setLikeCount(image.getLikes().size());
-			
+
 			// 좋아요 상태 여부 등록
 			for (Likes like : image.getLikes()) {
-				if(like.getUser().getId() == loginUserId) {
+				if (like.getUser().getId() == loginUserId) {
 					image.setLikeState(true);
 				}
 			}
 			// 댓글 주인 여부 등록
 			for (Comment comment : image.getComments()) {
-				if(comment.getUser().getId() == loginUserId) {
+				if (comment.getUser().getId() == loginUserId) {
 					comment.setCommentHost(true);
 				}
 			}
 		}
-		
+
 		return images;
 	}
-	
+
 	@Transactional(readOnly = true)
 	public List<Image> 인기사진(int loginUserId) {
 		return imageRepository.mNonFollowImage(loginUserId);
 	}
-	
-	
+
+	@Transactional(readOnly = true)
+	public List<Image> 단독게시물(int imageId) {
+		return imageRepository.mBoardImage(imageId);
+	}
+
 	@Value("${file.path}")
 	private String uploadFolder;
-	
+
 	@Transactional
 	public void 사진업로드(ImageReqDto imageReqDto, int userId) {
-		User userEntity = userRepository.findById(userId).
-				orElseThrow(null);
-		
+		User userEntity = userRepository.findById(userId).orElseThrow(null);
+
 		UUID uuid = UUID.randomUUID();
-		String imageFilename = 
-				uuid+"_"+imageReqDto.getFile().getOriginalFilename();
-		Path imageFilepath = Paths.get(uploadFolder+imageFilename);
+		String imageFilename = uuid + "_" + imageReqDto.getFile().getOriginalFilename();
+		Path imageFilepath = Paths.get(uploadFolder + imageFilename);
 		try {
 			Files.write(imageFilepath, imageReqDto.getFile().getBytes());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		// 1. Image 저장
 		Image image = imageReqDto.toEntity(imageFilename, userEntity);
 		Image imageEntity = imageRepository.save(image);
-		
+
 		// 2. Tag 저장
 		List<String> tagNames = Utils.tagParse(imageReqDto.getTags());
 		for (String name : tagNames) {
-			Tag tag = Tag.builder()
-					.image(imageEntity)
-					.name(name)
-					.build();
+			Tag tag = Tag.builder().image(imageEntity).name(name).build();
 			tagRepository.save(tag);
 		}
 	}
 }
-
-
-
-

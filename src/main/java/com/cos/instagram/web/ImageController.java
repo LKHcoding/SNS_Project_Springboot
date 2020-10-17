@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -51,11 +52,11 @@ public class ImageController {
 	public String imageExplore(@LoginUserAnnotation LoginUser loginUser, Model model) {
 		model.addAttribute("images", imageService.인기사진(loginUser.getId()));
 		return "image/explore";
-
 	}
 
 	@GetMapping("image/{imageid}")
-	public String board() {
+	public String board(Model model, @PathVariable int imageid) {
+		model.addAttribute("board", imageService.단독게시물(imageid));
 		return "image/board";
 	}
 
