@@ -21,47 +21,42 @@ import lombok.RequiredArgsConstructor;
 public class ImageController {
 
 	private final ImageService imageService;
-	
-	@GetMapping({"", "/", "/image/feed"})
-	public String feed(
-			String tag,
-			@LoginUserAnnotation LoginUser loginUser,
-			Model model) {
-		System.out.println("loginUser : "+loginUser);
+
+	@GetMapping({ "", "/", "/image/feed" })
+	public String feed(String tag, @LoginUserAnnotation LoginUser loginUser, Model model) {
+		System.out.println("loginUser : " + loginUser);
 		model.addAttribute("images", imageService.피드사진(loginUser.getId(), tag));
 		return "image/feed";
 	}
-	
+
 	@GetMapping("/test/image/feed")
-	public @ResponseBody List<Image> testFeed(
-			String tag,
-			@LoginUserAnnotation LoginUser loginUser) {
+	public @ResponseBody List<Image> testFeed(String tag, @LoginUserAnnotation LoginUser loginUser) {
 		return imageService.피드사진(loginUser.getId(), tag);
 	}
-	
+
 	@GetMapping("/image/uploadForm")
 	public String imageUploadForm() {
 		return "image/image-upload";
 	}
-	
+
 	@PostMapping("/image")
-	public String imageUpload(
-			@LoginUserAnnotation LoginUser loginUser,
-			ImageReqDto imageReqDto) {
-		
+	public String imageUpload(@LoginUserAnnotation LoginUser loginUser, ImageReqDto imageReqDto) {
+
 		imageService.사진업로드(imageReqDto, loginUser.getId());
-		
-		return "redirect:/user/"+loginUser.getId();
+
+		return "redirect:/user/" + loginUser.getId();
 	}
-	
+
 	@GetMapping("/image/explore")
 	public String imageExplore(@LoginUserAnnotation LoginUser loginUser, Model model) {
 		model.addAttribute("images", imageService.인기사진(loginUser.getId()));
 		return "image/explore";
-		
+
 	}
+
+	@GetMapping("image/{imageid}")
+	public String board() {
+		return "image/board";
+	}
+
 }
-
-
-
-

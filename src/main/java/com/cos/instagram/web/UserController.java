@@ -54,9 +54,4 @@ public class UserController {
 
 		return "redirect:/user/" + userId;
 	}
-
-	@GetMapping("user/board/{imageid}")
-	public String FeedComment() {
-		return "user/board";
-	}
 }
