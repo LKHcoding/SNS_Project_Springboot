@@ -61,10 +61,13 @@
 }
 
 .navigation__links .navigation__link:nth-child(2) {
-  animation-delay: 0.2s;
+  animation-delay: 0.15s;
 }
 .navigation__links .navigation__link:nth-child(3) {
-  animation-delay: 0.4s;
+  animation-delay: 0.3s;
+}
+.btn-group > .navigation__link {
+  animation-delay: 0.45s;
 }
 
 .navigation__links .navigation__link:last-child {
@@ -84,4 +87,25 @@
 .navigation > a > img {
   margin-top: 5px;
   margin-right: 100px;
+}
+
+.dropdown-menu {
+  width: 220px;
+  top: 9px !important;
+  left: 20px !important;
+  padding: 0px !important;
+}
+.dropdown-item {
+  font-size: 15px;
+  padding: 15px 15px;
+  height: 40px;
+}
+.dropdown-divider {
+  margin: 0px;
+}
+
+.nav-profile-image img {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
 }

@@ -13,6 +13,7 @@ public class LoginUser {
 	private String role;
 	private String provider;
 	private String providerId;
+	private String imageUrl;
 
 	public LoginUser(User user) {
 		this.id = user.getId();
@@ -22,6 +23,7 @@ public class LoginUser {
 		this.role = user.getRole().getKey();
 		this.provider = user.getProvider();
 		this.providerId = user.getProviderId();
+		this.imageUrl = user.getProfileImage();
 	}
 
 	public User getUser() {

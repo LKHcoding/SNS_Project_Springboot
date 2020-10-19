@@ -48,7 +48,7 @@
             <i class="fa fa-paper-plane-o"></i>
           </a>
 
-          <a th:href="|/image/explore|" class="navigation__link">
+          <a th:href="|/image/explore|" class="navigation__link follow_popup">
             <i class="fa fa-compass"></i>
           </a>
 
@@ -59,9 +59,48 @@
             <i class="fa fa-heart-o"></i>
           </a>
 
-          <a th:href="|/user/${session.loginUser.id}|" class="navigation__link">
+          <!-- <a th:href="|/user/${session.loginUser.id}|" class="navigation__link">
             <i class="fa fa-user-o"></i>
-          </a>
+          </a> -->
+          <div class="btn-group">
+            <a
+              href="#"
+              class="navigation__link"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <!-- <i class="fa fa-user-o"></i> -->
+              <i class="nav-profile-image">
+                <img
+                  src="/upload/{{#user.profileImage}}{{user.profileImage}}{{/user.profileImage}}"
+                  th:src="|/upload/${session.loginUser.imageUrl}|"
+                  onerror="this.src='/images/avatar.jpg'"
+                />
+              </i>
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right">
+              <li>
+                <a
+                  th:href="|/user/${session.loginUser.id}|"
+                  class="dropdown-item"
+                  >프로필</a
+                >
+              </li>
+              <li>
+                <a href="/user/profileEdit" class="dropdown-item" type="button"
+                  >설정</a
+                >
+              </li>
+              <div class="dropdown-divider"></div>
+              <li>
+                <a href="/auth/logout" class="dropdown-item" type="button"
+                  >로그아웃</a
+                >
+              </li>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
