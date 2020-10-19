@@ -10,11 +10,10 @@
     <main id="feed">
       <div class="feed_all">
         <div class="feed_only">
-          <!-- {{#images}} -->
           <div class="photo u-default-box" th:each="images : ${images}">
             <header class="photo__header">
               <img
-                src="/upload/{{#user.profileImage}}{{user.profileImage}}{{/user.profileImage}}"
+                src="/upload/"
                 th:src="|/upload/${images.user.profileImage}|"
                 onerror="this.src='/images/avatar.jpg'"
               />
@@ -180,7 +179,11 @@
       </div>
     </main>
 
-    <script></script>
+    <!-- <script th:inline="javascript">
+    var username = [[${session.loginUser.id}]];
+    alert(username);
+      
+    </script> -->
     <script src="/js/comment.js"></script>
     <script src="/js/like.js"></script>
   </body>

@@ -62,13 +62,32 @@ public class ImageService {
 	}
 
 	@Transactional(readOnly = true)
-	public List<Image> 인기사진(int loginUserId) {
-		return imageRepository.mNonFollowImage(loginUserId);
+	public List<Image> 단독게시물(int loginUserId, int imageId) {
+		List<Image> boards = null;
+		boards = imageRepository.mBoardImage(imageId);
+
+		for (Image board : boards) {
+			board.setLikeCount(board.getLikes().size());
+
+			// 좋아요 상태 여부 등록
+			for (Likes like : board.getLikes()) {
+				if (like.getUser().getId() == loginUserId) {
+					board.setLikeState(true);
+				}
+			}
+			// 댓글 주인 여부 등록
+			for (Comment comment : board.getComments()) {
+				if (comment.getUser().getId() == loginUserId) {
+					comment.setCommentHost(true);
+				}
+			}
+		}
+		return boards;
 	}
 
 	@Transactional(readOnly = true)
-	public List<Image> 단독게시물(int imageId) {
-		return imageRepository.mBoardImage(imageId);
+	public List<Image> 인기사진(int loginUserId) {
+		return imageRepository.mNonFollowImage(loginUserId);
 	}
 
 	@Value("${file.path}")

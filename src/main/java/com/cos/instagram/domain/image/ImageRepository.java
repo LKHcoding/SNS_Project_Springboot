@@ -13,6 +13,7 @@ public interface ImageRepository extends JpaRepository<Image, Integer> {
 	@Query(value = "select * from image where userId in (select id from user where id != ?1 and id not in (select toUserId from follow where fromUserId = ?1)) limit 20", nativeQuery = true)
 	List<Image> mNonFollowImage(int loginUserId);
 
+	// feed 화면에 띄울 게시물 검색
 	@Query(value = "select * from image where userId = ?1 or userId in (select toUserId from follow where fromUserId = ?1) order by createDate desc", nativeQuery = true)
 	List<Image> mFeeds(int loginUserId);
 

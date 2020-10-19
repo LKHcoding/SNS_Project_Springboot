@@ -55,8 +55,8 @@ public class ImageController {
 	}
 
 	@GetMapping("image/{imageid}")
-	public String board(Model model, @PathVariable int imageid) {
-		model.addAttribute("board", imageService.단독게시물(imageid));
+	public String board(Model model, @PathVariable int imageid, @LoginUserAnnotation LoginUser loginUser) {
+		model.addAttribute("board", imageService.단독게시물(loginUser.getId(), imageid));
 		return "image/board";
 	}
 
