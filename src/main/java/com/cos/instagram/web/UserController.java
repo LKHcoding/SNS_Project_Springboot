@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.cos.instagram.config.auth.LoginUserAnnotation;
 import com.cos.instagram.config.auth.dto.LoginUser;
 import com.cos.instagram.domain.user.User;
+import com.cos.instagram.service.FollowService;
 import com.cos.instagram.service.UserService;
 import com.cos.instagram.web.dto.UserProfileRespDto;
 
@@ -23,11 +24,17 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-
-	@GetMapping("/user/{id}")
-	public String profile(@PathVariable int id, @LoginUserAnnotation LoginUser loginUser, Model model) {
-		UserProfileRespDto userProfileRespDto = userService.회원프로필(id, loginUser);
+	
+	@Autowired
+	private FollowService followService;
+	
+	//팔로워,팔로우 모달창에 구현
+	@GetMapping("/user/{pageUserId}")
+	public String profile(@PathVariable int pageUserId, @LoginUserAnnotation LoginUser loginUser, Model model) {
+		UserProfileRespDto userProfileRespDto = userService.회원프로필(pageUserId, loginUser);
 		model.addAttribute("respDto", userProfileRespDto);
+		model.addAttribute("followingList", followService.팔로잉리스트(loginUser.getId(),pageUserId));
+		model.addAttribute("followerList", followService.팔로워리스트(loginUser.getId(),pageUserId));
 		return "user/profile";
 	}
 

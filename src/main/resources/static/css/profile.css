@@ -374,3 +374,62 @@ body.modal-open[style] {
   padding-right: 0px !important;
 }
 /* modal 창을 열면 패딩이 맘대로 생기는 현상 방지용 소스 끝 */
+
+/* 팔로우,팔로워 모달창 스크롤바 모서리 라운드 처리 */
+#_1XyCr {
+    background-color: #fff;
+    background-color: rgba(var(--f23,255,255,255),1);
+    border-radius: 12px;
+    max-height: 100%;
+    overflow: hidden;
+}
+/* 팔로우,팔로워 모달창 header부분 */
+.m82CD {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    font-size: 16px;
+    font-weight: 600;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    line-height: 24px;
+    text-align: center;
+}
+
+#modalheard {
+height: 53px;
+}
+
+/* 팔로우,팔로워 모달창 body부분 */
+.isgrP {
+    border-radius: 12px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    display: block;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1;
+    -ms-flex: 1 1;
+    flex: 1 1;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0%;
+    min-height: 200px;
+    overflow-y: scroll;
+}
+
+
+
+
