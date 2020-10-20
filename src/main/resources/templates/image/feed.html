@@ -144,31 +144,47 @@
           <div class="fixed_side">
             <div class="side">
               <div>
-                <b>회원님을 위한 추천 기능</b><br />
+                <a th:href="|/user/${session.loginUser.id}|">
+                  <i class="side-profile-image">
+                    <img
+                      th:src="|/upload/${session.loginUser.imageUrl}|"
+                      onerror="this.src='/images/avatar.jpg'"
+                    />
+                  </i>
+                </a>
+                <a
+                  class="side_username"
+                  th:href="|/user/${session.loginUser.id}|"
+                  th:text="${session.loginUser.username}"
+                  >username</a
+                >
+                <div
+                  class="side_name"
+                  th:text="${session.loginUser.name}"
+                ></div>
+                <br />
+                <div class="side_recommendation">
+                  <p class="side_recommendation_text">회원님을 위한 추천</p>
+                  <a class="side_view_all" th:href="|#|"><i>모두 보기</i></a>
+                </div>
+                <br />
                 <br />
               </div>
-              <div><a href="#">instargram</a><br /></div>
               <div>
-                <p>test</p>
-                <br />
-              </div>
-              <div>
-                <p>parkyoungun</p>
-                <p>
-                  <br />
-                </p>
-              </div>
-              <div>
-                <p>test1</p>
-                <br />
-              </div>
-              <div>
-                <p>test2</p>
-                <br />
-              </div>
-              <div>
-                <p>test3</p>
-                <br />
+                <ul class="explore__users u-default-box">
+                  <li class="explore__user" th:each="list : ${recommendation}">
+                    <div class="explore__info">
+                      <span
+                        class="explore__username"
+                        th:text="${list.username}"
+                      ></span>
+                      <span
+                        class="explore__full-name"
+                        th:text="${list.name}"
+                      ></span>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </div>
             <div>

@@ -3,5 +3,48 @@
   top: 70px;
   height: 400px;
   width: 350px;
-  margin-left: 5px;
+  margin-left: 15px;
+}
+
+.side-profile-image img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+}
+
+.side_username {
+  position: absolute;
+  padding: 10px;
+  top: 5px;
+  left: 52px;
+  font-size: medium;
+  font-weight: 500;
+  color: black;
+  text-decoration: none !important;
+}
+a.side_username:hover {
+  color: black;
+}
+
+.side_recommendation {
+  display: flex;
+  margin-top: 15px;
+}
+
+.side_recommendation .side_recommendation_text {
+  /* margin-top: 15px; */
+  color: darkgray;
+}
+
+.side_recommendation .side_view_all {
+  margin-left: 150px;
+  font-weight: bold;
+  color: black;
+  text-decoration: none !important;
+}
+
+.side_name {
+  margin-left: 64px;
+  margin-top: -25px;
+  color: darkgray;
 }
