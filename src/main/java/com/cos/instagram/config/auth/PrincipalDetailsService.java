@@ -1,5 +1,6 @@
 package com.cos.instagram.config.auth;
 
+import java.util.Optional;
 import java.util.function.Function;
 
 import javax.servlet.http.HttpSession;
@@ -31,15 +32,24 @@ public class PrincipalDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		log.info("loadUserByUsername : username : " + username);
 
-		User userEntity = userRepository.findByUsername(username)
-				.map(new Function<User, User>() {
-					@Override
-					public User apply(User t) {
-						session.setAttribute("loginUser", new LoginUser(t));
-						return t;
-					}
-				})
-				.orElse(null);
+		/**
+		 * LKH - User정보가 널이면 값을 가져올때 nullpointException이 발생하는데 여기까지 User자체가 빈값인지 아닌지에 대한
+		 * 에러가 처리되어 있지 않았음. 나머지 소스는 건드리지않고 새로 User정보를 가져와서 널인지 비교하고 강제로 예외처리되도록 처리함.
+		 */
+		Optional<User> searchNullUser = userRepository.findByUsername(username);
+		log.info("searchUser : " + searchNullUser);
+
+		if (searchNullUser.equals(Optional.empty())) {
+			throw new UsernameNotFoundException(username + "is not found.");
+		}
+
+		User userEntity = userRepository.findByUsername(username).map(new Function<User, User>() {
+			@Override
+			public User apply(User t) {
+				session.setAttribute("loginUser", new LoginUser(t));
+				return t;
+			}
+		}).orElse(null);
 		return new PrincipalDetails(userEntity);
 	}
 

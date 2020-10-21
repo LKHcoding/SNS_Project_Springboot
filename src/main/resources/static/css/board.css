@@ -28,8 +28,13 @@
 }
 .photo__comments {
   height: 100%;
-  overflow: auto;
-  max-height: 210px;
+  overflow-y: scroll;
+   -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  max-height: 202px;
+}
+.photo__comments::-webkit-scrollbar {
+  display: none;
 }
 .photo__info {
   padding: 0px;

@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.and()
 		.formLogin()
 		.loginPage("/auth/loginForm")
-		.loginProcessingUrl("/auth/login")
+		.loginProcessingUrl("/auth/loginProcess")
 		.defaultSuccessUrl("/")
 		.failureHandler(new AuthenticationFailureHandler() {		
 			@Override 

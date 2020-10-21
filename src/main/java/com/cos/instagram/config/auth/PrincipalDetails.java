@@ -13,28 +13,28 @@ import com.cos.instagram.domain.user.User;
 import lombok.Data;
 
 @Data
-public class PrincipalDetails implements UserDetails, OAuth2User{
+public class PrincipalDetails implements UserDetails, OAuth2User {
 
 	private static final long serialVersionUID = 1L;
 
 	private User user;
 	private Map<String, Object> attributes;
-	
+
 	// 일반 로그인 용 생성자
 	public PrincipalDetails(User user) {
 		this.user = user;
 	}
-	
+
 	// OAuth 로그인 용 생성자
 	public PrincipalDetails(User user, Map<String, Object> attributes) {
 		this.user = user;
 		this.attributes = attributes;
 	}
-	
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Collection<GrantedAuthority> collection = new ArrayList<GrantedAuthority>();
-		collection.add(()-> user.getRole().getKey());
+		collection.add(() -> user.getRole().getKey());
 		return collection;
 	}
 
