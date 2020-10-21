@@ -199,17 +199,32 @@
                 <br />
               </div>
               <div>
-                <ul class="explore__users u-default-box">
-                  <li class="explore__user" th:each="list : ${recommendation}">
-                    <div class="explore__info">
-                      <span
-                        class="explore__username"
-                        th:text="${list.username}"
-                      ></span>
-                      <span
-                        class="explore__full-name"
-                        th:text="${list.name}"
-                      ></span>
+                <ul class="recommendation__users recommendation_default_box">
+                  <li
+                    class="recommendation__user"
+                    th:each="list : ${recommendation}"
+                  >
+                    <div class="recommendation__content">
+                      <a th:href="@{|/user/${list.id}|}">
+                        <img
+                          th:src="|/upload/${list.profileImage}|"
+                          src="/upload/{{#profileImage}}{{profileImage}}{{/profileImage}}"
+                          onerror="this.src='/images/avatar.jpg'"
+                        />
+                      </a>
+
+                      <div class="recommendation__info">
+                        <a th:href="@{|/user/${list.id}|}">
+                          <span
+                            class="recommendation__username"
+                            th:text="${list.username}"
+                          ></span>
+                        </a>
+                        <span
+                          class="recommendation__full-name"
+                          th:text="${list.name}"
+                        ></span>
+                      </div>
                     </div>
                   </li>
                 </ul>
