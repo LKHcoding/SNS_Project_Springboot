@@ -4,6 +4,7 @@
 }
 
 .explore__users {
+	
 }
 
 .explore__users .explore__user {
@@ -58,6 +59,7 @@
   display: block;
   font-weight: 600;
   margin-bottom: 7px;
+  color: black;
 }
 
 .explore__info .explore__full-name {

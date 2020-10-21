@@ -380,7 +380,7 @@ body.modal-open[style] {
     background-color: #fff;
     background-color: rgba(var(--f23,255,255,255),1);
     border-radius: 12px;
-    max-height: 100%;
+    max-height: 400px;
     overflow: hidden;
 }
 /* 팔로우,팔로워 모달창 header부분 */
@@ -427,7 +427,9 @@ height: 53px;
     flex-shrink: 1;
     flex-basis: 0%;
     min-height: 200px;
-    overflow-y: scroll;
+
+    overflow: auto;
+max-height: 400px;
 }
 
 

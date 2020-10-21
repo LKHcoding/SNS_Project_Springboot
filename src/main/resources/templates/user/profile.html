@@ -142,7 +142,7 @@
             
             <li class="profile__stat">
             <a type="button" data-toggle="modal" data-target="#followModal"
-            th:styleappend="${respDto.pageHost} ? 'cursor:pointer' : 'cursor: default'">팔로워</a>
+            th:styleappend="${true} ? 'cursor:pointer' : 'cursor: default'">팔로워</a>
 		      
               <span
                 class="profile__stat-number"
@@ -163,7 +163,7 @@
             
             <li class="profile__stat">
               <a type="button" data-toggle="modal" data-target="#followingModal"
-           	 th:styleappend="${respDto.pageHost} ? 'cursor:pointer' : 'cursor: default'">팔로우</a>
+           	 th:styleappend="${true} ? 'cursor:pointer' : 'cursor: default'">팔로우</a>
               <span
                 class="profile__stat-number"
                 th:text="${respDto.followingCount}"
@@ -323,7 +323,7 @@
 
     <!-- 팔로워 클릭모달창 -->
     <!-- The Modal -->
-    <div class="modal fade" id="followModal" th:if="${respDto.pageHost}">
+    <div class="modal fade" id="followModal">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" id="_1XyCr">
           <!-- Modal Header -->
@@ -361,7 +361,7 @@
     
     <!-- 팔로우 클릭모달창 -->
     <!-- The Modal -->
-    <div class="modal fade" id="followingModal" th:if="${respDto.pageHost}">
+    <div class="modal fade" id="followingModal" >
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content" id="_1XyCr">
           <!-- Modal Header -->

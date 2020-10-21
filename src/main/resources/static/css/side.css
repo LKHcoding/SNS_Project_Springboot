@@ -34,6 +34,7 @@ a.side_username:hover {
 .side_recommendation .side_recommendation_text {
   /* margin-top: 15px; */
   color: darkgray;
+  font-weight: 800;
 }
 
 .side_recommendation .side_view_all {
@@ -47,4 +48,54 @@ a.side_username:hover {
   margin-left: 64px;
   margin-top: -25px;
   color: darkgray;
+}
+
+/* side에 추가 된 css */
+.recommendation__users {
+	background-color: transparent;
+}
+
+.recommendation_default_box {
+  width: 100%;
+  max-width: 600px;
+  /* border: 1px solid rgba(0, 0, 0, .0975); */
+  border-radius: 3px;
+}
+
+.recommendation__users .recommendation__user {
+  padding: 8px 8px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.0975); */
+}
+
+.recommendation__users .recommendation__user:last-child {
+  border: 0;
+}
+
+.recommendation__user .recommendation__content {
+  display: flex;
+  align-items: center;
+}
+
+.recommendation__user .recommendation__content img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 15px;
+  transform-style: preserve-3d;
+  /* animation: 6s potato infinite ease-in-out; */
+}
+
+.recommendation__info .recommendation__username {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 7px;
+  color: black;
+}
+
+.recommendation__info .recommendation__full-name {
+  color: #999;
 }

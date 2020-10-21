@@ -64,6 +64,7 @@ public class FollowService {
 	// 서비스단에서 롤백하려면 throw를 runtimeException으로 던져야됨.
 	@Transactional
 	public void 팔로우(int loginUserId, int pageUserId) {
+		
 		int result = followRepository.mFollow(loginUserId, pageUserId);
 		
 		notiRepository.mSave(loginUserId, pageUserId, NotiType.FOLLOW.name());

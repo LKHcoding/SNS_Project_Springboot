@@ -30,3 +30,6 @@
   padding: 6px 0;
   justify-content: space-between;
 }
+.edit-profile__label {
+	margin-top: 3px;
+}
