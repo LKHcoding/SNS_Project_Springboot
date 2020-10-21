@@ -10,7 +10,11 @@
     <main id="feed">
       <div class="feed_all">
         <div class="feed_only">
-          <div class="photo u-default-box" th:each="images : ${images}">
+          <div
+            id="forrefresh"
+            class="photo u-default-box"
+            th:each="images : ${images}"
+          >
             <header class="photo__header">
               <img
                 src="/upload/"
@@ -21,120 +25,139 @@
                 >{{user.username}}여긴유저이름나오는곳</span
               >
             </header>
-
-            <div class="photo_post_image">
-              <!-- 사진 꽉 채우기 css -->
-              <!-- <img src="/upload/{{imageUrl}}" /> -->
-              <img th:src="@{|/upload/${images.imageUrl}|}" />
-            </div>
-            <div class="photo__info">
-              <div class="photo__actions">
-                <!-- <span class="photo__action" th:if="${images.likeState == true}"> -->
-                <span class="photo__action">
-                  <!--  {{#likeState}} -->
-                  <i
-                    th:if="${images.likeState == true}"
-                    class="fa heart heart-clicked fa-heart"
-                    th:onclick="|unLike(${images.id});|"
-                  ></i>
-                  <!--  {{/likeState}} 
+            <div class="full-image">
+              <div class="photo_post_image">
+                <!-- 사진 꽉 채우기 css -->
+                <!-- <img src="/upload/{{imageUrl}}" /> -->
+                <img th:src="@{|/upload/${images.imageUrl}|}" />
+              </div>
+              <div class="photo__info">
+                <div class="photo__actions">
+                  <!-- <span class="photo__action" th:if="${images.likeState == true}"> -->
+                  <span class="photo__action">
+                    <!--  {{#likeState}} -->
+                    <i
+                      th:if="${images.likeState == true}"
+                      class="fa heart heart-clicked fa-heart"
+                      th:onclick="|unLike(${images.id});|"
+                    ></i>
+                    <!--  {{/likeState}} 
                   
                   {{^likeState}} -->
-                  <!-- <i class="fa fa-heart-o heart" th:onclick="like({{id}});"></i> -->
-                  <i
-                    th:unless="${images.likeState == true}"
-                    class="fa fa-heart-o heart"
-                    th:onclick="|like(${images.id});|"
-                  ></i>
-                  <!--  {{/likeState}} -->
-                </span>
-                <span class="photo__action">
-                  <!-- {{! 메시지 아이콘 부분}} -->
-                  <!-- <a href="/user/{{loginUser.id}}" -->
-                  <!-- <a th:href="|/user/${session.loginUser.id}|" -->
-                  <a th:href="|/image/${images.id}|"
-                    ><i class="fa fa-comment-o"></i
-                  ></a>
-                  <!--  {{! https://fontawesome.com/icons?d=gallery&q=user 아이콘
+                    <!-- <i class="fa fa-heart-o heart" th:onclick="like({{id}});"></i> -->
+                    <i
+                      th:unless="${images.likeState == true}"
+                      class="fa fa-heart-o heart"
+                      th:onclick="|like(${images.id});|"
+                    ></i>
+                    <!--  {{/likeState}} -->
+                  </span>
+                  <span class="photo__action">
+                    <!-- {{! 메시지 아이콘 부분}} -->
+                    <!-- <a href="/user/{{loginUser.id}}" -->
+                    <!-- <a th:href="|/user/${session.loginUser.id}|" -->
+                    <a th:href="|/image/${images.id}|"
+                      ><i class="fa fa-comment-o"></i
+                    ></a>
+                    <!--  {{! https://fontawesome.com/icons?d=gallery&q=user 아이콘
                   주기}} -->
-                </span>
-              </div>
-              <div th:if="${images.likeCount} != 0" style="margin-bottom: 3px">
-                <span class="photo__likes" th:text="|${images.likeCount}명|"
-                  >좋아요 수(몇명)</span
-                >이 좋아합니다
-              </div>
-
-              <div th:if="${images.caption}!= null" style="margin-bottom: 4px">
-                <span class="photo__likes" th:text="${images.user.username}"
-                  >글작성자이름
-                </span>
-                <span th:text="${images.caption}">글내용</span>
-              </div>
-
-              <div class="photo_tag" style="display: flex">
-                <!-- {{#tags}} -->
-                <!-- <a th:href="/image/feed?tag={{name}}">asd</a> -->
+                  </span>
+                </div>
                 <div
-                  th:each="tags : ${images.tags}"
-                  style="display: flex; width: fit-content; margin-right: 4px"
+                  th:if="${images.likeCount} != 0"
+                  style="margin-bottom: 3px"
                 >
-                  <a
-                    th:href="|/image/feed?tag=${tags.name}|"
-                    th:text="|#${tags.name}|"
-                    >asd<!-- #{{name}} --></a
-                  >
+                  <span class="photo__likes" th:text="|${images.likeCount}명|"
+                    >좋아요 수(몇명)</span
+                  >이 좋아합니다
                 </div>
-                <!--  {{/tags}} -->
-              </div>
-              <ul class="photo__comments">
-                <div th:each="comments : ${images.comments}">
-                  <!-- {{#comments}} -->
-                  <li class="photo__comment">
-                    <span
-                      class="photo__comment-author"
-                      th:text="${comments.user.username}"
-                      >{{user.username}}</span
-                    >
-                    <span style="font-size: 12px" th:text="${comments.content}"
-                      >{{content}}</span
-                    >
-                    <span th:if="${comments.commentHost} == true">
-                      <!-- {{#commentHost}} -->
-                      <!-- <i onclick="commentDelete({{id}});" class="fa fa-trash"></i> -->
-                      <i
-                        th:onclick="|commentDelete('${comments.id}');|"
-                        class="fa fa-trash"
-                      ></i>
-                      <!-- {{/commentHost}} -->
-                    </span>
-                  </li>
-                  <!-- {{/comments}} -->
-                </div>
-              </ul>
-              <span class="photo__date" th:text="${images.createDate}"
-                >{{createDate}}</span
-              >
 
-              <div class="photo__add-comment-container">
-                <!-- <form id="frm-{{id}}" style="width: 100%"> -->
-                <form th:id="|frm-${images.id}|" style="width: 100%">
-                  <input
-                    type="hidden"
-                    name="userId"
-                    th:value="${session.loginUser.id}"
-                  />
-                  <input type="hidden" name="imageId" th:value="${images.id}" />
-                  <textarea
-                    th:id="|content-${images.id}|"
-                    name="content"
-                    placeholder="Add a comment..."
-                  ></textarea>
-                </form>
-                <i
-                  th:onclick="|commentSend('${images.id}');|"
-                  class="fa fa-angle-right"
-                ></i>
+                <div
+                  th:if="${images.caption}!= null"
+                  style="margin-bottom: 4px"
+                >
+                  <span class="photo__likes" th:text="${images.user.username}"
+                    >글작성자이름
+                  </span>
+                  <span th:text="${images.caption}">글내용</span>
+                </div>
+
+                <div class="photo_tag" style="display: flex">
+                  <!-- {{#tags}} -->
+                  <!-- <a th:href="/image/feed?tag={{name}}">asd</a> -->
+                  <div
+                    th:each="tags : ${images.tags}"
+                    style="display: flex; width: fit-content; margin-right: 4px"
+                  >
+                    <a
+                      th:href="|/image/feed?tag=${tags.name}|"
+                      th:text="|#${tags.name}|"
+                      >asd<!-- #{{name}} --></a
+                    >
+                  </div>
+                  <!--  {{/tags}} -->
+                </div>
+                <ul
+                  class="photo__comments"
+                  style="
+                    overflow: unset !important;
+                    max-height: none !important;
+                  "
+                >
+                  <div th:each="comments : ${images.comments}">
+                    <!-- {{#comments}} -->
+                    <li class="photo__comment">
+                      <span
+                        class="photo__comment-author"
+                        th:text="${comments.user.username}"
+                        >{{user.username}}</span
+                      >
+                      <span
+                        style="font-size: 12px"
+                        th:text="${comments.content}"
+                        >{{content}}</span
+                      >
+                      <span th:if="${comments.commentHost} == true">
+                        <!-- {{#commentHost}} -->
+                        <!-- <i onclick="commentDelete({{id}});" class="fa fa-trash"></i> -->
+                        <i
+                          th:onclick="|commentDelete('${comments.id}');|"
+                          class="fa fa-trash"
+                        ></i>
+                        <!-- {{/commentHost}} -->
+                      </span>
+                    </li>
+                    <!-- {{/comments}} -->
+                  </div>
+                </ul>
+                <span class="photo__date" th:text="${images.createDate}"
+                  >{{createDate}}</span
+                >
+
+                <div class="photo__add-comment-container">
+                  <!-- <form id="frm-{{id}}" style="width: 100%"> -->
+                  <form th:id="|frm-${images.id}|" style="width: 100%">
+                    <input
+                      type="hidden"
+                      name="userId"
+                      th:value="${session.loginUser.id}"
+                    />
+                    <input
+                      type="hidden"
+                      name="imageId"
+                      th:value="${images.id}"
+                    />
+                    <textarea
+                      th:id="|content-${images.id}|"
+                      name="content"
+                      placeholder="Add a comment..."
+                    ></textarea>
+                  </form>
+                  <i
+                    th:onclick="|commentSend('${images.id}');|"
+                    class="fa fa-angle-right"
+                  ></i>
+                </div>
               </div>
             </div>
           </div>

@@ -1,5 +1,7 @@
 package com.cos.instagram.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cos.instagram.config.auth.LoginUserAnnotation;
 import com.cos.instagram.config.auth.dto.LoginUser;
+import com.cos.instagram.domain.image.Image;
 import com.cos.instagram.domain.user.User;
 import com.cos.instagram.service.UserService;
 import com.cos.instagram.web.dto.UserProfileRespDto;
@@ -28,6 +31,10 @@ public class UserController {
 	public String profile(@PathVariable int id, @LoginUserAnnotation LoginUser loginUser, Model model) {
 		UserProfileRespDto userProfileRespDto = userService.회원프로필(id, loginUser);
 		model.addAttribute("respDto", userProfileRespDto);
+
+		// 프로필 페이지에서 특정 회원의 게시물정보를 받아오기위해 추가한 부분
+		List<Image> UserBoard = userService.특정유저게시물(id, loginUser.getId());
+		model.addAttribute("board", UserBoard);
 		return "user/profile";
 	}
 

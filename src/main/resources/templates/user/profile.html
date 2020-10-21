@@ -168,12 +168,12 @@
 
       <div class="profile__photo-grid">
         <!-- 유저가 업로드한 Feed 사진 -->
-        <div th:each=" i6: ${respDto.images} ">
+        <div th:each=" i6 : ${respDto.images} ">
           <div class="profile__photo">
             <a href="#">
               <img th:src="@{|/upload/${i6.imageUrl}|}" />
             </a>
-            <a href="#">
+            <a th:href="|/image/${i6.id}|">
               <div class="profile__photo-overlay">
                 <span class="profile__photo-stat">
                   <i class="fa fa-heart"></i>
@@ -297,6 +297,43 @@
       </div>
     </div>
     <!-- 프로필이미지 클릭모달창 -->
+
+    <!-- 단독게시물 모달창 -->
+    <!-- The Modal -->
+    <!-- <div class="modal fade" id="boardModal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div th:each="board, i: ${board}">
+                <div th:replace="image/board :: board(${board})"></div>
+              </div>
+            
+          </div> -->
+    <!-- Modal Header -->
+    <!-- <div class="modal-header">
+            <h4 class="modal-title">Modal Heading</h4>
+            <button type="button" class="close" data-dismiss="modal">×</button>
+          </div> -->
+
+    <!-- Modal body -->
+    <!-- <a class="modal-body" href="/user/profileEdit"> 회원 수정 </a>
+          <a class="modal-body" href="/auth/logout"> 로그아웃 </a>
+          <a class="modal-body" href="" data-dismiss="modal"> 취소 </a> -->
+
+    <!-- Modal footer -->
+    <!-- <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div> -->
+    <!-- </div>
+      </div>
+    </div> -->
+    <!-- 단독게시물 모달창 끝 -->
 
     <script>
       $(function () {
