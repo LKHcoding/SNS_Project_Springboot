@@ -14,6 +14,7 @@ import com.cos.instagram.config.auth.LoginUserAnnotation;
 import com.cos.instagram.config.auth.dto.LoginUser;
 import com.cos.instagram.domain.image.Image;
 import com.cos.instagram.service.ImageService;
+import com.cos.instagram.service.NotiService;
 import com.cos.instagram.service.UserService;
 import com.cos.instagram.web.dto.ImageReqDto;
 
@@ -26,12 +27,17 @@ public class ImageController {
 	private final ImageService imageService;
 	@Autowired
 	private UserService userService;
+	
+	private final NotiService notiService;
 
 	@GetMapping({ "", "/", "/image/feed" })
 	public String feed(String tag, @LoginUserAnnotation LoginUser loginUser, Model model) {
 		System.out.println("loginUser : " + loginUser);
 		model.addAttribute("images", imageService.피드사진(loginUser.getId(), tag));
 		model.addAttribute("recommendation", userService.추천유저(loginUser.getId()));
+		
+		model.addAttribute("notis", notiService.알림리스트(loginUser.getId()));
+		
 		return "image/feed";
 	}
 
