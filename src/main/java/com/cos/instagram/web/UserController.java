@@ -27,20 +27,20 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private FollowService followService;
-	
-	//팔로워,팔로우 모달창에 구현
+
+	// 팔로워,팔로우 모달창에 구현
 	@GetMapping("/user/{pageUserId}")
 	public String profile(@PathVariable int pageUserId, @LoginUserAnnotation LoginUser loginUser, Model model) {
 		UserProfileRespDto userProfileRespDto = userService.회원프로필(pageUserId, loginUser);
 		model.addAttribute("respDto", userProfileRespDto);
-		model.addAttribute("followingList", followService.팔로잉리스트(loginUser.getId(),pageUserId));
-		model.addAttribute("followerList", followService.팔로워리스트(loginUser.getId(),pageUserId));
-		
+		model.addAttribute("followingList", followService.팔로잉리스트(loginUser.getId(), pageUserId));
+		model.addAttribute("followerList", followService.팔로워리스트(loginUser.getId(), pageUserId));
+
 		// 프로필 페이지에서 특정 회원의 게시물정보를 받아오기위해 추가한 부분
-		List<Image> UserBoard = userService.특정유저게시물(id, loginUser.getId());
+		List<Image> UserBoard = userService.특정유저게시물(pageUserId, loginUser.getId());
 		model.addAttribute("board", UserBoard);
 		return "user/profile";
 	}
