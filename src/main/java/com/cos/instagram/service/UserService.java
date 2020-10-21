@@ -51,21 +51,21 @@ public class UserService {
 	@Transactional
 	public void 프로필사진업로드(LoginUser loginUser, MultipartFile file) {
 		UUID uuid = UUID.randomUUID();
-		String imageFilename = uuid + "_" + file.getOriginalFilename();
-		Path imageFilepath = Paths.get(uploadFolder + imageFilename);
+		String imageFilename =
+				uuid+"_"+file.getOriginalFilename();
+		Path imageFilepath = Paths.get(uploadFolder+imageFilename);
 		try {
 			Files.write(imageFilepath, file.getBytes());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		User userEntity = userRepository.findById(loginUser.getId())
-				.orElseThrow(new Supplier<MyUserIdNotFoundException>() {
-					@Override
-					public MyUserIdNotFoundException get() {
-						return new MyUserIdNotFoundException();
-					}
-				});
+		User userEntity = userRepository.findById(loginUser.getId()).orElseThrow(new Supplier<MyUserIdNotFoundException>() {
+			@Override
+			public MyUserIdNotFoundException get() {
+				return new MyUserIdNotFoundException();
+			}
+		});
 
 		// 더티체킹
 		userEntity.setProfileImage(imageFilename);
@@ -89,20 +89,22 @@ public class UserService {
 
 	@Transactional(readOnly = true)
 	public User 회원정보(LoginUser loginUser) {
-		return userRepository.findById(loginUser.getId()).orElseThrow(new Supplier<MyUserIdNotFoundException>() {
-			@Override
-			public MyUserIdNotFoundException get() {
-				return new MyUserIdNotFoundException();
-			}
-		});
+		return userRepository.findById(loginUser.getId())
+				.orElseThrow(new Supplier<MyUserIdNotFoundException>() {
+					@Override
+					public MyUserIdNotFoundException get() {
+						return new MyUserIdNotFoundException();
+					}
+				});
 	}
 
 	@Transactional
 	public void 회원가입(JoinReqDto joinReqDto) {
 		System.out.println("서비스 회원가입 들어옴");
 		System.out.println(joinReqDto);
-		String encPassword = bCryptPasswordEncoder.encode(joinReqDto.getPassword());
-		System.out.println("encPassword : " + encPassword);
+		String encPassword =
+				bCryptPasswordEncoder.encode(joinReqDto.getPassword());
+		System.out.println("encPassword : "+encPassword);
 		joinReqDto.setPassword(encPassword);
 		userRepository.save(joinReqDto.toEntity());
 	}
@@ -142,12 +144,13 @@ public class UserService {
 		int followingCount;
 		boolean followState;
 
-		User userEntity = userRepository.findById(id).orElseThrow(new Supplier<MyUserIdNotFoundException>() {
-			@Override
-			public MyUserIdNotFoundException get() {
-				return new MyUserIdNotFoundException();
-			}
-		});
+		User userEntity = userRepository.findById(id)
+				.orElseThrow(new Supplier<MyUserIdNotFoundException>() {
+					@Override
+					public MyUserIdNotFoundException get() {
+						return new MyUserIdNotFoundException();
+					}
+				});
 
 		// 1. 이미지들과 전체 이미지 카운트(dto받기)
 		StringBuilder sb = new StringBuilder();
@@ -166,14 +169,27 @@ public class UserService {
 		followingCount = followRepository.mCountByFollowing(id);
 
 		// 3. 팔로우 유무
-		followState = followRepository.mFollowState(loginUser.getId(), id) == 1 ? true : false;
+		followState =
+				followRepository.mFollowState(loginUser.getId(), id) == 1 ? true : false;
 
 		// 4. 최종마무리
-		UserProfileRespDto userProfileRespDto = UserProfileRespDto.builder().pageHost(id == loginUser.getId())
-				.followState(followState).followerCount(followerCount).followingCount(followingCount)
-				.imageCount(imageCount).user(userEntity).images(imagesEntity) // 수정완료(Dto만듬) (댓글수, 좋아요수)
+		UserProfileRespDto userProfileRespDto =
+				UserProfileRespDto.builder()
+				.pageHost(id==loginUser.getId())
+				.followState(followState)
+				.followerCount(followerCount)
+				.followingCount(followingCount)
+				.imageCount(imageCount)
+				.user(userEntity)
+				.images(imagesEntity) // 수정완료(Dto만듬) (댓글수, 좋아요수)
 				.build();
 
 		return userProfileRespDto;
+	}
+
+	// feed에 회원 추천 기능
+	@Transactional(readOnly = true)
+	public List<User> 추천유저(int loginUserId) {
+		return userRepository.mRecommendationImage(loginUserId);
 	}
 }

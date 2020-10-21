@@ -2,6 +2,7 @@ package com.cos.instagram.web;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import com.cos.instagram.config.auth.LoginUserAnnotation;
 import com.cos.instagram.config.auth.dto.LoginUser;
 import com.cos.instagram.domain.image.Image;
 import com.cos.instagram.service.ImageService;
+import com.cos.instagram.service.UserService;
 import com.cos.instagram.web.dto.ImageReqDto;
 
 import lombok.RequiredArgsConstructor;
@@ -22,11 +24,14 @@ import lombok.RequiredArgsConstructor;
 public class ImageController {
 
 	private final ImageService imageService;
+	@Autowired
+	private UserService userService;
 
 	@GetMapping({ "", "/", "/image/feed" })
 	public String feed(String tag, @LoginUserAnnotation LoginUser loginUser, Model model) {
 		System.out.println("loginUser : " + loginUser);
 		model.addAttribute("images", imageService.피드사진(loginUser.getId(), tag));
+		model.addAttribute("recommendation", userService.추천유저(loginUser.getId()));
 		return "image/feed";
 	}
 

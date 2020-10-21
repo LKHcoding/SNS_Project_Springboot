@@ -16,4 +16,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Query(value = "select u.*,(select true from follow where fromUserId = ?2 and toUserId = u.id) as matpal from follow f inner join user u on f.fromUserId = u.id and f.toUserId = ?1", nativeQuery = true)
 	List<User> mFollowerUser(int pageUserId, int loginUserId);
 
+	// 사이드 랜덤 추천
+	@Query(value = "select * from user where id not in(?1) order by rand() limit  5", nativeQuery = true)
+	List<User> mRecommendationImage(int loginUserId);
 }
