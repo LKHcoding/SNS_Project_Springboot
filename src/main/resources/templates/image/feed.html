@@ -150,13 +150,18 @@
                     <textarea
                       th:id="|content-${images.id}|"
                       name="content"
-                      placeholder="Add a comment..."
+                      placeholder="댓글 달기..."
                     ></textarea>
                   </form>
                   <i
                     th:onclick="|commentSend('${images.id}');|"
+                    class="comment-btn"
+                    >게시</i
+                  >
+                  <!-- <i
+                    th:onclick="|commentSend('${images.id}');|"
                     class="fa fa-angle-right"
-                  ></i>
+                  ></i> -->
                 </div>
               </div>
             </div>
