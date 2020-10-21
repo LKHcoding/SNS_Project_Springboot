@@ -104,11 +104,12 @@
 }
 
 .photo__add-comment-container textarea {
-  padding: 16px 0;
+  /* padding: 15px 0; */
+  padding-top: 19px;
+  padding-bottom: 5px;
   border: 0;
   resize: none;
   width: 95%;
-  height: 18px;
   font-size: 14px;
   overflow: hidden;
 }
@@ -119,6 +120,7 @@
 
 .photo__add-comment-container i {
   cursor: pointer;
+  width: 50px;
 }
 
 .heart-clicked {

@@ -20,8 +20,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cos.instagram.config.auth.dto.LoginUser;
 import com.cos.instagram.config.hanlder.ex.MyUserIdNotFoundException;
+import com.cos.instagram.domain.comment.Comment;
 import com.cos.instagram.domain.follow.FollowRepository;
+import com.cos.instagram.domain.image.Image;
+import com.cos.instagram.domain.like.Likes;
 import com.cos.instagram.domain.user.User;
+import com.cos.instagram.domain.user.UserBoardRepository;
 import com.cos.instagram.domain.user.UserRepository;
 import com.cos.instagram.web.dto.JoinReqDto;
 import com.cos.instagram.web.dto.UserProfileImageRespDto;
@@ -38,6 +42,8 @@ public class UserService {
 	private final UserRepository userRepository;
 	private final FollowRepository followRepository;
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+	private final UserBoardRepository userboardRepository;
 
 	@Value("${file.path}")
 	private String uploadFolder;
@@ -103,6 +109,30 @@ public class UserService {
 		userRepository.save(joinReqDto.toEntity());
 	}
 
+	// 프로필 페이지에서 특정유저의 게시물정보를 모두 받아오기 위해 만든 부분
+	@Transactional
+	public List<Image> 특정유저게시물(int BoardUserid, int loginUserId) {
+		List<Image> boards = null;
+		boards = userboardRepository.mUserBoard(BoardUserid);
+		for (Image board : boards) {
+			board.setLikeCount(board.getLikes().size());
+
+			// 좋아요 상태 여부 등록
+			for (Likes like : board.getLikes()) {
+				if (like.getUser().getId() == loginUserId) {
+					board.setLikeState(true);
+				}
+			}
+			// 댓글 주인 여부 등록
+			for (Comment comment : board.getComments()) {
+				if (comment.getUser().getId() == loginUserId) {
+					comment.setCommentHost(true);
+				}
+			}
+		}
+		return boards;
+	}
+
 	// 읽기 전용 트랜잭션
 	// (1) 변경 감지 연산을 하지 않음.
 	// (2) isolation(고립성)을 위해 Phantom read 문제가 일어나지 않음.
@@ -163,9 +193,3 @@ public class UserService {
 		return userRepository.mRecommendationImage(loginUserId);
 	}
 }
-
-
-
-
-
-

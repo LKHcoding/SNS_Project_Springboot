@@ -19,7 +19,8 @@ function commentSend(imageId) {
 		return res.text();
 	}).then(function (res) {
 		//alert("댓글 작성 성공");
-		location.reload();
+		 location.reload();
+		 /*$("#forrefresh").load(window.location.href + "#forrefresh .full-image");*/
 	});
 }
 
