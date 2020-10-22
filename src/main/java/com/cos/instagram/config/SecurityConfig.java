@@ -47,16 +47,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.loginPage("/auth/loginForm")
 		.loginProcessingUrl("/auth/loginProcess")
 		.defaultSuccessUrl("/")
-		.failureHandler(new AuthenticationFailureHandler() {		
-			@Override 
-			public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
-					AuthenticationException exception) throws IOException, ServletException {
-				response.setContentType("text/html; charset=utf-8"); 
-				PrintWriter out = response.getWriter();
-				out.print(Script.back("유저네임 혹은 비밀번호를 찾을 수 없습니다."));
-				return;
-			}
-		})
+				/*
+				 * .failureHandler(new AuthenticationFailureHandler() {
+				 * 
+				 * @Override public void onAuthenticationFailure(HttpServletRequest request,
+				 * HttpServletResponse response, AuthenticationException exception) throws
+				 * IOException, ServletException {
+				 * response.setContentType("text/html; charset=utf-8"); PrintWriter out =
+				 * response.getWriter(); out.print(Script.back("유저네임 혹은 비밀번호를 찾을 수 없습니다."));
+				 * return; } })
+				 */
 		.and()
 		.logout()
 		.logoutUrl("/auth/logout")

@@ -333,6 +333,14 @@ input[type="submit"] {
 	width:100%;
 }
 
+#eiCW- {
+    color: #ed4956;
+    color: rgba(var(--i30,237,73,86),1);
+    margin: 10px 10px;
+    margin-bottom: 15px;
+    margin-top: -5px;
+}
+
 
 
 
