@@ -88,9 +88,11 @@
 	                />              
 	              </a>
 	            <div class="explore__info">
+	            <a th:href="@{|/user/${i.fromUser.id}|}">
 	             <span class="explore__username">
-	             <p th:text="${i.fromUser.name}+'이'"></p>
-	             <p th:text="${i.notiType.key}+' 하였습니다.'"></p> 	                          
+	             <p th:text="${i.fromUser.name}"></p>
+	            </a>	            
+	             <p th:text="'님이 회원님을 '+ ${i.notiType.key}+'하기 시작했습니다.'"></p> 	                          
                  </span>
                 </div>
                </div>

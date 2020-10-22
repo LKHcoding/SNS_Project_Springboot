@@ -20,4 +20,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	// 사이드 랜덤 추천
 	@Query(value = "select * from user where id not in(?1) order by rand() limit  5", nativeQuery = true)
 	List<User> mRecommendationImage(int loginUserId);
+	
 }

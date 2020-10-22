@@ -338,8 +338,7 @@
 					<div class="explore__content">
 						<a href="#" th:href="@{|/user/${list.id}|}"> 
 						 <img
-                          th:src="|/upload/${list.profileImage}|"
-                          src="/upload/{{#profileImage}}{{profileImage}}{{/profileImage}}"
+                          th:src="|/upload/${list.profileImage}|"                          
                           onerror="this.src='/images/avatar.jpg'"
                         />
 						</a>
@@ -380,8 +379,7 @@
 						<div class="explore__content">
 							<a th:href="@{|/user/${list2.id}|}">
 								 <img
-                          th:src="|/upload/${list2.profileImage}|"
-                          src="/upload/{{#profileImage}}{{profileImage}}{{/profileImage}}"
+                          th:src="|/upload/${list2.profileImage}|"                         
                           onerror="this.src='/images/avatar.jpg'"
                         />
 							</a>
