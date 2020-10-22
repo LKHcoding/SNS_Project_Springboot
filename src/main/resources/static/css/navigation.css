@@ -141,14 +141,18 @@
     position: absolute;
     z-index: 3;
 }
-
+/* 스크롤바없이 스크롤하기 구현 */
 #f7Bj3 {
-    max-height: 90px;
+    max-height: 200px;
     min-height: 90px;
-    overflow-y: auto;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     width: 500px;
 }
-
+#f7Bj3::-webkit-scrollbar {
+    display: none; 
+}
 .PUHRj:last-child {
     padding-bottom: 12px;
 }

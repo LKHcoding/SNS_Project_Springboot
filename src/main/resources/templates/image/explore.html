@@ -1,23 +1,28 @@
-<html>
-  <head th:replace="layout/header :: header"></head>
-  <body>
-    <nav th:replace="layout/header :: menu"></nav>
-    <main id="profile">
-      <div class="profile__photo-grid">
-        <div th:each="image  : ${images}">
-          <!-- {{#images}} -->
-          <!-- 유저가 업로드한 Feed 사진 -->
-          <div class="profile__photo">
-            <a th:href="@{|/image/${image.id}|}">
-              <!-- <a href="/user/{{user.id}}">  -->
-              <img th:src="@{|/upload/${image.imageUrl}|}" />
-              <!-- <img src="/upload/{{imageUrl}}"> -->
-            </a>
-          </div>
-          <!-- {{/images}} -->
-        </div>
-      </div>
-    </main>
-    <footer th:replace="layout/footer :: footer"></footer>
+ <html>
+ 	<head th:replace="layout/header :: header"></head>
+ 	<body>
+  	<nav th:replace="layout/header :: menu"></nav>  	
+	<main id="profile">
+		<div class="profile__photo-grid" >
+		<div th:each="image  : ${images}">			
+			<!-- 유저가 업로드한 Feed사진 클릭 시 모달창 및 좋아요,댓글 기능 구현-->
+			<div class="profile__photo">					
+				<a th:href="@{|/image/${image.id}|}"> 						
+					<img th:src="@{|/upload/${image.imageUrl}|}" />																				
+				<div class="profile__photo-overlay">
+				<span class="profile__photo-stat">
+					<i class="fa fa-heart"></i>
+					<i th:text="${image.likeCount}">좋아요 갯수</i>
+				</span>
+				<span class="profile__photo-stat">
+					<i class="fa fa-comment"></i>
+					<i th:text="${image.commentCount}">댓글 갯수</i>
+				</span>
+				</div>	
+				</a>
+			</div>						
+		</div>
+	</main>
+	<footer th:replace="layout/footer :: footer"></footer>
   </body>
 </html>

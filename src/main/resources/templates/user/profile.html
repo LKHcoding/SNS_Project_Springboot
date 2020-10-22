@@ -182,7 +182,7 @@
               </div>
             </span>
             <br /><br />
-            <a th:href="|${respDto.user.website}|" class="profile__link">
+            <a th:href="|https://${respDto.user.website}|" class="profile__link">
               <span th:text="${respDto.user.website}"></span>
             </a>
           </p>
@@ -337,7 +337,11 @@
 				<li class="explore__user" th:each="list  : ${followerList}">
 					<div class="explore__content">
 						<a href="#" th:href="@{|/user/${list.id}|}"> 
-						<img th:src="|/upload/${respDto.user.profileImage}|" onerror="this.src='/images/avatar.jpg'" />
+						 <img
+                          th:src="|/upload/${list.profileImage}|"
+                          src="/upload/{{#profileImage}}{{profileImage}}{{/profileImage}}"
+                          onerror="this.src='/images/avatar.jpg'"
+                        />
 						</a>
 						<div class="explore__info" >
 							<!-- 해당 계정 클릭 시 프로필화면으로 이동하도록 구현 -->
@@ -375,7 +379,11 @@
 					<li class="explore__user" th:each="list2  : ${followingList}">
 						<div class="explore__content">
 							<a th:href="@{|/user/${list2.id}|}">
-								<img th:src="|/upload/${respDto.user.profileImage}|" onerror="this.src='/images/avatar.jpg'" />
+								 <img
+                          th:src="|/upload/${list2.profileImage}|"
+                          src="/upload/{{#profileImage}}{{profileImage}}{{/profileImage}}"
+                          onerror="this.src='/images/avatar.jpg'"
+                        />
 							</a>
 							<div class="explore__info">
 								<!-- 해당 계정 클릭 시 프로필화면으로 이동하도록 구현 -->
