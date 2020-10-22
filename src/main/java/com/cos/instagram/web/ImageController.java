@@ -27,7 +27,7 @@ public class ImageController {
 	private final ImageService imageService;
 	@Autowired
 	private UserService userService;
-	
+
 	private final NotiService notiService;
 
 	@GetMapping({ "", "/", "/image/feed" })
@@ -35,9 +35,9 @@ public class ImageController {
 		System.out.println("loginUser : " + loginUser);
 		model.addAttribute("images", imageService.피드사진(loginUser.getId(), tag));
 		model.addAttribute("recommendation", userService.추천유저(loginUser.getId()));
-		
+
 		model.addAttribute("notis", notiService.알림리스트(loginUser.getId()));
-		
+
 		return "image/feed";
 	}
 

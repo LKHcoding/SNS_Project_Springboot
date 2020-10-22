@@ -17,17 +17,20 @@ public class AuthController {
 
 	private static final Logger log = LoggerFactory.getLogger(AuthController.class);
 	private final UserService userService;
-	
+
 	@GetMapping("/auth/loginForm")
 	public String loginForm() {
-		log.info("/auth/loginForm 진입"); 
-		return "auth/loginForm"; 
+		log.info("/auth/loginForm 진입");
+		return "auth/loginForm";
 	}
+
 	@GetMapping("/auth/joinForm")
 	public String joinForm() {
-		log.info("/auth/joinForm 진입"); 
+		log.info("/auth/joinForm 진입");
 		return "auth/joinForm";
 	}
+
+	// 회원가입 처리하는 부분
 	@PostMapping("/auth/join")
 	public String join(JoinReqDto joinReqDto) {
 		log.info(joinReqDto.toString());
@@ -35,6 +38,3 @@ public class AuthController {
 		return "redirect:/auth/loginForm";
 	}
 }
-
-
-
