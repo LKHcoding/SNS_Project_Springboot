@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cos.instagram.config.auth.dto.LoginUser;
 import com.cos.instagram.config.hanlder.ex.MyUserIdNotFoundException;
+import com.cos.instagram.config.hanlder.ex.MyUserInfoExistException;
 import com.cos.instagram.domain.comment.Comment;
 import com.cos.instagram.domain.follow.FollowRepository;
 import com.cos.instagram.domain.image.Image;
@@ -51,21 +52,21 @@ public class UserService {
 	@Transactional
 	public void 프로필사진업로드(LoginUser loginUser, MultipartFile file) {
 		UUID uuid = UUID.randomUUID();
-		String imageFilename =
-				uuid+"_"+file.getOriginalFilename();
-		Path imageFilepath = Paths.get(uploadFolder+imageFilename);
+		String imageFilename = uuid + "_" + file.getOriginalFilename();
+		Path imageFilepath = Paths.get(uploadFolder + imageFilename);
 		try {
 			Files.write(imageFilepath, file.getBytes());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		User userEntity = userRepository.findById(loginUser.getId()).orElseThrow(new Supplier<MyUserIdNotFoundException>() {
-			@Override
-			public MyUserIdNotFoundException get() {
-				return new MyUserIdNotFoundException();
-			}
-		});
+		User userEntity = userRepository.findById(loginUser.getId())
+				.orElseThrow(new Supplier<MyUserIdNotFoundException>() {
+					@Override
+					public MyUserIdNotFoundException get() {
+						return new MyUserIdNotFoundException();
+					}
+				});
 
 		// 더티체킹
 		userEntity.setProfileImage(imageFilename);
@@ -89,24 +90,31 @@ public class UserService {
 
 	@Transactional(readOnly = true)
 	public User 회원정보(LoginUser loginUser) {
-		return userRepository.findById(loginUser.getId())
-				.orElseThrow(new Supplier<MyUserIdNotFoundException>() {
-					@Override
-					public MyUserIdNotFoundException get() {
-						return new MyUserIdNotFoundException();
-					}
-				});
+		return userRepository.findById(loginUser.getId()).orElseThrow(new Supplier<MyUserIdNotFoundException>() {
+			@Override
+			public MyUserIdNotFoundException get() {
+				return new MyUserIdNotFoundException();
+			}
+		});
 	}
 
 	@Transactional
-	public void 회원가입(JoinReqDto joinReqDto) {
+	public void 회원가입(JoinReqDto joinReqDto) throws MyUserInfoExistException {
 		System.out.println("서비스 회원가입 들어옴");
 		System.out.println(joinReqDto);
-		String encPassword =
-				bCryptPasswordEncoder.encode(joinReqDto.getPassword());
-		System.out.println("encPassword : "+encPassword);
-		joinReqDto.setPassword(encPassword);
-		userRepository.save(joinReqDto.toEntity());
+
+		// 이메일, 이름은 중복체크가 필요하다.
+		List<User> DuplicateCheckList = userRepository.중복체크(joinReqDto.getEmail(), joinReqDto.getUsername());
+		System.out.println(DuplicateCheckList.size());
+		if (!(DuplicateCheckList.isEmpty())) {
+			System.out.println("중복 이메일 또는 아이디가 있습니다.");
+			throw new MyUserInfoExistException("이미 존재하는 Email 또는 사용자 이름 입니다.");
+		} else {
+			String encPassword = bCryptPasswordEncoder.encode(joinReqDto.getPassword());
+			System.out.println("encPassword : " + encPassword);
+			joinReqDto.setPassword(encPassword);
+			userRepository.save(joinReqDto.toEntity());
+		}
 	}
 
 	// 프로필 페이지에서 특정유저의 게시물정보를 모두 받아오기 위해 만든 부분
@@ -144,13 +152,12 @@ public class UserService {
 		int followingCount;
 		boolean followState;
 
-		User userEntity = userRepository.findById(id)
-				.orElseThrow(new Supplier<MyUserIdNotFoundException>() {
-					@Override
-					public MyUserIdNotFoundException get() {
-						return new MyUserIdNotFoundException();
-					}
-				});
+		User userEntity = userRepository.findById(id).orElseThrow(new Supplier<MyUserIdNotFoundException>() {
+			@Override
+			public MyUserIdNotFoundException get() {
+				return new MyUserIdNotFoundException();
+			}
+		});
 
 		// 1. 이미지들과 전체 이미지 카운트(dto받기)
 		StringBuilder sb = new StringBuilder();
@@ -169,19 +176,12 @@ public class UserService {
 		followingCount = followRepository.mCountByFollowing(id);
 
 		// 3. 팔로우 유무
-		followState =
-				followRepository.mFollowState(loginUser.getId(), id) == 1 ? true : false;
+		followState = followRepository.mFollowState(loginUser.getId(), id) == 1 ? true : false;
 
 		// 4. 최종마무리
-		UserProfileRespDto userProfileRespDto =
-				UserProfileRespDto.builder()
-				.pageHost(id==loginUser.getId())
-				.followState(followState)
-				.followerCount(followerCount)
-				.followingCount(followingCount)
-				.imageCount(imageCount)
-				.user(userEntity)
-				.images(imagesEntity) // 수정완료(Dto만듬) (댓글수, 좋아요수)
+		UserProfileRespDto userProfileRespDto = UserProfileRespDto.builder().pageHost(id == loginUser.getId())
+				.followState(followState).followerCount(followerCount).followingCount(followingCount)
+				.imageCount(imageCount).user(userEntity).images(imagesEntity) // 수정완료(Dto만듬) (댓글수, 좋아요수)
 				.build();
 
 		return userProfileRespDto;

@@ -1,4 +1,4 @@
-package com.cos.instagram.domain.user;
+﻿package com.cos.instagram.domain.user;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,5 +20,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	// 사이드 랜덤 추천
 	@Query(value = "select * from user where id not in(?1) order by rand() limit  5", nativeQuery = true)
 	List<User> mRecommendationImage(int loginUserId);
-	
+
+	// 회원가입시 이메일, username 중복체크하는 부분
+	@Query(value = "select * from user where email = ?1 or username = ?2", nativeQuery = true)
+	List<User> 중복체크(String email, String username);
 }
