@@ -16,14 +16,21 @@
             th:each="images : ${images}"
           >
             <header class="photo__header">
-              <img
-                src="/upload/"
-                th:src="|/upload/${images.user.profileImage}|"
-                onerror="this.src='/images/avatar.jpg'"
-              />
-              <span class="photo__username" th:text="${images.user.username}"
-                >{{user.username}}여긴유저이름나오는곳</span
+              <a th:href="|/user/${images.user.id}">
+                <img
+                  src="/upload/"
+                  th:src="|/upload/${images.user.profileImage}|"
+                  onerror="this.src='/images/avatar.jpg'"
+                />
+              </a>
+              <a
+                th:href="|/user/${images.user.id}"
+                style="text-decoration: none; color: black"
               >
+                <span class="photo__username" th:text="${images.user.username}"
+                  >{{user.username}}여긴유저이름나오는곳</span
+                >
+              </a>
             </header>
             <div class="full-image">
               <div class="photo_post_image">
