@@ -17,6 +17,7 @@ import com.cos.instagram.service.ImageService;
 import com.cos.instagram.service.NotiService;
 import com.cos.instagram.service.UserService;
 import com.cos.instagram.web.dto.ImageReqDto;
+import com.cos.instagram.web.dto.UserProfileRespDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -64,6 +65,7 @@ public class ImageController {
 		model.addAttribute("images", imageService.인기사진(loginUser.getId()));
 		return "image/explore";
 	}
+	
 
 	@GetMapping("image/{imageid}")
 	public String board(Model model, @PathVariable int imageid, @LoginUserAnnotation LoginUser loginUser) {

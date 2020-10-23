@@ -80,17 +80,17 @@
 	           <div th:each=" i : ${session.staticNoti}">         
 	            <li class="explore__user">
 	            <div class="explore__content">
-	             <a href="/user/fromUser/id" th:href="|/user/${i.fromUser.id}|">         
+	             <a href="/user/toUser/id" th:href="|/user/${i.toUser.id}|">         
 	               <!-- 등록된 프로필 사진 나오도록 구현 -->    
 	               <img               
-	                 th:src="|/upload/${i.fromUser.profileImage}|"                  
+	                 th:src="|/upload/${i.toUser.profileImage}|"                  
 	                 onerror="this.src='/images/avatar.jpg'"
 	                />              
 	              </a>
 	            <div class="explore__info">
-	            <a th:href="@{|/user/${i.fromUser.id}|}">
+	            <a th:href="@{|/user/${i.toUser.id}|}">
 	             <span class="explore__username">
-	             <p th:text="${i.fromUser.name}"></p>
+	             <p th:text="${i.toUser.name}"></p>
 	            </a>	            
 	             <p th:text="'님이 회원님을 '+ ${i.notiType.key}+'하기 시작했습니다.'"></p> 	                          
                  </span>
