@@ -88,6 +88,28 @@ public class UserService {
 		userEntity.setGender(user.getGender());
 	}
 
+	@Transactional(readOnly = false)
+	public void 비밀번호변경(JoinReqDto joinReqDto) throws Exception{
+
+		String username = joinReqDto.getUsername();
+		LoginUser loginUser;
+		System.out.println("비밀번호 변경 서비스 진입");
+		//String encPassword = bCryptPasswordEncoder.encode(joinReqDto.getPassword());
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		System.out.println("username: "+joinReqDto.getUsername());
+		System.out.println("암호화 전 비밀번호: "+joinReqDto.getPassword());
+
+		//비밀번호를 암호화하여 joinReqDto객체에 다시 저장
+		String newPassword = encoder.encode(joinReqDto.getPassword());
+		joinReqDto.setPassword(newPassword);
+
+		System.out.println("암호화 후 비밀번호  : " + joinReqDto.getPassword());
+//		joinReqDto.setPassword(encPassword);
+
+		userRepository.modifyPassword(username,newPassword);
+//		userRepository.save(joinReqDto.toEntity());
+	}
+
 	@Transactional(readOnly = true)
 	public User 회원정보(LoginUser loginUser) {
 		return userRepository.findById(loginUser.getId()).orElseThrow(new Supplier<MyUserIdNotFoundException>() {
