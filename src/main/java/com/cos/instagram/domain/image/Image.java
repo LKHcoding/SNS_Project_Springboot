@@ -3,6 +3,7 @@ package com.cos.instagram.domain.image;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.ColumnResult;
 import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
@@ -30,18 +31,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@SqlResultSetMapping(
-		name = "UserProfileImageRespDtoMapping",
-		classes = @ConstructorResult(
-				targetClass = UserProfileImageRespDto.class,
-				columns = {
-						@ColumnResult(name="id", type = Integer.class),
-						@ColumnResult(name="imageUrl", type = String.class),
-						@ColumnResult(name="likeCount", type = Integer.class),
-						@ColumnResult(name="commentCount", type = Integer.class)
-				}
-		)
-)
+@SqlResultSetMapping(name = "UserProfileImageRespDtoMapping", classes = @ConstructorResult(targetClass = UserProfileImageRespDto.class, columns = {
+		@ColumnResult(name = "id", type = Integer.class), @ColumnResult(name = "imageUrl", type = String.class),
+		@ColumnResult(name = "likeCount", type = Integer.class),
+		@ColumnResult(name = "commentCount", type = Integer.class) }))
 @Entity
 @Data
 @NoArgsConstructor
@@ -54,39 +47,35 @@ public class Image {
 	private String location;
 	private String caption;
 	private String imageUrl;
-	
+
 	// Image를 select하면 한명의 User가 딸려옴.
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="userId") // 칼럼명
+	@JoinColumn(name = "userId") // 칼럼명
 	private User user; // 타입은 User오브젝트의 PK의 타입
-	
+
 	// Image를 select하면 여러개의 Tag가 딸려옴.
-	@OneToMany(mappedBy = "image", fetch = FetchType.LAZY) //연관관계 주인의 변수명을 적는다.
-	@JsonIgnoreProperties({"image"}) //Jackson한테 내리는 명령
+	@OneToMany(mappedBy = "image", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true) // 연관관계 주인의
+																											// 변수명을 적는다.
+	@JsonIgnoreProperties({ "image" }) // Jackson한테 내리는 명령
 	private List<Tag> tags;
-	
-	@JsonIgnoreProperties({"image"})
-	@OneToMany(mappedBy = "image")
+
+	@JsonIgnoreProperties({ "image" })
+	@OneToMany(mappedBy = "image", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Comment> comments;
-	
-	@JsonIgnoreProperties({"image"})
-	@OneToMany(mappedBy = "image")
+
+	@JsonIgnoreProperties({ "image" })
+	@OneToMany(mappedBy = "image", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Likes> likes;
-	
+
 	@CreationTimestamp
 	private Timestamp createDate;
-	
+
 	@Transient
 	private int likeCount;
-	
+
 	@Transient
 	private boolean likeState;
-	
+
 	@Transient
 	private int commentCount;
 }
-
-
-
-
-

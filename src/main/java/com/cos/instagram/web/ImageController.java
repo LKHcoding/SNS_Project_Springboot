@@ -3,8 +3,11 @@ package com.cos.instagram.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -65,10 +68,20 @@ public class ImageController {
 		return "image/explore";
 	}
 
+	// LKH 단독게시물 데이터 가져오는부분
 	@GetMapping("image/{imageid}")
 	public String board(Model model, @PathVariable int imageid, @LoginUserAnnotation LoginUser loginUser) {
 		model.addAttribute("board", imageService.단독게시물(loginUser.getId(), imageid));
 		return "image/board";
+	}
+
+	// LKH 특정 게시물 삭제기능
+	@DeleteMapping("image/{imageid}/{ImageUserId}")
+	public ResponseEntity<?> boardDelete(Model model, @PathVariable int imageid, @PathVariable int ImageUserId,
+			@LoginUserAnnotation LoginUser loginUser) {
+		imageService.게시물삭제(imageid, ImageUserId, loginUser.getId());
+
+		return new ResponseEntity<String>("ok", HttpStatus.OK);
 	}
 
 }

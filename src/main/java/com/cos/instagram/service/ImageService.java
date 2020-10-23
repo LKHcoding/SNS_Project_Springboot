@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cos.instagram.config.hanlder.ex.MyImageDeleteException;
 import com.cos.instagram.domain.comment.Comment;
 import com.cos.instagram.domain.image.Image;
 import com.cos.instagram.domain.image.ImageRepository;
@@ -59,6 +60,16 @@ public class ImageService {
 		}
 
 		return images;
+	}
+
+	@Transactional
+	public void 게시물삭제(int imageid, int ImageUserId, int loginuserid) throws MyImageDeleteException {
+
+		if (ImageUserId != loginuserid) {
+			throw new MyImageDeleteException("게시물 작성자만 글을 지울 수 있습니다.");
+		} else {
+			imageRepository.deleteById(imageid);
+		}
 	}
 
 	@Transactional(readOnly = true)

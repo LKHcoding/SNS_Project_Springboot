@@ -3,8 +3,7 @@
   xmlns:th="http://www.thymeleaf.org"
   xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
 >
-  <head th:replace="layout/header :: header">
-  </head>
+  <head th:replace="layout/header :: header"> </head>
   <body>
     <link rel="stylesheet" href="/css/board.css" />
     <!-- feed에서 메시지 아이콘 눌렀을때 이동 될 화면 -->
@@ -51,6 +50,16 @@
                     >여긴유저이름나오는곳</span
                   >
                 </a>
+                <div style="display: flex; margin-left: auto">
+                  <a
+                    class="board-img-box"
+                    type="button"
+                    data-toggle="modal"
+                    data-target="#myModal3"
+                  >
+                    <img src="/images/ellipsis.png" />
+                  </a>
+                </div>
               </header>
 
               <div class="photo__info">
@@ -202,10 +211,46 @@
               </div>
             </div>
           </div>
+          <!-- 새로만든 모달창 -->
+          <!-- The Modal -->
+          <div class="modal fade" id="myModal3">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <!-- Modal Header -->
+                <!-- <div class="modal-header">
+            <h4 class="modal-title">Modal Heading</h4>
+            <button type="button" class="close" data-dismiss="modal">×</button>
+          </div> -->
+
+                <!-- Modal body -->
+                <a
+                  type="button"
+                  class="modal-body"
+                  th:onclick="|boardDelete('${images.id}','${images.user.id}');|"
+                >
+                  게시글 삭제
+                </a>
+                <a class="modal-body" href="" data-dismiss="modal"> 취소 </a>
+
+                <!-- Modal footer -->
+                <!-- <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div> -->
+              </div>
+            </div>
+          </div>
+          <!-- 새로만든 모달창 끝 -->
         </div>
         <!-- {{/images}} -->
         <script src="/js/comment.js"></script>
         <script src="/js/like.js"></script>
+        <script src="/js/board.js"></script>
       </div>
     </main>
 
