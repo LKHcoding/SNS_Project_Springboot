@@ -51,61 +51,81 @@
           <a th:href="|/image/explore|" class="navigation__link follow_popup">
             <i class="fa fa-compass"></i>
           </a>
-		  <!-- 기존 알림(팔로우) -->
+          <!-- 기존 알림(팔로우) -->
           <!-- <a
             th:href="|/noti/${session.loginUser.id}|"
             class="navigation__link follow_popup"
           >
             <i class="fa fa-heart-o"></i>
           </a> -->
-          
+
           <!--알림(팔로우) 클릭 시 리스트박스 나오도록 구현 -->
-          <div class="btn-group" >
-          <div id="uo5MA  _2ciX tWgj8 XWrBI ">
+          <div class="btn-group">
             <a
               href="#"
-              class="navigation__link follow_popup"
+              class="navigation__link drop3"
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
-            >           
-       		<i class="fa fa-heart-o"></i>
-           </a>
-           
-           <div class="dropdown-menu dropdown-menu-right" id="f7Bj3">
-            <div style="height: auto; overflow: hidden auto;">
-             <div style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">           
-              
-             <ul class="explore__users u-default-box">
-	           <div th:each=" i : ${session.staticNoti}">         
-	            <li class="explore__user">
-	            <div class="explore__content">
-	             <a href="/user/toUser/id" th:href="|/user/${i.toUser.id}|">         
-	               <!-- 등록된 프로필 사진 나오도록 구현 -->    
-	               <img               
-	                 th:src="|/upload/${i.toUser.profileImage}|"                  
-	                 onerror="this.src='/images/avatar.jpg'"
-	                />              
-	              </a>
-	            <div class="explore__info">
-	            <a th:href="@{|/user/${i.toUser.id}|}">
-	             <span class="explore__username">
-	             <p th:text="${i.toUser.name}"></p>
-	            </a>	            
-	             <p th:text="'님이 회원님을 '+ ${i.notiType.key}+'하기 시작했습니다.'"></p> 	                          
-                 </span>
+            >
+              <i class="fa fa-heart-o"></i>
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right" id="f7Bj3">
+              <div style="height: auto; overflow: hidden auto">
+                <div
+                  style="
+                    flex-direction: column;
+                    padding-bottom: 0px;
+                    padding-top: 0px;
+                  "
+                >
+                  <ul class="explore__users u-default-box">
+                    <div th:each=" i : ${session.staticNoti}">
+                      <li class="explore__user">
+                        <div class="explore__content">
+                          <a
+                            href="/user/toUser/id"
+                            th:href="|/user/${i.toUser.id}|"
+                          >
+                            <!-- 등록된 프로필 사진 나오도록 구현 -->
+                            <img
+                              th:src="|/upload/${i.toUser.profileImage}|"
+                              onerror="this.src='/images/avatar.jpg'"
+                            />
+                          </a>
+                          <div class="explore__info">
+                            <a
+                              th:href="@{|/user/${i.toUser.id}|}"
+                              style="text-decoration: none"
+                            >
+                              <span class="explore__username"></span>
+                              <p
+                                style="color: black; font-weight: 500"
+                                th:text="${i.toUser.name}"
+                              ></p>
+                            </a>
+                            <!-- 회원님의 사진을 좋아합니다. 님이 댓글을 남겼습니다. -->
+                            <p
+                              th:if="|${i.notiType.key.equals('팔로우')}|"
+                              th:text="'님이 회원님을 '+ ${i.notiType.key}+'하기 시작했습니다.'"
+                            ></p>
+                            <p th:if="|${i.notiType.key.equals('좋아요')}|">
+                              님이 회원님의 사진을 좋아합니다
+                            </p>
+                            <p th:if="|${i.notiType.key.equals('댓글작성')}|">
+                              님이 댓글을 남겼습니다.
+                            </p>
+                          </div>
+                        </div>
+                        <!-- 팔로우 버튼 구현 중(미완성)	
+       <button th:unless="${list.followState == true}"	class="profile_edit_btn" th:onclick="|user(${i.fromUser.id});|">팔로우</button> -->
+                      </li>
+                    </div>
+                  </ul>
                 </div>
-               </div>
-               <!-- 팔로우 버튼 구현 중(미완성)	
-               <button th:unless="${list.followState == true}"	class="profile_edit_btn" th:onclick="|user(${i.fromUser.id});|">팔로우</button> -->
               </div>
-              </li>
-              </div>
-             </ul>
-             
-             </div>
             </div>
-           </div>
           </div>
 
           <!-- <a th:href="|/user/${session.loginUser.id}|" class="navigation__link">
@@ -114,7 +134,7 @@
           <div class="btn-group">
             <a
               href="#"
-              class="navigation__link"
+              class="navigation__link drop4"
               data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
