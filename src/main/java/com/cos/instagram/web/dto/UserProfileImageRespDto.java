@@ -1,13 +1,5 @@
 package com.cos.instagram.web.dto;
 
-import java.sql.Timestamp;
-import java.util.List;
-
-import javax.persistence.ManyToOne;
-
-import com.cos.instagram.domain.tag.Tag;
-import com.cos.instagram.domain.user.User;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,4 +14,5 @@ public class UserProfileImageRespDto {
 	private String imageUrl;
 	private int likeCount;
 	private int commentCount;
+	private int userId;
 }

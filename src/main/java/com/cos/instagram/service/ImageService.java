@@ -7,12 +7,18 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cos.instagram.config.hanlder.ex.MyImageDeleteException;
 import com.cos.instagram.domain.comment.Comment;
+import com.cos.instagram.domain.follow.Follow;
+import com.cos.instagram.domain.follow.FollowRepository;
 import com.cos.instagram.domain.image.Image;
 import com.cos.instagram.domain.image.ImageRepository;
 import com.cos.instagram.domain.like.Likes;
@@ -22,16 +28,19 @@ import com.cos.instagram.domain.user.User;
 import com.cos.instagram.domain.user.UserRepository;
 import com.cos.instagram.util.Utils;
 import com.cos.instagram.web.dto.ImageReqDto;
+import com.cos.instagram.web.dto.UserProfileImageRespDto;
 
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
 public class ImageService {
-
+	@PersistenceContext
+	private EntityManager em;
 	private final ImageRepository imageRepository;
 	private final TagRepository tagRepository;
 	private final UserRepository userRepository;
+	private final FollowRepository followRepository;
 
 	@Transactional(readOnly = true)
 	public List<Image> 피드사진(int loginUserId, String tag) {
@@ -97,8 +106,32 @@ public class ImageService {
 	}
 
 	@Transactional(readOnly = true)
-	public List<Image> 인기사진(int loginUserId) {
-		return imageRepository.mNonFollowImage(loginUserId);
+	public List<UserProfileImageRespDto> 인기사진(int loginUserId) {
+
+		// LKH 나말고 다른 유저들의 ImageRespDto 정보 받아오기
+		StringBuilder sb = new StringBuilder();
+		sb.append("select im.id, im.imageUrl, im.userId, ");
+		sb.append("(select count(*) from likes lk where lk.imageId = im.id) as likeCount, ");
+		sb.append("(select count(*) from comment ct where ct.imageId = im.id) as commentCount ");
+		sb.append("from image im where im.userId != ? ");
+		String q = sb.toString();
+		Query query = em.createNativeQuery(q, "UserProfileImageRespDtoMapping").setParameter(1, loginUserId);
+		List<UserProfileImageRespDto> imagesEntity = query.getResultList();
+
+		// LKH 내가 팔로우한 유저 정보 받아오기
+		List<Follow> LoginUserFollowingList = followRepository.findByfromUserId(loginUserId);
+
+		// LKH 내가 팔로우 한 유저인지 아닌지 찾아서 해당 부분을 삭제함
+		for (int i = 0; i < imagesEntity.size(); i++) {
+			for (Follow asdf : LoginUserFollowingList) {
+				if (imagesEntity.get(i).getUserId() == asdf.getToUser().getId()) {
+					imagesEntity.remove(i);
+				}
+			}
+		}
+
+		return imagesEntity;
+		/* return imageRepository.mNonFollowImage(loginUserId); */
 	}
 
 	@Value("${file.path}")
