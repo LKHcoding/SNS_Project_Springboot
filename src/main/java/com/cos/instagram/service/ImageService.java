@@ -122,8 +122,8 @@ public class ImageService {
 		List<Follow> LoginUserFollowingList = followRepository.findByfromUserId(loginUserId);
 
 		// LKH 내가 팔로우 한 유저인지 아닌지 찾아서 해당 부분을 삭제함
-		for (int i = 0; i < imagesEntity.size(); i++) {
-			for (Follow asdf : LoginUserFollowingList) {
+		for (Follow asdf : LoginUserFollowingList) {
+			for (int i = 0; i < imagesEntity.size(); i++) {
 				if (imagesEntity.get(i).getUserId() == asdf.getToUser().getId()) {
 					imagesEntity.remove(i);
 				}
