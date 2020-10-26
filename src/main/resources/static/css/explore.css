@@ -26,8 +26,8 @@
 }
 
 .explore__user .explore__content img {
-  width: 56px;
-  height: 56px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   margin-right: 15px;
   transform-style: preserve-3d;
@@ -53,6 +53,11 @@
   100% {
     transform: none;
   }
+}
+
+@media (max-width: 735px)
+.explore__user {
+    border-bottom: 0;
 }
 
 .explore__info .explore__username {
@@ -97,5 +102,6 @@
 .explore__user button:active {
   opacity: 0.5;
 }
+
 
 

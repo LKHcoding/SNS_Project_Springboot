@@ -376,13 +376,16 @@ body.modal-open[style] {
 /* modal 창을 열면 패딩이 맘대로 생기는 현상 방지용 소스 끝 */
 
 /* 팔로우,팔로워 모달창 스크롤바 모서리 라운드 처리 */
+
+
 #_1XyCr {
     background-color: #fff;
     background-color: rgba(var(--f23,255,255,255),1);
     border-radius: 12px;
     max-height: 400px;
-    overflow: hidden;
+    overflow: hidden;    
 }
+
 /* 팔로우,팔로워 모달창 header부분 */
 .m82CD {
     -webkit-box-align: center;
@@ -427,10 +430,12 @@ height: 53px;
     flex-shrink: 1;
     flex-basis: 0%;
     min-height: 200px;
-
     overflow: auto;
-max-height: 400px;
+	max-height: 400px;
 }
+
+
+
 
 
 
