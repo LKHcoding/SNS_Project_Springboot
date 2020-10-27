@@ -18,6 +18,7 @@
 
 .explore__users .explore__user:last-child {
   border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, .0975);
 }
 
 .explore__user .explore__content {
