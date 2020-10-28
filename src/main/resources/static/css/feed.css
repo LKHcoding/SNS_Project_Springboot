@@ -1,3 +1,4 @@
+
 #feed {
   display: flex;
   flex-direction: column;
@@ -128,8 +129,11 @@
   animation: 0.5s pump infinite linear;
 }
 
+
 .feed_all {
   display: flex;
+  float: left;
+  margin-right: 28px;
 }
 
 .recomend_only {
@@ -141,4 +145,6 @@
   z-index: -1;
   position: relative;
   flex-direction: column;
+  max-width: 900px;
+  width: 100%;  
 }

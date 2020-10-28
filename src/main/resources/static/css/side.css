@@ -2,7 +2,7 @@
   position: sticky;
   top: 70px;
   height: 400px;
-  width: 350px;
+  max-width: 400px;;
   margin-left: 15px;
 }
 
