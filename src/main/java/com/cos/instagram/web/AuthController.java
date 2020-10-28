@@ -7,9 +7,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.cos.instagram.config.auth.LoginUserAnnotation;
+import com.cos.instagram.config.auth.dto.LoginUser;
+import com.cos.instagram.domain.user.User;
 import com.cos.instagram.service.UserService;
 import com.cos.instagram.web.dto.JoinReqDto;
 
@@ -43,46 +47,45 @@ public class AuthController {
 	}
 
 	@GetMapping("/auth/pwChange")
-	public String pwChange() {
-		log.info("/auth/pwChange 진입");
+	public String pwChange(@LoginUserAnnotation LoginUser loginUser, Model model) {
+		log.info("/auth/pwChange 진입 ");
+		User userEntity = userService.회원정보(loginUser);
+		model.addAttribute("user", userEntity);
+
 		return "/auth/pwChange";
 	}
 
-	//비밀번호 확인 처리 요청
-	@PostMapping("/checkPassword")
-	public String checkPassword(String password, HttpSession session) throws Exception {
+	// 비밀번호 변경 요청
+	@PostMapping(value = "/auth/pwChange", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+	public String pwChange(@LoginUserAnnotation LoginUser loginUser, String oldPassword, String newPassword,
+			String newRePassword, JoinReqDto joinReqDto, HttpSession session, Model model) throws Exception {
 
-		log.info("비밀번호 확인 요청 발생!!");
-		String result = null;
+		log.info("비밀번호 변경 요청 발생!!", joinReqDto.toString());
 
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-		JoinReqDto dbJoinReqDto = (JoinReqDto)session.getAttribute("login");
-		log.info("DB 회원의 비밀번호 : " + dbJoinReqDto.getPassword());
-		log.info("폼에서 받아온 비밀번호 : " + password);
+		User user = userService.회원정보(loginUser);
 
-		if(encoder.matches(password, dbJoinReqDto.getPassword())) {
-			result = "pwConfirmOK";
+		if (encoder.matches(oldPassword, user.getPassword())==true) {
+			System.out.println("oldPassword and DBpassword matches: "+encoder.matches(oldPassword, user.getPassword()));
+
+			if (newPassword.equals(newRePassword)) {
+				System.out.println("변경 할 비밀번호 일치!");
+
+				joinReqDto.setPassword(newPassword);
+
+				userService.비밀번호변경(joinReqDto);
+				// 비밀번호 성공 시 다시 로그인 세션 객체에 담음
+				JoinReqDto modifyUser = new JoinReqDto();
+				modifyUser.setUsername(joinReqDto.getUsername());
+
+				System.out.println("비밀번호 변경 완료!!");
+			}
 		} else {
-			result = "pwConfirmNO";
+			System.out.println("oldPassword and DBpassword matches: "+encoder.matches(oldPassword, user.getPassword()));
+			System.out.println("비밀번호 변경 실패!!");
 		}
-		return result;
-	}
 
-	//비밀번호 변경 요청
-	@PostMapping(value = "/auth/pwChange", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-	public String pwChange(JoinReqDto joinReqDto, HttpSession session) throws Exception{
-		log.info("비밀번호 변경 요청 발생~!!",joinReqDto.toString());
-
-		userService.비밀번호변경(joinReqDto);
-
-		//비밀번호 성공 시 다시 로그인 세션 객체에 담음
-		JoinReqDto modifyUser = new JoinReqDto();
-		modifyUser.setUsername(joinReqDto.getUsername());
-
-
-		return "redirect:/auth/loginForm";
+		return "redirect:/";
 	}
 }
-
-
