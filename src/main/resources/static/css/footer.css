@@ -9,7 +9,8 @@ footer {
   text-transform: uppercase;
   font-size: 12px;
   flex-wrap: wrap;
-  margin-bottom: 55px;
+  margin-bottom: 25px;
+  padding : 0px 10px;
 }
 
 footer .footer__list {
@@ -28,7 +29,7 @@ footer .footer__copyright {
   color: #999;
 }
 @media (max-width: 850px) {
-  footer{
-  	max-width:560px;
+  footer {
+    max-width: 560px;
   }
 }

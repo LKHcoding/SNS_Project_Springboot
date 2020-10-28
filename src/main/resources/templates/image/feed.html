@@ -18,7 +18,6 @@
             <header class="photo__header">
               <a th:href="|/user/${images.user.id}">
                 <img
-                  src="/upload/"
                   th:src="|/upload/${images.user.profileImage}|"
                   onerror="this.src='/images/avatar.jpg'"
                 />
@@ -64,7 +63,7 @@
                     <!-- <a href="/user/{{loginUser.id}}" -->
                     <!-- <a th:href="|/user/${session.loginUser.id}|" -->
                     <a th:href="|/image/${images.id}|"
-                      ><i class="fa fa-comment-o"></i
+                      ><i style="color: black" class="fa fa-comment-o"></i
                     ></a>
                     <!--  {{! https://fontawesome.com/icons?d=gallery&q=user 아이콘
                   주기}} -->
