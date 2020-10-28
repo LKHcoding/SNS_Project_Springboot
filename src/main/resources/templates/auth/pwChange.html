@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
+    <script src="/js/pwChange.js"></script>
+
     <main id="login">
       <div class="login__column" id="for__join">
         <div class="login__box">
@@ -25,50 +27,33 @@
             친구들의 사진과 동영상을 보려면 <br />가입하세요.
           </span>
           <form
-            id="newPw"
+            id="newPasswrod"
             action="/auth/pwChange"
             method="post"
             class="login__form"
           >
             <!-- <input type="text" name="id" th:value="${id}" th:text="${id}" /> -->
             <div class="group">
-              <!-- <input
-                type="text"
-                name="username"
-                required
-                th:value="${username}"
-              />
-              <label>사용자 이름</label> -->
               <input
                 type="text"
                 name="username"
-                th:value="${username}"
-                required
+                th:value="${user.username}"
+                readonly
               />
-              <label th:text="|사용자 이름|">Username</label>
+              <!-- <label th:text="|사용자 이름|">Username</label> -->
             </div>
             <div class="group">
-              <input type="password" name="password" required />
+              <input type="password" name="oldPassword" required />
               <label th:text="|기존 비밀번호|">비밀번호</label>
             </div>
-            <!-- <div class="group">
-              <input
-                type="password"
-                name="password"
-                th:value="${password}"
-                required
-              />
+            <div class="group">
+              <input type="password" name="newPassword" required />
               <label th:text="|변경할 비밀번호|">비밀번호</label>
             </div>
             <div class="group">
-              <input
-                type="password"
-                name="newPassword"
-                th:value="${newPassword}"
-                required
-              />
+              <input type="password" name="newRePassword" required />
               <label th:text="|비밀번호 확인|">비밀번호</label>
-            </div> -->
+            </div>
 
             <input type="submit" value="비밀번호변경" />
           </form>

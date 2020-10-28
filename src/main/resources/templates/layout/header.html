@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html
   xmlns:th="http://www.thymeleaf.org"
   xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
@@ -13,6 +13,7 @@
       href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css"/>    
     <link rel="shortcut icon" href="/images/favicon.ico" />
     <!-- 모달창 만들기 위한 bootstrap4 링크들 시작 -->
     <link
@@ -28,7 +29,7 @@
   </head>
 
   <body>
-    <nav th:fragment="menu" id="nav__background">
+     <nav th:fragment="menu" id="nav__background">
       <div class="navigation">
         <a href="/">
           <img src="/images/logo2.png" />
@@ -41,7 +42,14 @@
         </form>
 
         <div class="navigation__links">
-          <a href="/chat" class="navigation__link follow_popup">
+          <!-- 홈버튼 구현 -->
+          <a th:href="|/|" class="navigation__link follow_popup">
+            <i class="xi-home-o xi-x "></i>
+          </a>
+          <a
+            href="/chat"
+            class="navigation__link follow_popup"
+          >
             <i class="fa fa-paper-plane-o"></i>
           </a>
 
@@ -114,9 +122,7 @@
                               님이 댓글을 남겼습니다.
                             </p>
                           </div>
-                        </div>
-                        <!-- 팔로우 버튼 구현 중(미완성)	
-       <button th:unless="${list.followState == true}"	class="profile_edit_btn" th:onclick="|user(${i.fromUser.id});|">팔로우</button> -->
+                        </div>                        
                       </li>
                     </div>
                   </ul>
@@ -168,6 +174,6 @@
           </div>
         </div>
       </div>
-    </nav>
+    </nav>   
   </body>
 </html>

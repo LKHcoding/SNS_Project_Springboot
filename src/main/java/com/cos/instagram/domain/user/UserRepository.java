@@ -33,8 +33,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Transactional  // delete 사용시
 	@Query(value = "update user set password = ?2 where username = ?1", nativeQuery = true)
 	int modifyPassword(String username, String password);
-//	List<JoinReqDto> modifyPassword(String username,String password);
-//	int modifyPassword(int username, int password);
 
-	//void modifyPassword(JoinReqDto joinReqDto) throws Exception;
 }

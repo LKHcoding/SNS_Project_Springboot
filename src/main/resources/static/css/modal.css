@@ -83,3 +83,31 @@
 	border: 0px;
 	font-weight: 600;
 }
+
+/* 팔로우,팔로워 모달창 The Modal부분(반응형하기 위해 만듬) */
+.HYpXt.pbNvD {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1;
+    -ms-flex: 1 1;
+    flex: 1 1;
+    max-height: 400px;
+    min-height: 200px;
+}
+
+.fPMEg {
+    width: 260px;
+}
+
+.pbNvD {
+    -webkit-animation: IGCoreModalShow .1s ease-out;
+    animation: IGCoreModalShow .1s ease-out;
+    -webkit-flex-shrink: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin: 20px;
+    max-height: calc(100% - 40px);
+}
