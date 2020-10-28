@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html
   xmlns:th="http://www.thymeleaf.org"
   xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
@@ -47,7 +47,7 @@
             <i class="xi-home-o xi-x "></i>
           </a>
           <a
-            th:href="|/noti/${session.loginUser.id}|"
+            href="/chat"
             class="navigation__link follow_popup"
           >
             <i class="fa fa-paper-plane-o"></i>
@@ -144,7 +144,6 @@
               <!-- <i class="fa fa-user-o"></i> -->
               <i class="nav-profile-image">
                 <img
-                  src="/upload/{{#user.profileImage}}{{user.profileImage}}{{/user.profileImage}}"
                   th:src="|/upload/${session.loginUser.imageUrl}|"
                   onerror="this.src='/images/avatar.jpg'"
                 />

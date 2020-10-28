@@ -17,7 +17,7 @@ public class JoinReqDto {
 	private String name;
 	private String username;
 	private String password;
-	
+
 	public User toEntity() {
 		return User.builder()
 				.email(email)

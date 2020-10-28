@@ -13,6 +13,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -92,11 +94,14 @@ public class UserService {
 	public void 비밀번호변경(JoinReqDto joinReqDto) throws Exception {
 
 		String username = joinReqDto.getUsername();
-		LoginUser loginUser;
+
 		System.out.println("비밀번호 변경 서비스 진입");
-		// String encPassword = bCryptPasswordEncoder.encode(joinReqDto.getPassword());
+
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		System.out.println("username: " + joinReqDto.getUsername());
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+//			System.out.println("username: " + joinReqDto.getUsername());
+		System.out.println("username: " + auth.getName());
 		System.out.println("암호화 전 비밀번호: " + joinReqDto.getPassword());
 
 		// 비밀번호를 암호화하여 joinReqDto객체에 다시 저장
@@ -104,10 +109,11 @@ public class UserService {
 		joinReqDto.setPassword(newPassword);
 
 		System.out.println("암호화 후 비밀번호  : " + joinReqDto.getPassword());
-//		joinReqDto.setPassword(encPassword);
+		// joinReqDto.setPassword(encPassword);
 
 		userRepository.modifyPassword(username, newPassword);
-//		userRepository.save(joinReqDto.toEntity());
+		// userRepository.save(joinReqDto.toEntity());
+
 	}
 
 	@Transactional(readOnly = true)

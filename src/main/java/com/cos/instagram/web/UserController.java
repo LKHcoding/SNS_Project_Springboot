@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.cos.instagram.config.auth.LoginUserAnnotation;
 import com.cos.instagram.config.auth.dto.LoginUser;
 import com.cos.instagram.domain.image.Image;
+import com.cos.instagram.domain.message.Message;
 import com.cos.instagram.domain.user.User;
 import com.cos.instagram.service.FollowService;
 import com.cos.instagram.service.UserService;
@@ -68,4 +72,19 @@ public class UserController {
 
 		return "redirect:/user/" + userId;
 	}
+
+	// LKH DM 을 위한 UserController 소스
+	@MessageMapping("/user") // 최초로 오는 사용자들을 받습니다.
+	public void StoreUser(User user) {
+		System.out.println("최초로 오는 사용자 : " + user.getName());
+	}
+
+	@MessageMapping("/topic/user/{userid}") // 매핑되는 곳
+	@SendTo("/topic/user/{userid}") // 이 토픽을 구독하고 있는 모든 클라이언트에게 메시지를 보낸다.
+	public Message sendToUser(@DestinationVariable String userid, Message message) {
+		System.out.println(message.toString());
+		Message msg = new Message(message.getId(), message.getMessage());
+		return msg;
+	}
+
 }
