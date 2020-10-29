@@ -129,7 +129,6 @@
   animation: 0.5s pump infinite linear;
 }
 
-
 .feed_all {
   display: flex;
   float: left;
@@ -148,3 +147,8 @@
   max-width: 900px;
   width: 100%;  
 }
+/* 메인화면 반응형 */
+@media (max-width: 850px) {
+  #feed__s #feed__div {
+    display: none;
+  }
