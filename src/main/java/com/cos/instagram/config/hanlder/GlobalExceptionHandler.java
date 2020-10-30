@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cos.instagram.config.hanlder.ex.MyImageDeleteException;
 import com.cos.instagram.config.hanlder.ex.MyImageIdNotFoundException;
+import com.cos.instagram.config.hanlder.ex.MyPasswordCheckException;
 import com.cos.instagram.config.hanlder.ex.MyUserIdNotFoundException;
 import com.cos.instagram.config.hanlder.ex.MyUserInfoExistException;
 import com.cos.instagram.config.hanlder.ex.MyUsernameNotFoundException;
@@ -45,5 +46,11 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(value = MyImageDeleteException.class)
 	public String MyImageDeleteException(Exception e) {
 		return (e.getMessage());
+	}
+
+	// 현재 비밀번호를 확인하기 위한 예외
+	@ExceptionHandler(value = MyPasswordCheckException.class)
+	public String MyPasswordCheckException(Exception e) {
+		return Script.back(e.getMessage());
 	}
 }

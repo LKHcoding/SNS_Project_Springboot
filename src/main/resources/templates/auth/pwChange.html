@@ -15,18 +15,18 @@
     />
     <link rel="shortcut icon" href="/images/favicon.ico" />
     <link rel="stylesheet" href="/css/styles.css" />
+    <head th:replace="layout/header :: header">
   </head>
   <body>
     <script src="/js/pwChange.js"></script>
-
+    <nav th:replace="layout/header :: menu"></nav>
     <main id="login">
       <div class="login__column" id="for__join">
         <div class="login__box">
           <img src="/images/loginLogo.png" />
-          <span class="login__divider2">
-            친구들의 사진과 동영상을 보려면 <br />가입하세요.
-          </span>
+          <span class="login__divider2"> 비밀번호 변경 </span>
           <form
+            name="pwChange"
             id="newPasswrod"
             action="/auth/pwChange"
             method="post"
@@ -35,7 +35,7 @@
             <!-- <input type="text" name="id" th:value="${id}" th:text="${id}" /> -->
             <div class="group">
               <input
-                type="text"
+                type="hidden"
                 name="username"
                 th:value="${user.username}"
                 readonly
@@ -47,34 +47,33 @@
               <label th:text="|기존 비밀번호|">비밀번호</label>
             </div>
             <div class="group">
-              <input type="password" name="newPassword" required />
-              <label th:text="|변경할 비밀번호|">비밀번호</label>
+              <input
+                type="password"
+                id="newPassword"
+                name="newPassword"
+                required
+              />
+              <label th:text="|새 비밀번호|">비밀번호</label>
             </div>
             <div class="group">
-              <input type="password" name="newRePassword" required />
-              <label th:text="|비밀번호 확인|">비밀번호</label>
+              <input
+                type="password"
+                id="newRePassword"
+                name="newRePassword"
+                required
+                onkeyup="passwordCheckk()"
+              />
+              <label th:text="|새 비밀번호 확인|">비밀번호</label>
+              <div id="passwordCheckText" width="100"></div>
             </div>
 
-            <input type="submit" value="비밀번호변경" />
+            <input
+              th:onclick="|change()|"
+              type="button"
+              th:value="|비밀번호 변경|"
+            />
           </form>
-          <span class="login__divider2">
-            가입하면 lnstagram의 약관, 데이터 <br />정책 및 쿠키 정책에 동의하게
-            됩니다.
-          </span>
-          <a href="/oauth2/authorization/facebook" class="login__fb-link"
-            ><i class="fa fa-facebook-square"></i> Facebook으로 로그인</a
-          >
-        </div>
-        <div class="login__box">
-          <span class="login__text"> 계정이 있으신가요? <br /> </span>
-          <a class="login__blue-link" href="/auth/loginForm">로그인</a>
-        </div>
-        <div class="login__t-box">
-          <span class="login__text"> Get the app. </span>
-          <div class="login__appstores">
-            <img src="/images/ios.png" class="login__appstore" />
-            <img src="/images/android.png" class="login__appstore" />
-          </div>
+          <span class="login__divider2"> </span>
         </div>
       </div>
     </main>
