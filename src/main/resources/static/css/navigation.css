@@ -175,3 +175,7 @@
     display: block;
     position: relative;
 }
+
+#home {
+	padding-top: 3px;
+}
