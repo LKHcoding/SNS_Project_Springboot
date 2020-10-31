@@ -20,6 +20,8 @@
     <!-- stomp 라이브러리 추가 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
+    <script src="/js/chatting.js"></script>
+
     <!-- stomp 라이브러리 추가 -->
     <nav th:replace="layout/header :: menu"></nav>
 
@@ -28,17 +30,36 @@
       <div class="head-section">
         <div class="headLeft-section">
           <div class="headLeft-sub">
-            <input type="text" name="search" placeholder="Search..." />
-            <button><i class="fa fa-search"></i></button>
+            <form
+              th:action="${SelectedUser} == null ? @{/chat} : @{|/chat/${SelectedUser.id}|}"
+              method="GET"
+            >
+              <input
+                type="text"
+                id="searchInput"
+                name="searchInput"
+                placeholder="Search..."
+                th:value="${param.searchInput}"
+              />
+              <button><i class="fa fa-search"></i></button>
+            </form>
           </div>
         </div>
         <div class="headRight-section">
           <div class="headRight-sub">
-            <h3>UserName Section</h3>
-            <small>Last Message content Section</small>
+            <h3
+              th:text="${SelectedUser} == null ? 'DirectMessage' : ${SelectedUser.username}"
+            >
+              UserName Section
+            </h3>
+            <small
+              th:text="${SelectedUser} == null ? '대화상대를 선택하세요' : ${SelectedUser.email}"
+              >User Email section</small
+            >
           </div>
         </div>
       </div>
+
       <div class="body-section">
         <div
           class="left-section mCustomScrollbar"
@@ -46,280 +67,92 @@
           data-mcs-theme="minimal-dark"
         >
           <ul>
-            <li>
-              <div class="chatList">
-                <div class="img">
-                  <i class="fa fa-circle"></i>
-                  <img
-                    src="/demo/man01.png"
-                    onerror="this.src='/images/avatar.jpg'"
-                  />
+            <a
+              th:each="AllUserList : ${AllUserList}"
+              th:href="${param.searchInput} == null ? |/chat/${AllUserList.id}| : |/chat/${AllUserList.id}?searchInput=${param.searchInput}|"
+              style="color: black"
+            >
+              <li
+                th:classappend="(${SelectedUser} == null ? 0 : ${SelectedUser.id}) == ${AllUserList.id} ? active : ''"
+              >
+                <div class="chatList">
+                  <div class="img">
+                    <img th:src=|/upload/${AllUserList.profileImage}|
+                    onerror="this.src='/images/avatar.jpg'" />
+                  </div>
+                  <div class="desc">
+                    <small class="time">4 day</small>
+                    <h5 th:text="${AllUserList.username}">Lajy Ion</h5>
+                    <small th:text="${AllUserList.email}"
+                      >Lorem ipsum dolor sit amet...</small
+                    >
+                  </div>
                 </div>
-                <div class="desc">
-                  <small class="time">05:30 am</small>
-                  <h5>Luis Yankee</h5>
-                  <small>Lorem ipsum dolor sit amet...</small>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="chatList">
-                <div class="img">
-                  <i class="fa fa-circle"></i>
-                  <img
-                    src="/demo/man02.png"
-                    onerror="this.src='/images/avatar.jpg'"
-                  />
-                </div>
-                <div class="desc">
-                  <small class="time">3 day</small>
-                  <h5>Joi Chak</h5>
-                  <small>Lorem ipsum dolor sit amet...</small>
-                </div>
-              </div>
-            </li>
-            <li class="active">
-              <div class="chatList">
-                <div class="img">
-                  <img
-                    src="/demo/man03.png"
-                    onerror="this.src='/images/avatar.jpg'"
-                  />
-                </div>
-                <div class="desc">
-                  <small class="time">4 day</small>
-                  <h5>Lajy Ion</h5>
-                  <small>Lorem ipsum dolor sit amet...</small>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="chatList">
-                <div class="img">
-                  <img
-                    src="/demo/man04.png"
-                    onerror="this.src='/images/avatar.jpg'"
-                  />
-                </div>
-                <div class="desc">
-                  <small class="time">18 day</small>
-                  <h5>Lod Kine</h5>
-                  <small>Lorem ipsum dolor sit amet...</small>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="chatList">
-                <div class="img">
-                  <i class="fa fa-circle"></i>
-                  <img
-                    src="/demo/man01.png"
-                    onerror="this.src='/images/avatar.jpg'"
-                  />
-                </div>
-                <div class="desc">
-                  <small class="time">11:50 am</small>
-                  <h5>Nik Minaj</h5>
-                  <small>Lorem ipsum dolor sit amet...</small>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="chatList">
-                <div class="img">
-                  <img
-                    src="/demo/man02.png"
-                    onerror="this.src='/images/avatar.jpg'"
-                  />
-                </div>
-                <div class="desc">
-                  <small class="time">20 day</small>
-                  <h5>Win Sina</h5>
-                  <small>Lorem ipsum dolor sit amet...</small>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="chatList">
-                <div class="img">
-                  <img
-                    src="/demo/man03.png"
-                    onerror="this.src='/images/avatar.jpg'"
-                  />
-                </div>
-                <div class="desc">
-                  <small class="time">18 day</small>
-                  <h5>Jack Clerk</h5>
-                  <small>Lorem ipsum dolor sit amet...</small>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="chatList">
-                <div class="img">
-                  <img
-                    src="/demo/man02.png"
-                    onerror="this.src='/images/avatar.jpg'"
-                  />
-                </div>
-                <div class="desc">
-                  <small class="time">20 day</small>
-                  <h5>Win Sina</h5>
-                  <small>Lorem ipsum dolor sit amet...</small>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="chatList">
-                <div class="img">
-                  <img
-                    src="/demo/man03.png"
-                    onerror="this.src='/images/avatar.jpg'"
-                  />
-                </div>
-                <div class="desc">
-                  <small class="time">18 day</small>
-                  <h5>Jack Clerk</h5>
-                  <small>Lorem ipsum dolor sit amet...</small>
-                </div>
-              </div>
-            </li>
+              </li>
+            </a>
           </ul>
         </div>
+
         <div class="right-section">
           <div
             class="message mCustomScrollbar"
-            id="for-scroll"
+            id="forscrolls"
             data-mcs-theme="minimal-dark"
           >
-            <ul>
-              <li class="msg-left">
+            <ul id="ChatSection" th:if="${MessageList} != null">
+              <!-- <li class="msg-day"><small>Wednesday</small></li> -->
+
+              <li
+                th:each="MessageList : ${MessageList}"
+                th:classappend="${MessageList.fromUser.id} == ${session.loginUser.id} ? 'msg-right' : 'msg-left'"
+              >
                 <div class="msg-left-sub">
                   <img
-                    src="/demo/man03.png"
+                    th:src="|/upload/${MessageList.fromUser.profileImage}|"
                     onerror="this.src='/images/avatar.jpg'"
                   />
-                  <div class="msg-desc">
+                  <div class="msg-desc" th:text="${MessageList.message}">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit,
                     sed do eiusmod tempor incididunt ut labore et dolore magna
                     aliqua.
                   </div>
-                  <small>05:25 am</small>
+                  <small
+                    th:text="${#dates.format(MessageList.createDate, 'yyyy. MM. dd. a h:mm:ss')}"
+                    >05:25 am</small
+                  >
+                  <!-- <small th:text="${MessageList.createDate}">05:25 am</small> -->
                 </div>
               </li>
-              <li class="msg-right">
-                <div class="msg-left-sub">
-                  <img
-                    src="/demo/man04.png"
-                    onerror="this.src='/images/avatar.jpg'"
-                  />
-                  <div class="msg-desc">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
-                  </div>
-                  <small>05:25 am</small>
-                </div>
+              <li class="msg-day" th:if="${MessageList.size()} > 0">
+                <small>여기까지 읽으셨습니다.</small>
               </li>
-              <li class="msg-day"><small>Wednesday</small></li>
-              <li class="msg-left">
-                <div class="msg-left-sub">
-                  <img
-                    src="/demo/man03.png"
-                    onerror="this.src='/images/avatar.jpg'"
-                  />
-                  <div class="msg-desc">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                  </div>
-                  <small>05:25 am</small>
-                </div>
-              </li>
-              <li class="msg-right">
-                <div class="msg-left-sub">
-                  <img
-                    src="/demo/man04.png"
-                    onerror="this.src='/images/avatar.jpg'"
-                  />
-                  <div class="msg-desc">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
-                  </div>
-                  <small>05:25 am</small>
-                </div>
-              </li>
-              <li class="msg-left">
-                <div class="msg-left-sub">
-                  <img
-                    src="/demo/man03.png"
-                    onerror="this.src='/images/avatar.jpg'"
-                  />
-                  <div class="msg-desc">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                  </div>
-                  <small>05:25 am</small>
-                </div>
-              </li>
-              <li class="msg-right">
-                <div class="msg-left-sub">
-                  <img
-                    src="/demo/man04.png"
-                    onerror="this.src='/images/avatar.jpg'"
-                  />
-                  <div class="msg-desc">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
-                  </div>
-                  <small>05:25 am</small>
-                </div>
-              </li>
-              <li class="msg-right">
-                <div class="msg-left-sub">
-                  <img
-                    src="/demo/man04.png"
-                    onerror="this.src='/images/avatar.jpg'"
-                  />
-                  <div class="msg-desc">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
-                  </div>
-                  <small>05:25 am</small>
-                </div>
-              </li>
-              <li class="msg-right">
-                <div class="msg-left-sub">
-                  <img
-                    src="/demo/man04.png"
-                    onerror="this.src='/images/avatar.jpg'"
-                  />
-                  <div class="msg-desc">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
-                  </div>
-                  <small>05:25 am</small>
-                </div>
+              <li class="msg-day" th:unless="${MessageList.size()} > 0">
+                <small>대화내용이 아직 없습니다.</small>
               </li>
             </ul>
           </div>
           <div class="right-section-bottom">
-            <form>
-              <div class="upload-btn">
-                <button class="btn"><i class="fa fa-photo"></i></button>
-                <input type="file" name="myfile" />
-              </div>
-              <input type="text" name="" placeholder="type here..." />
-              <button class="btn-send"><i class="fa fa-send"></i></button>
-            </form>
+            <div class="upload-btn">
+              <button class="btn"><i class="fa fa-photo"></i></button>
+              <input type="file" name="myfile" />
+            </div>
+            <input
+              type="text"
+              id="messageInput"
+              name=""
+              placeholder="type here..."
+              onkeydown="JavaScript:Enter_Check();"
+            />
+            <button id="messageSendBtn" class="btn-send">
+              <i class="fa fa-send"></i>
+            </button>
           </div>
         </div>
       </div>
     </div>
     <!-- 채팅영역 끝 -->
 
-    <div class="chatting-main">
+    <!-- <div class="chatting-main">
       <h1>set name : <input id="name" placeholder="please set your name" /></h1>
       <button id="connectBtn">접속하기</button>
       <button id="disconnectBtn">접속끊기</button>
@@ -331,89 +164,179 @@
       <ul id="chatUl">
         <li>채팅내용~</li>
       </ul>
+    </div> -->
+    <script th:inline="javascript">
+        // LKH 타임리프 내에서 자바스크립트 사용할때
+      // LKH backend 단에서 모델이나 세션에 등록해둔 객체를 그대로 사용가능한 방법임
 
-      <script>
-        const ul = document.getElementById("chatUl");
-        const helloTextH2 = document.getElementById("helloConnectText");
-        const name = document.getElementById("name");
-        const connectBtn = document.getElementById("connectBtn");
-        const disconnectBtn = document.getElementById("disconnectBtn");
-        const sendBtn = document.getElementById("sendMsgBtn");
-        const message = document.getElementById("sendMsg");
-        const toUser = document.getElementById("to");
+      //아래는 초기화영역
+      /*<![CDATA[*/
+      var stompClient = null;
+      var SelectedUser = /*[[ ${SelectedUser} ]]*/;
+      var LoginUser = /*[[ ${session.loginUser} ]]*/;
+      const MessageInput = document.getElementById("messageInput");
+      const MessageSendBtn = document.getElementById("messageSendBtn");
+      var ClientSection = document.getElementById("forscrolls");
 
-        var stompClient = null;
-
-        sendBtn.addEventListener("click", () => {
-          send(toUser.value, message.value);
-        });
-        connectBtn.addEventListener("click", function () {
-          connect(name.value);
-        });
-        disconnectBtn.addEventListener("click", function () {
-          disconnect(name.value);
-        });
-
-        function disconnect(name) {
-          if (stompClient === null) {
-            alert("연결중이 아닙니다.");
-          } else {
-            stompClient.disconnect(function () {
-              alert("연결해제 되었습니다.");
-            });
-          }
+      if(SelectedUser != null){
+        if(SelectedUser.username === LoginUser.username){
+          alert("자신과는 대화 할 수 없습니다.");
+          history.back();
         }
+        //LKH 웹소켓 연결하기
+        connect(LoginUser.username);
+        ClientSection.scrollTop = ClientSection.scrollHeight;
+      }
 
-        function connect(name) {
-          console.log(name);
-          var socket = new SockJS("/chat"); // 해당 경로로 websocket 을 요청한다.
-          stompClient = Stomp.over(socket); // WebSocket 위에 Stomp를 얻는다.
-          stompClient.connect({}, function (frame) {
-            console.log(frame);
-            // 연결 성공
-            helloTextH2.style.display = "inline";
-            stompClient.send("/app/user", {}, JSON.stringify({ name: name })); // 유저를 등록하기 위해 보냄
-            stompClient.subscribe("/topic/user/" + name, function (message) {
-              if (message != null) {
-                var id = JSON.parse(message.body).id;
-                var msg = JSON.parse(message.body).message;
-                addChatLine(id, msg, false);
-              }
-            });
+      /*]]*/
+
+
+      // const ul = document.getElementById("chatUl");
+      // const helloTextH2 = document.getElementById("helloConnectText");
+      // const name = document.getElementById("name");
+      // const connectBtn = document.getElementById("connectBtn");
+      // const disconnectBtn = document.getElementById("disconnectBtn");
+      // const sendBtn = document.getElementById("sendMsgBtn");
+      // const message = document.getElementById("sendMsg");
+      // const toUser = document.getElementById("to");
+
+       //아래는 기능 영역
+       MessageSendBtn.addEventListener("click", () => {
+        send(LoginUser.username, SelectedUser.username, MessageInput.value);
+
+        var data = MessageInput.value;
+
+        // var data =
+        //   // 어떻게 보낼 지 메시지의 형태를 정합니다.
+        //   {
+        //     fromUser: LoginUser.username,
+        //     toUser: SelectedUser.username,
+        //     message: MessageInput.value,
+        //   };
+        chatSave(data, SelectedUser.id);
+        //LKH 인풋박스 엔터치고나면 다시비워주기
+        MessageInput.value = "";
+      });
+
+
+      // sendBtn.addEventListener("click", () => {
+      //   send(toUser.value, message.value);
+      // });
+      // connectBtn.addEventListener("click", function () {
+      //   connect(name.value);
+      // });
+      // disconnectBtn.addEventListener("click", function () {
+      //   disconnect(name.value);
+      // });
+
+
+       //인풋박스 엔터키 이벤트
+       function Enter_Check(){
+      // 엔터키의 코드는 13입니다.
+        if(event.keyCode == 13){
+          if(MessageInput.value.trim() === ""){
+            alert("채팅을 입력해주세요.");
+          }
+          else{
+            MessageSendBtn.click();
+          }
+
+        }
+      }
+
+      //LKH 연결해제 부분
+      // function disconnect(name) {
+      //   if (stompClient === null) {
+      //     alert("연결중이 아닙니다.");
+      //   } else {
+      //     stompClient.disconnect(function () {
+      //       alert("연결해제 되었습니다.");
+      //     });
+      //   }
+      // }
+
+      //Stomp 소켓 연결시키기
+      function connect(name) {
+        console.log(name);
+        var socket = new SockJS("/chat"); // 해당 경로로 websocket 을 요청한다.
+        stompClient = Stomp.over(socket); // WebSocket 위에 Stomp를 얻는다.
+        stompClient.connect({}, function (frame) {
+          console.log(frame);
+          // 연결 성공
+          //helloTextH2.style.display = "inline";
+          stompClient.send("/app/user", {}, JSON.stringify({ name: name })); // 유저를 등록하기 위해 보냄
+          stompClient.subscribe("/topic/user/" + name, function (message) {
+            if (message != null) {
+              var fromUser = JSON.parse(message.body).fromUser;
+              var toUser = JSON.parse(message.body).toUser;
+              var msg = JSON.parse(message.body).message;
+              // addChatLine(id, msg, false);
+              addDirectMessageLine(fromUser, toUser, msg, false);
+            }
           });
-        }
-        // connect();
-        /**
-         * 타켓팅 되는 유저에게 보냅니다.
-         */
-        function send(toUser, message, isMe) {
-          var message =
-            // 어떻게 보낼 지 메시지의 형태를 정합니다.
-            {
-              id: name.value,
-              message: message,
-            };
+        });
+      }
 
-          addChatLine(message.id, message.message, true); // 내가 보내는 내용을 chat 창에 띄웁니다.
-          stompClient.send(
-            "/topic/user/" + toUser,
-            {},
-            JSON.stringify(message)
-          ); // example , 경로가 "topic/user/minshik"인 녀석에게 메시지를 보냅니다.
-          // "topic/user/{id}" 로 매핑된 메소드 실행
+      /**
+       * 타켓팅 되는 유저에게 보냅니다.
+       */
+      function send(fromUser,toUser, message, isMe) {
+        var message =
+          // 어떻게 보낼 지 메시지의 형태를 정합니다.
+          {
+            fromUser: fromUser,
+            toUser: toUser,
+            message: message,
+          };
+
+        //addChatLine(message.id, message.message, true); // 내가 보내는 내용을 chat 창에 띄웁니다.
+        addDirectMessageLine(message.fromUser, message.toUser, message.message, true);
+
+        stompClient.send(
+          "/topic/user/" + toUser,
+          {},
+          JSON.stringify(message)
+        ); // example , 경로가 "topic/user/minshik"인 녀석에게 메시지를 보냅니다.
+        // "topic/user/{id}" 로 매핑된 메소드 실행
+      }
+
+      function addDirectMessageLine(fromUser, toUser, msg, isMe) {
+        var today = new Date();
+        var date = today.toLocaleString();
+
+        var FromUsertags = $("<li class=\"msg-right\"><div class=\"msg-left-sub\"><img src=\"/upload/" + LoginUser.imageUrl + "\" onerror=\"this.src='/images/avatar.jpg'\" /><div class=\"msg-desc\">"+ msg +"</div><small>"+date+"</small></div></li>");
+
+        var ReceivedUsertags = $("<li class=\"msg-left\"><div class=\"msg-left-sub\"><img src=\"/upload/" + SelectedUser.profileImage + "\" onerror=\"this.src='/images/avatar.jpg'\" /><div class=\"msg-desc\">"+ msg +"</div><small>"+date+"</small></div></li>");
+
+
+        if((fromUser === SelectedUser.username && !isMe) || isMe){
+          $('#ChatSection').append(isMe ? FromUsertags : ReceivedUsertags);
         }
 
-        function addChatLine(id, msg, isMe) {
-          const li = document.createElement("li");
-          if (!isMe) {
-            li.innerText = id + " : " + msg;
-          } else {
-            li.innerText = "나 : " + msg;
-          }
-          ul.appendChild(li);
-        }
-      </script>
-    </div>
+        //LKH 채팅시 스크롤 내리기 위한 부분
+        // var ClientSection = document.getElementById("forscrolls");
+        ClientSection.scrollTop = ClientSection.scrollHeight;
+
+       /*  tags.appendTo($('#ChatSection'));
+        document.getElementById('ChatSection').appendChild(tags); */
+
+
+        // document.querySelector("#ChatSection").insertAdjacentHTML("afterend",
+        // "<li id=\"ChatSection\" class=\"msg-right\"><div class=\"msg-left-sub\"><img src=\"/demo/man04.png\" onerror=\"this.src='/images/avatar.jpg'\" /><div class=\"msg-desc\">"+ msg +"</div><small>05:25 am</small></div></li>"
+        // );
+
+      }
+
+      // function addChatLine(id, msg, isMe) {
+      //   const li = document.createElement("li");
+      //   if (!isMe) {
+      //     li.innerText = id + " : " + msg;
+      //   } else {
+      //     li.innerText = "나 : " + msg;
+      //   }
+      //   ul.appendChild(li);
+      // }
+    </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- <script src="/js/thinScrollbar.js"></script> -->

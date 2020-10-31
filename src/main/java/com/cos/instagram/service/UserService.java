@@ -220,4 +220,23 @@ public class UserService {
 	public List<User> 추천유저(int loginUserId) {
 		return userRepository.mRecommendationImage(loginUserId);
 	}
+
+	// DM페이지에서 전체 회원 불러오기
+	@Transactional(readOnly = true)
+	public List<User> 전체회원(int loginUserId) {
+		return userRepository.mAllUserList(loginUserId);
+	}
+
+	// DM페이지에서 특정 회원 검색하기
+	@Transactional(readOnly = true)
+	public List<User> DM회원검색(String username, int id) {
+		username = "%" + username + "%";
+		return userRepository.mSearchUserList(username, id);
+	}
+
+	// DM페이지에서 특정 회원 불러오기
+	@Transactional(readOnly = true)
+	public User 특정회원(int selectedUserId) {
+		return userRepository.mSelectedUser(selectedUserId);
+	}
 }

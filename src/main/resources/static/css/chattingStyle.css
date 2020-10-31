@@ -12,8 +12,10 @@ body {
   margin: 0px;
 }
 .main-section {
-	border:1px solid #e6e6e6;
+  border: 1px solid #e6e6e6;
   margin: 80px auto;
+  margin-bottom: 170px;
+  margin-top: 120px;
   width: 960px;
   background-color: #fff;
   /* margin: auto; */
@@ -50,7 +52,11 @@ body {
   float: left;
 }
 .headRight-sub {
-  padding: 10px 15px 0px 15px;
+  padding: 15px 15px 0px 15px;
+}
+.headRight-sub h3 {
+  font-size: large;
+  font-weight: 700;
 }
 
 .body-section {
@@ -123,6 +129,7 @@ body {
 }
 .left-section .chatList .img img {
   width: 30px;
+  height: 30px;
   border-radius: 50%;
 }
 .left-section .chatList .img i {
@@ -177,7 +184,9 @@ body {
 .message ul li.msg-left img {
   position: absolute;
   width: 40px;
-  bottom: 26px;
+  bottom: 22px;
+  height: 40px;
+  border-radius: 50%;
 }
 .message ul li.msg-left .msg-desc {
   margin-left: 70px;
@@ -207,7 +216,9 @@ body {
   position: absolute;
   width: 40px;
   right: 0px;
-  bottom: 26px;
+  bottom: 22px;
+  height: 40px;
+  border-radius: 50%;
 }
 .message ul li.msg-right .msg-desc {
   margin-right: 70px;
@@ -294,8 +305,17 @@ body {
 
 /* 사이드바 속성 */
 /* 스크롤바없이 스크롤하기 구현 */
+#forscrolls {
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+#forscrolls::-webkit-scrollbar {
+  display: none;
+}
+
 #for-scroll {
-  overflow-y: scroll;
+  overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }

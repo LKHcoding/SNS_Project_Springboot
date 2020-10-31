@@ -1,6 +1,6 @@
 package com.cos.instagram.domain.chatting;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +28,7 @@ public class Chatting {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	private String contentMessage;
+	private String message;
 
 	@ManyToOne
 	@JoinColumn(name = "fromUserId")
@@ -39,6 +39,6 @@ public class Chatting {
 	private User toUser;
 
 	@CreationTimestamp
-	private Timestamp createDate;
+	private Date createDate;
 
 }

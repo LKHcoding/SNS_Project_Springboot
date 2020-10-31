@@ -30,8 +30,18 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	// 비밀번호 변경
 	@Modifying(clearAutomatically = true)
-	@Transactional  // delete 사용시
+	@Transactional // delete 사용시
 	@Query(value = "update user set password = ?2 where username = ?1", nativeQuery = true)
 	int modifyPassword(String username, String password);
 
+	// LKH 로그인된 유저 빼고 전체 회원 불러오기
+	@Query(value = "select * from user where id != ?1", nativeQuery = true)
+	List<User> mAllUserList(int loginUserId);
+
+	// LKH 특정 회원 정보 불러오기
+	@Query(value = "select * from user where id = ?1", nativeQuery = true)
+	User mSelectedUser(int selectedUserId);
+
+	@Query(value = "select * from user where username like ?1 and id != ?2", nativeQuery = true)
+	List<User> mSearchUserList(String username, int id);
 }

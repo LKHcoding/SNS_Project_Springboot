@@ -56,3 +56,8 @@ cos:
 
 file:
   path: D:/Springboot-Instagram-V3/upload/
+
+#LKH Stomp 세션 확인용 로그 찍는부분
+#logging:
+#  level:
+#    web: debug  

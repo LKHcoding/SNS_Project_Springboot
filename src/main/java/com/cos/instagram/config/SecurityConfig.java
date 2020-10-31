@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
 		http.authorizeRequests()
-		.antMatchers("/", "/user/**", "/follow/**", "/image/**")
+		.antMatchers("/", "/user/**", "/follow/**", "/image/**", "/chat","/chat/**")
 		.authenticated()
 		.antMatchers("/admin/**")
 		.access("hasRole('ROLE_ADMIN')")
@@ -61,6 +61,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.logout()
 		.logoutUrl("/auth/logout")
 		.logoutSuccessUrl("/auth/loginForm")
+		.invalidateHttpSession(true)
+		.deleteCookies("JSESSIONID")
 		.and()
 		.oauth2Login()  // oauth 요청 주소가 다 활성화
 		.userInfoEndpoint() //  oauth 로그인 성공 이후 사용자 정보를 가져오기위한 설정을 담당
