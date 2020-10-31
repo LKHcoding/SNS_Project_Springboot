@@ -47,9 +47,17 @@
         <div class="navigation__links">
           <!-- 홈버튼 구현 -->
           <a th:href="|/|" class="navigation__link follow_popup">
-            <i class="xi-home-o xi-x " id="home"></i>
+            <i
+              class="xi-home-o xi-x"
+              id="home"
+              style="font-size: 1.325em !important"
+            ></i>
           </a>
-          <a href="/chat" class="navigation__link follow_popup">
+          <a
+            href="/chat"
+            class="navigation__link follow_popup"
+            style="margin-left: 16px"
+          >
             <i class="fa fa-paper-plane-o"></i>
           </a>
 
@@ -89,9 +97,7 @@
                     <div th:each=" i : ${session.staticNoti}">
                       <li class="explore__user">
                         <div class="explore__content">
-                          <a
-                            th:href="|/user/${i.fromUser.id}|"
-                          >
+                          <a th:href="|/user/${i.fromUser.id}|">
                             <!-- 등록된 프로필 사진 나오도록 구현 -->
                             <img
                               th:src="|/upload/${i.fromUser.profileImage}|"
