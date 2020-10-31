@@ -21,7 +21,9 @@
           <div class="XX1Wc">        
           <!-- master comments -->
           <h1 class="edit-profile__username" th:text="${user.username}" id="kHYQv"></h1>       
-          <button class="sqdOP yWX7d    y3zKF     " type="button">프로필 사진 바꾸기</button>
+          <button class="sqdOP yWX7d    y3zKF     " type="button" data-toggle="modal"
+              data-target="#myModal2"
+              th:styleappend="${respDto.pageHost} ? 'cursor:pointer' : 'cursor: default'">프로필 사진 바꾸기</button>
           </div> 
           </div>
         </header>
