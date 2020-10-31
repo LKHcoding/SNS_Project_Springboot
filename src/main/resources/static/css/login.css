@@ -341,7 +341,17 @@ input[type="submit"] {
     margin-top: -5px;
 }
 
-
+.login__form input[type="button"] {
+  border: 0;
+  color: white;
+  font-weight: 600;
+  background-color: #3897f0;
+  padding: 7px;
+  cursor: pointer;
+  font-size: 14px;
+  height: 31px;
+  margin-top: 15px;
+}
 
 
 

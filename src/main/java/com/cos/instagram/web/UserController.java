@@ -52,8 +52,21 @@ public class UserController {
 	@GetMapping("/user/profileEdit")
 	public String profileEdit(@LoginUserAnnotation LoginUser loginUser, Model model) {
 		User userEntity = userService.회원정보(loginUser);
+
+//		model.addAttribute("respDto", userProfileRespDto);
+		model.addAttribute("respDto",userService.회원프로필(loginUser.getId(), loginUser));
 		model.addAttribute("user", userEntity);
 		return "user/profile-edit";
+	}
+	
+	@PostMapping("/user/profileEditUpload")
+	public String profileEdit(@RequestParam("profileImage") MultipartFile file, int userId,
+			@LoginUserAnnotation LoginUser loginUser) {
+		if (userId == loginUser.getId()) {
+			userService.프로필사진업로드(loginUser, file);
+		}
+
+		return "redirect:/user/profile-edit";
 	}
 
 	@PutMapping("/user")

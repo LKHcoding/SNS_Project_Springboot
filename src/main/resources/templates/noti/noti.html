@@ -10,16 +10,16 @@
         <div th:each=" i : ${notis}">         
           <li class="explore__user">
             <div class="explore__content">
-              <a href="/user/toUser/id" th:href="|/user/${i.toUser.id}|">         
+              <a th:href="|/user/${i.fromUser.id}|">         
                 <!-- 등록된 프로필 사진 나오도록 구현 -->    
                 <img               
-                  th:src="|/upload/${i.toUser.profileImage}|"                  
+                  th:src="|/upload/${i.fromUser.profileImage}|"                  
                   onerror="this.src='/images/avatar.jpg'"
                 />              
               </a>
               <div class="explore__info">
                 <span class="explore__username">
-                  <p th:text="${i.toUser.name}+'이'"></p>
+                  <p th:text="${i.fromUser.name}+'이'"></p>
                   <p th:text="${i.notiType.key}+' 하였습니다.'"></p>              
                 </span>
               </div>

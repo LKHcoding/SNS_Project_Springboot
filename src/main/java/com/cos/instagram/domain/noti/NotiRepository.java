@@ -18,6 +18,6 @@ public interface NotiRepository extends JpaRepository<Noti, Integer>{
 	List<Noti> findByToUserId(int loginUserId);
 	
 	// 최근 5개 알림만 나오도록 기능구현
-	@Query(value = "select * from noti where fromUserId = ?1 order by createDate desc limit  0, 5", nativeQuery = true)
+	@Query(value = "select * from noti where toUserId = ?1 order by createDate desc limit  0, 5;", nativeQuery = true)
 	List<Noti> mNotiForHeader(int loginUserId);
 }

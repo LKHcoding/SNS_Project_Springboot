@@ -1,3 +1,4 @@
+
 #feed {
   display: flex;
   flex-direction: column;
@@ -130,6 +131,8 @@
 
 .feed_all {
   display: flex;
+  float: left;
+  margin-right: 28px;
 }
 
 .recomend_only {
@@ -141,4 +144,11 @@
   z-index: -1;
   position: relative;
   flex-direction: column;
+  max-width: 900px;
+  width: 100%;  
 }
+/* 메인화면 반응형 */
+@media (max-width: 850px) {
+  #feed__s #feed__div {
+    display: none;
+  }

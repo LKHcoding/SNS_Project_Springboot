@@ -13,14 +13,14 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cos.instagram.config.auth.LoginUserAnnotation;
 import com.cos.instagram.config.auth.dto.LoginUser;
+import com.cos.instagram.config.hanlder.ex.MyPasswordCheckException;
 import com.cos.instagram.config.hanlder.ex.MyUserIdNotFoundException;
 import com.cos.instagram.config.hanlder.ex.MyUserInfoExistException;
 import com.cos.instagram.domain.comment.Comment;
@@ -91,28 +91,44 @@ public class UserService {
 	}
 
 	@Transactional(readOnly = false)
-	public void 비밀번호변경(JoinReqDto joinReqDto) throws Exception {
+	public void 비밀번호변경(@LoginUserAnnotation LoginUser loginUser, CharSequence rawPassword, CharSequence newPassword,
+			CharSequence newRePassword, boolean passwordCK, JoinReqDto joinReqDto) throws MyPasswordCheckException {
 
 		String username = joinReqDto.getUsername();
 
 		System.out.println("비밀번호 변경 서비스 진입");
-
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-//			System.out.println("username: " + joinReqDto.getUsername());
-		System.out.println("username: " + auth.getName());
-		System.out.println("암호화 전 비밀번호: " + joinReqDto.getPassword());
+		User user = 회원정보(loginUser);
 
-		// 비밀번호를 암호화하여 joinReqDto객체에 다시 저장
-		String newPassword = encoder.encode(joinReqDto.getPassword());
-		joinReqDto.setPassword(newPassword);
+		passwordCK = encoder.matches(rawPassword, user.getPassword());
+		System.out.println("passwordCK: "+passwordCK);
 
-		System.out.println("암호화 후 비밀번호  : " + joinReqDto.getPassword());
-		// joinReqDto.setPassword(encPassword);
+		if (passwordCK == true) {
 
-		userRepository.modifyPassword(username, newPassword);
-		// userRepository.save(joinReqDto.toEntity());
+			if (newPassword.equals(newRePassword)) {
+				System.out.println("변경 할 비밀번호 일치!");
+
+				joinReqDto.setPassword(newPassword.toString());
+
+				// 비밀번호 성공 시 다시 로그인 세션 객체에 담음
+				JoinReqDto modifyUser = new JoinReqDto();
+				modifyUser.setUsername(joinReqDto.getUsername());
+				System.out.println("username: " + username);
+				System.out.println("암호화 전 비밀번호: " + joinReqDto.getPassword());
+				// 비밀번호를 암호화하여 joinReqDto객체에 다시 저장
+				newPassword = encoder.encode(joinReqDto.getPassword());
+				joinReqDto.setPassword(newPassword.toString());
+				System.out.println("암호화 후 비밀번호  : " + joinReqDto.getPassword());
+				userRepository.modifyPassword(username, newPassword.toString());
+				System.out.println("비밀번호 변경 완료!!");
+			}
+
+		} else {
+			System.out.println("oldPassword and DBpassword matches: "+passwordCK);
+			System.out.println("비밀번호 변경 실패!!");
+			throw new MyPasswordCheckException("현재 비밀번호를 확인해주세요.");
+		}
 
 	}
 

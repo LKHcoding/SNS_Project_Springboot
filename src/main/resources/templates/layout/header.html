@@ -47,7 +47,7 @@
         <div class="navigation__links">
           <!-- 홈버튼 구현 -->
           <a th:href="|/|" class="navigation__link follow_popup">
-            <i class="xi-home-o xi-x"></i>
+            <i class="xi-home-o xi-x " id="home"></i>
           </a>
           <a href="/chat" class="navigation__link follow_popup">
             <i class="fa fa-paper-plane-o"></i>
@@ -90,24 +90,23 @@
                       <li class="explore__user">
                         <div class="explore__content">
                           <a
-                            href="/user/toUser/id"
-                            th:href="|/user/${i.toUser.id}|"
+                            th:href="|/user/${i.fromUser.id}|"
                           >
                             <!-- 등록된 프로필 사진 나오도록 구현 -->
                             <img
-                              th:src="|/upload/${i.toUser.profileImage}|"
+                              th:src="|/upload/${i.fromUser.profileImage}|"
                               onerror="this.src='/images/avatar.jpg'"
                             />
                           </a>
                           <div class="explore__info">
                             <a
-                              th:href="@{|/user/${i.toUser.id}|}"
+                              th:href="@{|/user/${i.fromUser.id}|}"
                               style="text-decoration: none"
                             >
                               <span class="explore__username"></span>
                               <p
-                                style="color: black; font-weight: 500"
-                                th:text="${i.toUser.name}"
+                                style="color: black; font-weight: 600"
+                                th:text="${i.fromUser.name}"
                               ></p>
                             </a>
                             <!-- 회원님의 사진을 좋아합니다. 님이 댓글을 남겼습니다. -->

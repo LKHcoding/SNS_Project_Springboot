@@ -4,89 +4,171 @@
     <nav th:replace="layout/header :: menu"></nav>
     <main id="edit-profile">
       <div class="edit-profile__container u-default-box">
+      <div class="C_9MP">
         <header class="edit-profile__header">
-          <div class="fucker-container">
+         
+          <div class="fucker-container" id="LqNQc">
+            <!--  프로필 사진 클릭 시 모달창 생성 -->
             <img
-              th:src="|/upload/${session.loginUser.imageUrl}|"
-              src="/upload/{{#user.profileImage}}{{user.profileImage}}{{/user.profileImage}}"
+              th:src="|/upload/${respDto.user.profileImage}|"
               onerror="this.src='/images/avatar.jpg'"
+              data-toggle="modal"
+              data-target="#myModal2"
+              th:styleappend="${respDto.pageHost} ? 'cursor:pointer' : 'cursor: default'"
             />
           </div>
+          
+          <div class="XX1Wc">        
           <!-- master comments -->
-          <h1 class="edit-profile__username" th:text="${user.username}">
-            <!-- {{user.username}} -->
-          </h1>
-        </header>
-        <form id="frm" class="edit-profile__form">
-          <input type="hidden" name="id" th:value="${user.id}" />
-          <!-- <input type="hidden" name="id" value="{{user.id}}" /> -->
-          <div class="edit-profile__row">
-            <label class="edit-profile__label" for="name" th:text="이름"
-              >Name</label
-            >
-            <input name="name" type="text" th:value="${user.name}" />
-            <!-- <input name="name" type="text" value="{{user.name}}" /> -->
+          <h1 class="edit-profile__username" th:text="${user.username}" id="kHYQv"></h1>       
+          <button class="sqdOP yWX7d    y3zKF     " type="button" data-toggle="modal"
+              data-target="#myModal2"
+              th:styleappend="${respDto.pageHost} ? 'cursor:pointer' : 'cursor: default'">프로필 사진 바꾸기</button>
+          </div> 
           </div>
+        </header>
+        
+        <form id="frm" class="edit-profile__form">
+        
+          <input type="hidden" name="id" th:value="${user.id}" />        
+          <div class="edit-profile__row">
+            <label class="edit-profile__label" for="name" th:text="이름">Name</label>            
+            <input name="name" type="text" th:value="${user.name}" class="ada5V"/>
+            <div></div>
+         	<div class="_7UhW9  PIoXz       MMzan   _0PwGv         uL8Hv         ">
+         	<p>사람들이 이름, 별명 또는 비즈니스 이름 등 회원님의 알려진 이름을 사용하여 회원님의 계정을 찾을 수 있도록 도와주세요.</p><br>
+         	<p>이름은 14일 안에 두 번만 변경할 수 있습니다.</p>
+         	</div>
+          </div>
+          
           <div class="edit-profile__row">
             <label
               class="edit-profile__label"
               for="username"
-              th:text="|사용자 이름|"
-              >Username</label
-            >
-            <input type="text" th:value="${user.username}" readonly />
-            <!-- <input type="text" value="{{user.username}}" readonly /> -->
+              th:text="|사용자 이름|">Username</label>
+            <input type="text" th:value="${user.username}" readonly class="ada5V"/>
+            <div></div>
+            <div class="_7UhW9  PIoXz       MMzan   _0PwGv         uL8Hv         ">
+            <p>대부분의 경우 14일 이내에 사용자 이름을 변경할 수 있습니다.</p>
+            </div>            
           </div>
+          
           <div class="edit-profile__row">
-            <label class="edit-profile__label" for="website" th:text="웹사이트"
-              >Website</label
-            >
-            <input name="website" type="text" th:value="${user.website}" />
-            <!-- value="{{#user.website}}{{user.website}}{{/user.website}}" -->
+            <label class="edit-profile__label" for="website" th:text="웹사이트">Website</label>
+            <input name="website" type="text" th:value="${user.website}" class="ada5V" />            
           </div>
+          
           <div class="edit-profile__row">
-            <label class="edit-profile__label" for="bio" th:text="소개"
-              >Bio</label
-            >
-            <input name="bio" type="text" th:value="${user.bio}" />
+            <label class="edit-profile__label" for="bio" th:text="소개">Bio</label>
+            <textarea name="bio" type="text" th:value="${user.bio}" id="p7vTm"></textarea>
+            <div></div>
+            <div class="_7UhW9  PIoXz       MMzan   _0PwGv         uL8Hv         ">
+            <p>개인정보</p><br>
+            <p>비즈니스나 반려동물 등에 사용된 계정인 경우에도 회원님의 개인 정보를 입력하세요. 공개 프로필에는 포함되지 않습니다.</p>
           </div>
+          </div>
+          
           <div class="edit-profile__row">
-            <label class="edit-profile__label" for="email" th:text="이메일"
-              >Email</label
-            >
-            <input type="email" th:value="${user.email}" readonly />
-            <!-- <input type="email" value="{{user.email}}" readonly /> -->
+            <label class="edit-profile__label" for="email" th:text="이메일">Email</label>         
+            <input type="email" class="ada5V" th:value="${user.email}"/>           
           </div>
+          
           <div class="edit-profile__row">
             <label
               class="edit-profile__label"
               for="phone-number"
-              th:text="전화번호"
-              >Phone Number</label
-            >
-            <input name="phone" type="text" th:value="${user.phone}" />
+              th:text="전화번호">Phone Number</label>
+            <input name="phone" type="text" th:value="${user.phone}" class="ada5V" />
           </div>
+          
           <div class="edit-profile__row">
-            <label class="edit-profile__label" for="gender" th:text="성별"
-              >Gender</label
-            >
-            <input name="gender" type="text" th:value="${user.gender}" />
+            <label class="edit-profile__label" for="gender" th:text="성별">Gender</label>
+            <input name="gender" type="text" th:value="${user.gender}" class="ada5V"/>
           </div>
+          
           <div class="edit-profile__row">
             <span></span>
+            <div class="fi8zo">
             <button
               th:onclick="|userUpdate(${user.id})|"
               class="profile_follow_btn"
               type="button"
-              th:text="|프로필 수정|"
-            >
-              회원수정
+              th:text="|제출|">
+            	회원수정
             </button>
-            <!-- <button onclick="userUpdate({{user.id}})" class="profile_follow_btn" type="button"> -->
+            </div>            
           </div>
         </form>
       </div>
     </main>
+        <!-- 프로필이미지 클릭모달창 -->
+    <!-- The Modal -->
+    <div class="modal fade" id="myModal2" th:if="${respDto.pageHost}">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <!-- <div class="modal-header">
+            <h4 class="modal-title">Modal Heading</h4>
+            <button type="button" class="close" data-dismiss="modal">×</button>
+          </div> -->
+
+          <!-- Modal body -->
+          <div class="modal-body for__profile__modal">프로필 사진 바꾸기</div>
+          <form
+            id="frm_profile_img"
+            action="/user/profileUpload"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <input type="file" name="profileImage" style="display: none" />
+            <input type="hidden" name="userId" th:value="${respDto.user.id}" />
+          </form>
+          <a
+            class="modal-body"
+            style="color: dodgerblue; font-weight: 600"
+            id="profile_image"
+          >
+            사진 업로드
+          </a>
+          <a
+            class="modal-body"
+            style="color: red; font-weight: 600"
+            id="profile__image__delete"
+          >
+            현재 사진 삭제
+          </a>
+          <a class="modal-body" href="" data-dismiss="modal"> 취소 </a>
+
+          <!-- Modal footer -->
+          <!-- <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+    <!-- 프로필이미지 클릭모달창 -->
+    <script>
+      $(function () {
+        //이미지 클릭시 업로드창 실행
+        $("#profile_image").click(function () {
+          $("input[name='profileImage']").click();
+        });
+        //업로드 파일체인지가 됬을경우 실행되는 이벤트  form태그에 fileProfile은 hidden으로 넣어줌
+        $("input[name='profileImage']").change(function (e) {
+          $("#frm_profile_img").submit();
+        });
+        $("#profile__image__delete").click(function () {
+          $("#frm_profile_img").submit();
+        });
+      });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="/js/profile.js"></script>
     <footer th:replace="layout/footer :: footer"></footer>
   </body>

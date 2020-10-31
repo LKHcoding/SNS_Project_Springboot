@@ -12,6 +12,7 @@ a {
 main {
   margin: 60px 0;
   animation: .5s popIn ease-out;
+  padding-top: 15px;
 }
 
 @keyframes popIn {

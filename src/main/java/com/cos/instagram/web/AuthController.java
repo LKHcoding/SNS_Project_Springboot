@@ -4,8 +4,6 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.MediaType;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,46 +44,24 @@ public class AuthController {
 		return "redirect:/auth/loginForm";
 	}
 
+	// 비밀번호 변경 진입
 	@GetMapping("/auth/pwChange")
-	public String pwChange(@LoginUserAnnotation LoginUser loginUser, Model model) {
+	public void pwChange(String oldPassword, boolean passwordCK, @LoginUserAnnotation LoginUser loginUser, Model model) {
 		log.info("/auth/pwChange 진입 ");
 		User userEntity = userService.회원정보(loginUser);
 		model.addAttribute("user", userEntity);
 
-		return "/auth/pwChange";
 	}
 
 	// 비밀번호 변경 요청
-	@PostMapping(value = "/auth/pwChange", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-	public String pwChange(@LoginUserAnnotation LoginUser loginUser, String oldPassword, String newPassword,
-			String newRePassword, JoinReqDto joinReqDto, HttpSession session, Model model) throws Exception {
-
+	@PostMapping("/auth/pwChange")
+	public String pwChange(@LoginUserAnnotation LoginUser loginUser, CharSequence oldPassword, CharSequence newPassword,
+			CharSequence newRePassword, boolean passwordCK, JoinReqDto joinReqDto, HttpSession session, Model model) {
+		String result = null;
 		log.info("비밀번호 변경 요청 발생!!", joinReqDto.toString());
 
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		userService.비밀번호변경(loginUser, oldPassword, newPassword, newRePassword, passwordCK, joinReqDto);
 
-		User user = userService.회원정보(loginUser);
-
-		if (encoder.matches(oldPassword, user.getPassword())==true) {
-			System.out.println("oldPassword and DBpassword matches: "+encoder.matches(oldPassword, user.getPassword()));
-
-			if (newPassword.equals(newRePassword)) {
-				System.out.println("변경 할 비밀번호 일치!");
-
-				joinReqDto.setPassword(newPassword);
-
-				userService.비밀번호변경(joinReqDto);
-				// 비밀번호 성공 시 다시 로그인 세션 객체에 담음
-				JoinReqDto modifyUser = new JoinReqDto();
-				modifyUser.setUsername(joinReqDto.getUsername());
-
-				System.out.println("비밀번호 변경 완료!!");
-			}
-		} else {
-			System.out.println("oldPassword and DBpassword matches: "+encoder.matches(oldPassword, user.getPassword()));
-			System.out.println("비밀번호 변경 실패!!");
-		}
-
-		return "redirect:/";
+		return "redirect:/auth/logout";
 	}
 }

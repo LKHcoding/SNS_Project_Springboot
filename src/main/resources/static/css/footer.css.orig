@@ -1,4 +1,4 @@
-﻿footer {
+footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10,7 +10,10 @@
   font-size: 12px;
   flex-wrap: wrap;
   margin-bottom: 25px;
+<<<<<<< HEAD
+=======
   padding : 0px 10px;
+>>>>>>> dfa9c54e3c1a921f74ec928871fd299bef375076
 }
 
 footer .footer__list {

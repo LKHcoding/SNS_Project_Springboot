@@ -1,5 +1,4 @@
-﻿<!-- {{>layout/header}} -->
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html
   xmlns:th="http://www.thymeleaf.org"
   xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
@@ -7,8 +6,8 @@
   <head th:replace="layout/header :: header"></head>
   <body>
     <nav th:replace="layout/header :: menu"></nav>
-    <main id="feed">
-      <div class="feed_all">
+    <main id="feed">         
+      <div class="feed_all" id="feed__s">
         <div class="feed_only">
           <div
             id="forrefresh"
@@ -174,7 +173,7 @@
           </div>
           <!-- {{/images}} -->
         </div>
-        <div class="sticky_side">
+        <div class="sticky_side" id="feed__div">
           <div class="fixed_side">
             <div class="side">
               <div>
@@ -237,7 +236,7 @@
               </div>
             </div>
             <div>
-              <footer th:replace="layout/sidefooter :: sidefooter"></footer>
+              <footer th:replace="layout/sidefooter :: sidefooter"></footer>              
             </div>
           </div>
         </div>
