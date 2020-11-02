@@ -93,33 +93,36 @@
                     </div>
                     <!--  {{/tags}} -->
                   </div>
-                  <ul class="photo__comments">
-                    <div th:each="comments : ${images.comments}">
-                      <!-- {{#comments}} -->
-                      <li class="photo__comment">
-                        <span
-                          class="photo__comment-author"
-                          th:text="${comments.user.username}"
-                          >{{user.username}}</span
-                        >
-                        <span
-                          style="font-size: 12px"
-                          th:text="${comments.content}"
-                          >{{content}}</span
-                        >
-                        <span th:if="${comments.commentHost} == true">
-                          <!-- {{#commentHost}} -->
-                          <!-- <i onclick="commentDelete({{id}});" class="fa fa-trash"></i> -->
-                          <i
-                            th:onclick="|commentDelete('${comments.id}');|"
-                            class="fa fa-trash"
-                          ></i>
-                          <!-- {{/commentHost}} -->
-                        </span>
-                      </li>
-                      <!-- {{/comments}} -->
-                    </div>
-                  </ul>
+                  <div style="height: 270px">
+                    <ul class="photo__comments">
+                      <div th:each="comments : ${images.comments}">
+                        <!-- {{#comments}} -->
+                        <li class="photo__comment">
+                          <span
+                            class="photo__comment-author"
+                            th:text="${comments.user.username}"
+                            >{{user.username}}</span
+                          >
+                          <span
+                            style="font-size: 12px"
+                            th:text="${comments.content}"
+                            >{{content}}</span
+                          >
+                          <span th:if="${comments.commentHost} == true">
+                            <!-- {{#commentHost}} -->
+                            <!-- <i onclick="commentDelete({{id}});" class="fa fa-trash"></i> -->
+                            <i
+                              th:onclick="|commentDelete('${comments.id}');|"
+                              class="fa fa-trash trash__attribute"
+                            >
+                            </i>
+                            <!-- {{/commentHost}} -->
+                          </span>
+                        </li>
+                        <!-- {{/comments}} -->
+                      </div>
+                    </ul>
+                  </div>
                 </div>
                 <!-- 하단영역시작 -->
                 <div class="contentBox-bottomSection">
@@ -150,7 +153,7 @@
                         <!-- <a href="/user/{{loginUser.id}}" -->
                         <!-- <a th:href="|/user/${session.loginUser.id}|" -->
                         <a th:href="|/image/${images.id}|"
-                          ><i style="color:black" class="fa fa-comment-o"></i
+                          ><i style="color: black" class="fa fa-comment-o"></i
                         ></a>
                         <!--  {{! https://fontawesome.com/icons?d=gallery&q=user 아이콘
                 주기}} -->

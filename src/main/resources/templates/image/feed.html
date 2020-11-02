@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html
   xmlns:th="http://www.thymeleaf.org"
   xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
@@ -6,7 +6,7 @@
   <head th:replace="layout/header :: header"></head>
   <body>
     <nav th:replace="layout/header :: menu"></nav>
-    <main id="feed">         
+    <main id="feed">
       <div class="feed_all" id="feed__s">
         <div class="feed_only">
           <div
@@ -127,7 +127,7 @@
                         <!-- <i onclick="commentDelete({{id}});" class="fa fa-trash"></i> -->
                         <i
                           th:onclick="|commentDelete('${comments.id}');|"
-                          class="fa fa-trash"
+                          class="fa fa-trash feed__trash__attribute"
                         ></i>
                         <!-- {{/commentHost}} -->
                       </span>
@@ -236,7 +236,7 @@
               </div>
             </div>
             <div>
-              <footer th:replace="layout/sidefooter :: sidefooter"></footer>              
+              <footer th:replace="layout/sidefooter :: sidefooter"></footer>
             </div>
           </div>
         </div>
@@ -250,5 +250,6 @@
     </script> -->
     <script src="/js/comment.js"></script>
     <script src="/js/like.js"></script>
+    <script src="/js/board.js"></script>
   </body>
 </html>

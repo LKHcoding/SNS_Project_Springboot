@@ -152,3 +152,8 @@
   #feed__s #feed__div {
     display: none;
   }
+}
+
+.feed__trash__attribute {
+  color: lightsteelblue;
+}
