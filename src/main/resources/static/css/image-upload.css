@@ -96,6 +96,7 @@ input[type="submit"] {
 }
 .img_wrap img {
   max-width: 100%;
+  width: 268px;
 }
 
 .image_upload_textarea {
