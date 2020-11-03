@@ -176,11 +176,20 @@
 
       //아래는 기능 영역
        MessageSendBtn.addEventListener("click", () => {
-        send(LoginUser.username, SelectedUser.username, MessageInput.value, true, "message");
-        var data = MessageInput.value;
-        chatSave(data, SelectedUser.id);
-        //LKH 인풋박스 엔터치고나면 다시비워주기
-        MessageInput.value = "";
+        if(MessageInput.value.trim() === ""){
+            alert("채팅을 입력해주세요.");
+        }
+        else if(SelectedUser === null){
+            alert("대화 상대를 선택해주세요.")
+        }
+        else{
+          send(LoginUser.username, SelectedUser.username, MessageInput.value, true, "message");
+          var data = MessageInput.value;
+          chatSave(data, SelectedUser.id);
+          //LKH 인풋박스 엔터치고나면 다시비워주기
+          MessageInput.value = "";
+        }
+
       });
       // disconnectBtn.addEventListener("click", function () {
       //   disconnect(name.value);
@@ -191,16 +200,7 @@
        function Enter_Check(){
       // 엔터키의 코드는 13입니다.
         if(event.keyCode == 13){
-          if(MessageInput.value.trim() === ""){
-            alert("채팅을 입력해주세요.");
-          }
-          else if(SelectedUser === null){
-            alert("대화 상대를 선택해주세요.")
-          }
-          else{
             MessageSendBtn.click();
-          }
-
         }
       }
 

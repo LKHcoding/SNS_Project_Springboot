@@ -45,6 +45,7 @@
   grid-template-columns: 1fr 1fr 1fr;
   justify-content: center;
   grid-gap: 10px;
+  margin-bottom:145px;
 }
 
 /* userProfileUpload 수정 */
