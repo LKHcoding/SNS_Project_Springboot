@@ -107,6 +107,8 @@ input[type="submit"] {
   background-color: transparent;
   border: 1px solid #00000030;
   padding: 8px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   resize: none;
 }
 
