@@ -8,7 +8,9 @@ body {
 }
 .container {
   width: 700px;
-  margin: 0 auto;
+  margin: auto;
+  margin-top: 130px;
+  margin-bottom: 130px;
   text-align: center;
 }
 .image {
@@ -96,6 +98,7 @@ input[type="submit"] {
 }
 .img_wrap img {
   max-width: 100%;
+  width: 268px;
 }
 
 .image_upload_textarea {
@@ -104,5 +107,16 @@ input[type="submit"] {
   background-color: transparent;
   border: 1px solid #00000030;
   padding: 8px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   resize: none;
+}
+
+.upload__form {
+  margin: 0px;
+  padding: 3px;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }

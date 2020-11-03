@@ -1,10 +1,19 @@
+#e_profile {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1000px;
+  font-size: 16px;
+  padding-top: 30px;
+  margin-bottom: 500px;
+}
+
 #explore {
   display: flex;
   justify-content: center;
 }
 
 .explore__users {
-	
 }
 
 .explore__users .explore__user {
@@ -13,12 +22,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(0, 0, 0, .0975);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
 }
 
 .explore__users .explore__user:last-child {
   border: 0;
-  border-bottom: 1px solid rgba(0, 0, 0, .0975);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
 }
 
 .explore__user .explore__content {
@@ -56,9 +65,8 @@
   }
 }
 
-@media (max-width: 735px)
-.explore__user {
-    border-bottom: 0;
+@media (max-width: 735px) .explore__user {
+  border-bottom: 0;
 }
 
 .explore__info .explore__username {
@@ -81,7 +89,7 @@
   padding: 5px 10px;
   font-size: 14px;
   cursor: pointer;
-  transition: all .5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .explore__user .following_btn {
@@ -93,7 +101,7 @@
   padding: 5px 10px;
   font-size: 14px;
   cursor: pointer;
-  transition: all .5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
 .explore__user button:focus {
@@ -103,6 +111,3 @@
 .explore__user button:active {
   opacity: 0.5;
 }
-
-
-

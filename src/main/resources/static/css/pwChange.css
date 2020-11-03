@@ -1,0 +1,371 @@
+#pwChange {
+  width: 100%;
+  margin: 60px auto;
+  display: flex;
+  align-items: center;
+  /* justify-content: space-between; */
+  max-width: 900px;
+  flex-wrap: nowrap;
+}
+
+#pwChange .pwChange__column {
+  width: 420px;
+  height: 590px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  margin-top: 40px;
+  margin-bottom: 115px;
+}
+
+#pwChange .pwChange__column img {
+  max-width: 500px;
+}
+
+/* ---로그인화면 이미지 겹친다음에 부드럽게 넘기는 소스 시작--- */
+#pwChange .pwChange__column .changing__image {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 1;
+  animation: image1 30s linear infinite;
+}
+@keyframes image1 {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+#pwChange .pwChange__column .changing__image2 {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 2;
+  animation: image2 30s linear infinite;
+}
+@keyframes image2 {
+  0% {
+    opacity: 1;
+  }
+  76% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+#pwChange .pwChange__column .changing__image3 {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 3;
+  animation: image3 30s linear infinite;
+}
+@keyframes image3 {
+  0% {
+    opacity: 1;
+  }
+  56% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+#pwChange .pwChange__column .changing__image4 {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 4;
+  animation: image4 30s linear infinite;
+}
+@keyframes image4 {
+  0% {
+    opacity: 1;
+  }
+  36% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+#pwChange .pwChange__column .changing__image5 {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 5;
+  animation: image5 30s linear infinite;
+}
+@keyframes image5 {
+  0% {
+    opacity: 1;
+  }
+  16% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0;
+  }
+  96% {
+    opacity: 0;
+  }
+}
+/* ---로그인화면 이미지 겹친다음에 부드럽게 넘기는 소스 끝--- */
+
+@media (max-width: 850px) {
+  #pwChange #disable__div {
+    display: none;
+  }
+
+  #pwChange .pwChange__column {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+  }
+  #pwChange .pwChange__column #main__pwChangebox {
+    width: 300px;
+    margin-top: 45px;
+  }
+  #pwChange .pwChange__column #bottom__pwChangebox {
+    width: 380px;
+  }
+}
+
+.pwChange__column .pwChange__box {
+  background: white;
+  border: 1px solid #e6e6e6;
+  margin-bottom: 0px;
+  margin-top: 10px;
+  width: 280px;
+}
+
+.pwChange__column .pwChange__box:nth-child(2) {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  width: 360px;
+  height: 25px;
+}
+
+.pwChange__column .pwChange__t-box {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  margin: 0px;
+}
+
+.pwChange__appstores {
+  padding: 0px;
+  margin: 0px;
+}
+
+.pwChange__appstores .pwChange__appstore {
+  height: 40px;
+  margin-top: 20px;
+}
+
+.pwChange__box .pwChange__blue-link {
+  color: #3897f0;
+}
+
+.pwChange__column .pwChange__box:first-child {
+  padding: 25px 40px 25px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 450px;
+  width: 350px;
+}
+
+.pwChange__box .pwChange__form {
+  margin-top: 30px;
+  width: 100%;
+}
+
+.pwChange__form input:not(submit) {
+  background-color: #fafafa;
+  height: 40px;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  padding: 10px 7px 0px 7px;
+  margin-bottom: 7px;
+  font-size: 14px;
+  border: 1px solid #efefef;
+  border-radius: 3px;
+}
+
+/* 여기서부터 코딩 시작 */
+
+.pwChange__form input:focus {
+  outline: none;
+  border-color: #999;
+}
+
+.group {
+  position: relative;
+}
+/* LABEL ======================================= */
+.pwChange__form .group label {
+  color: #999;
+  font-size: 13px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 14px;
+  transition: 0.2s ease all;
+}
+/* active state */
+.group input:focus ~ label,
+.group input:valid ~ label {
+  top: 4px;
+  left: 7px;
+  font-size: 10px;
+  color: #5264ae;
+}
+
+.pwChange__form input[type="submit"] {
+  border: 0;
+  color: white;
+  font-weight: 600;
+  background-color: #3897f0;
+  padding: 7px;
+  cursor: pointer;
+  font-size: 14px;
+  height: 31px;
+  margin-top: 15px;
+}
+
+input[type="submit"] {
+  border: 0;
+  color: white;
+  font-weight: 600;
+  background-color: red;
+  padding: 7px;
+}
+
+.pwChange__box .pwChange__divider {
+  margin-top: 10px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #999;
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
+.pwChange__box .pwChange__divider2 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #999;
+  font-size: 16px;
+  width: 100%;
+  text-align: center;
+  line-height: 130%;
+}
+
+.pwChange__box .pwChange__divider:before {
+  content: "";
+  width: 40%;
+  height: 1px;
+  background-color: #999;
+  position: absolute;
+  top: 7px;
+  left: 0px;
+}
+
+.pwChange__box .pwChange__divider:after {
+  content: "";
+  width: 40%;
+  height: 1px;
+  background-color: #999;
+  position: absolute;
+  top: 7px;
+  right: 0px;
+}
+
+.pwChange__box .pwChange__fb-link {
+  margin-bottom: 20px;
+}
+
+.pwChange__box .pwChange__small-link {
+  font-size: 12px;
+}
+.pwChange__fb-link,
+.pwChange__small-link {
+  color: #385185;
+}
+/*
+  .fixed {
+    width: 30px;
+    height: 30px;
+    background: red;
+    position: fixed;
+    top: 30px;
+    right: 0;
+    width: 100%;
+  }*/
+
+#pwChange #for__pwChange {
+  width: 100%;
+}
+
+#eiCW- {
+  color: #ed4956;
+  color: rgba(var(--i30, 237, 73, 86), 1);
+  margin: 10px 10px;
+  margin-bottom: 15px;
+  margin-top: -5px;
+}
+
+.pwChange__form input[type="button"] {
+  border: 0;
+  color: white;
+  font-weight: 600;
+  background-color: #3897f0;
+  padding: 7px;
+  cursor: pointer;
+  font-size: 14px;
+  height: 31px;
+  margin-top: 15px;
+}
+
+.pwChange__pwForget__link {
+  text-decoration: none;
+}
+
+.pwChange__pwForget {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: cornflowerblue;
+  font-size: 16px;
+  width: 100%;
+  text-align: center;
+  line-height: 130%;
+}

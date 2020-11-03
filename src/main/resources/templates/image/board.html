@@ -9,7 +9,7 @@
     <!-- feed에서 메시지 아이콘 눌렀을때 이동 될 화면 -->
     <nav th:replace="layout/header :: menu"></nav>
 
-    <main id="feed">
+    <main id="feed" class="margin__bottom">
       <!-- <img th:src="@{|/upload/${board.imageUrl}|}" />
       test -->
 
@@ -61,7 +61,7 @@
                   </a>
                 </div>
               </header>
-
+              <div class="for-devide"></div>
               <div class="photo__info">
                 <div class="content-padding">
                   <div
@@ -93,33 +93,36 @@
                     </div>
                     <!--  {{/tags}} -->
                   </div>
-                  <ul class="photo__comments">
-                    <div th:each="comments : ${images.comments}">
-                      <!-- {{#comments}} -->
-                      <li class="photo__comment">
-                        <span
-                          class="photo__comment-author"
-                          th:text="${comments.user.username}"
-                          >{{user.username}}</span
-                        >
-                        <span
-                          style="font-size: 12px"
-                          th:text="${comments.content}"
-                          >{{content}}</span
-                        >
-                        <span th:if="${comments.commentHost} == true">
-                          <!-- {{#commentHost}} -->
-                          <!-- <i onclick="commentDelete({{id}});" class="fa fa-trash"></i> -->
-                          <i
-                            th:onclick="|commentDelete('${comments.id}');|"
-                            class="fa fa-trash"
-                          ></i>
-                          <!-- {{/commentHost}} -->
-                        </span>
-                      </li>
-                      <!-- {{/comments}} -->
-                    </div>
-                  </ul>
+                  <div class="comments__ul__div">
+                    <ul class="photo__comments">
+                      <div th:each="comments : ${images.comments}">
+                        <!-- {{#comments}} -->
+                        <li class="photo__comment">
+                          <span
+                            class="photo__comment-author"
+                            th:text="${comments.user.username}"
+                            >{{user.username}}</span
+                          >
+                          <span
+                            style="font-size: 12px"
+                            th:text="${comments.content}"
+                            >{{content}}</span
+                          >
+                          <span th:if="${comments.commentHost} == true">
+                            <!-- {{#commentHost}} -->
+                            <!-- <i onclick="commentDelete({{id}});" class="fa fa-trash"></i> -->
+                            <i
+                              th:onclick="|commentDelete('${comments.id}');|"
+                              class="fa fa-trash trash__attribute"
+                            >
+                            </i>
+                            <!-- {{/commentHost}} -->
+                          </span>
+                        </li>
+                        <!-- {{/comments}} -->
+                      </div>
+                    </ul>
+                  </div>
                 </div>
                 <!-- 하단영역시작 -->
                 <div class="contentBox-bottomSection">
@@ -173,7 +176,7 @@
                     >
                   </div>
 
-                  <div class="for-devide"></div>
+                  <div class="for-devide1"></div>
 
                   <div class="photo__add-comment-container">
                     <!-- <form id="frm-{{id}}" style="width: 100%"> -->

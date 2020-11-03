@@ -15,22 +15,22 @@
     />
     <link rel="shortcut icon" href="/images/favicon.ico" />
     <link rel="stylesheet" href="/css/styles.css" />
-    <head th:replace="layout/header :: header">
+    <head th:replace="layout/header :: header"> </head>
   </head>
   <body>
     <script src="/js/pwChange.js"></script>
     <nav th:replace="layout/header :: menu"></nav>
-    <main id="login">
-      <div class="login__column" id="for__join">
-        <div class="login__box">
+    <main id="pwChange">
+      <div class="pwChange__column" id="for__pwChange">
+        <div class="pwChange__box">
           <img src="/images/loginLogo.png" />
-          <span class="login__divider2"> 비밀번호 변경 </span>
+          <span class="pwChange__divider2"> 비밀번호 변경 </span>
           <form
             name="pwChange"
             id="newPasswrod"
             action="/auth/pwChange"
             method="post"
-            class="login__form"
+            class="pwChange__form"
           >
             <!-- <input type="text" name="id" th:value="${id}" th:text="${id}" /> -->
             <div class="group">
@@ -73,7 +73,10 @@
               th:value="|비밀번호 변경|"
             />
           </form>
-          <span class="login__divider2"> </span>
+          <span class="pwChange__divider2"> </span>
+          <a href="#" style="text-decoration: none">
+            <span class="pwChange__pwForget"> 비밀번호를 잊으셨나요? </span>
+          </a>
         </div>
       </div>
     </main>

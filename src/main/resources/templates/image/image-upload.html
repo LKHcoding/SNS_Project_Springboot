@@ -30,7 +30,12 @@
           </div>
           <!-- 섬네일은 아래 주소 참고 -->
           <!-- https://medium.com/@asadise/create-thumbnail-for-an-image-in-spring-framework-49776c873ea1 -->
-          <form action="/image" method="post" enctype="multipart/form-data">
+          <form
+            class="upload__form"
+            action="/image"
+            method="post"
+            enctype="multipart/form-data"
+          >
             <table class="table">
               <tr>
                 <td>
@@ -66,7 +71,14 @@
                 </td>
               </tr>
               <tr>
-                <td><input type="text" name="tags" placeholder="#태그" /></td>
+                <td>
+                  <input
+                    type="text"
+                    name="tags"
+                    placeholder="#태그"
+                    style="margin-top: 10px"
+                  />
+                </td>
               </tr>
             </table>
             <input type="submit" value="업로드" />

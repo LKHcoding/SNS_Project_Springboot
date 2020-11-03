@@ -25,13 +25,21 @@
   border-top: 1px solid rgba(0, 0, 0, 0.0975);
   width: 100%;
   margin: 5px 0px;
+  margin-top: 1px;
 }
+
+.for-devide1 {
+  border-top: 1px solid rgba(0, 0, 0, 0.0975);
+  width: 100%;
+  margin: 9px 0px;
+}
+
 .photo__comments {
   height: 100%;
   overflow-y: scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
-  max-height: 202px;
+  max-height: 316px;
 }
 .photo__comments::-webkit-scrollbar {
   display: none;
@@ -54,19 +62,36 @@
   padding: 0px 12px;
 }
 .photo_post_image img {
+  display: flex;
+  align-items: center;
   height: fit-content;
+  /* max-height: 542px; */
   max-height: 600px;
-  min-height: 457px;
+  min-height: 600px;
+  /* min-height: 457px; */
 }
 .content-padding {
   padding: 17px;
-  padding-bottom: 0px;
+  /* padding-bottom: 80px; */
 }
 .photo__header {
   display: flex;
 }
-.board-img-box img{
+.board-img-box img {
   width: 15px !important;
   height: 15px !important;
-  margin-right:0px;
+  margin-right: 0px;
+}
+
+.trash__attribute {
+  color: lightsteelblue;
+}
+
+.comments__ul__div {
+  min-height: 316px;
+  max-height: 328px;
+}
+
+.margin__bottom {
+  margin-bottom: 200px;
 }
