@@ -1,4 +1,4 @@
-function commentSend(imageId) {
+function commentSend(imageId, imageUsername, imageUserId) {
 	let content = $("#content-"+imageId).val();
 
 	if (content == "" || content == null) {
@@ -19,6 +19,7 @@ function commentSend(imageId) {
 		return res.text();
 	}).then(function (res) {
 		//alert("댓글 작성 성공");
+		 send(LoginUser.username, imageUsername, "님이 회원님의 게시물에 댓글을 달았습니다", true, "comment", imageUserId, imageId);
 		 location.reload();
 		 /*$("#forrefresh").load(window.location.href + "#forrefresh .full-image");*/
 	});

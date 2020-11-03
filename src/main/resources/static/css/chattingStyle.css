@@ -55,7 +55,7 @@ body {
   padding: 15px 15px 0px 15px;
 }
 .headRight-sub h3 {
-  font-size: large;
+  font-size: 20px;
   font-weight: 700;
 }
 
@@ -80,9 +80,13 @@ body {
   margin: 0px;
   list-style: none;
 }
+
 .left-section ul li {
   padding: 15px 0px;
   cursor: pointer;
+}
+.left-section ul li:hover {
+  background: rgb(237, 246, 255);
 }
 .left-section ul li.active {
   background: #009ef7;
@@ -146,8 +150,11 @@ body {
   position: relative;
 }
 .left-section .chatList .desc h5 {
-  margin-top: 6px;
+  margin-top: 7px;
+  margin-bottom: 2px;
   line-height: 5px;
+  font-size: 15px;
+  font-weight: 500;
 }
 .left-section .chatList .desc .time {
   position: absolute;
@@ -269,11 +276,13 @@ body {
 .right-section-bottom input {
   border: 0px;
   padding: 8px 5px;
+  margin-top: 5px;
   width: calc(100% - 150px);
 }
 .right-section-bottom .btn-send {
   border: 0px;
   padding: 8px 10px;
+  margin-top: 5px;
   float: right;
   margin-right: 30px;
   color: #009ef7;

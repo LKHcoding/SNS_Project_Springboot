@@ -141,7 +141,7 @@
                         <i
                           th:unless="${images.likeState == true}"
                           class="fa fa-heart-o heart"
-                          th:onclick="|like(${images.id});|"
+                          th:onclick="like([[${images.id}]], [[${images.user.username}]], [[${session.loginUser.id}]]);"
                         ></i>
                         <!--  {{/likeState}} -->
                       </span>
@@ -150,7 +150,7 @@
                         <!-- <a href="/user/{{loginUser.id}}" -->
                         <!-- <a th:href="|/user/${session.loginUser.id}|" -->
                         <a th:href="|/image/${images.id}|"
-                          ><i style="color:black" class="fa fa-comment-o"></i
+                          ><i style="color: black" class="fa fa-comment-o"></i
                         ></a>
                         <!--  {{! https://fontawesome.com/icons?d=gallery&q=user 아이콘
                 주기}} -->
@@ -195,7 +195,7 @@
                       ></textarea>
                     </form>
                     <i
-                      th:onclick="|commentSend('${images.id}');|"
+                      th:onclick="commentSend([[${images.id}]],[[${images.user.username}]], [[${session.loginUser.id}]]);"
                       class="comment-btn"
                       >게시</i
                     >
