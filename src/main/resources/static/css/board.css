@@ -91,3 +91,7 @@
   min-height: 316px;
   max-height: 328px;
 }
+
+.margin__bottom {
+  margin-bottom: 200px;
+}
