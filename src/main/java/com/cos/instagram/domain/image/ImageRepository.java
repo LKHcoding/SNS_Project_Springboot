@@ -17,6 +17,10 @@ public interface ImageRepository extends JpaRepository<Image, Integer> {
 	@Query(value = "select * from image where userId = ?1 or userId in (select toUserId from follow where fromUserId = ?1) order by createDate desc", nativeQuery = true)
 	List<Image> mFeeds(int loginUserId);
 
+	// 팔로우한사람이 없으면 전체게시글을 모두 보여주기위한 쿼리
+	@Query(value = "select * from image order by createDate desc", nativeQuery = true)
+	List<Image> mAllFeeds(int loginUserId);
+
 	// 태그로 검색하는 부분
 	@Query(value = "select * from image where id in (select imageId from tag where name=?1)", nativeQuery = true)
 	List<Image> mFeeds(String tag);

@@ -47,6 +47,9 @@ public class ImageService {
 		List<Image> images = null;
 		if (tag == null || tag.equals("")) {
 			images = imageRepository.mFeeds(loginUserId);
+			if (images.size() == 0) {
+				images = imageRepository.mAllFeeds(loginUserId);
+			}
 		} else {
 			images = imageRepository.mFeeds(tag);
 		}
