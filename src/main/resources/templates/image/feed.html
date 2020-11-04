@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html
   xmlns:th="http://www.thymeleaf.org"
   xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
@@ -156,9 +156,11 @@
                       th:id="|content-${images.id}|"
                       name="content"
                       placeholder="댓글 달기..."
+                      onkeydown="JavaScript:Enter_Check();"
                     ></textarea>
                   </form>
                   <i
+                    id="messageSendBtn"
                     th:onclick="commentSend([[${images.id}]],[[${images.user.username}]], [[${session.loginUser.id}]]);"
                     class="comment-btn"
                     >게시</i
@@ -248,6 +250,19 @@
     alert(username);
       
     </script> -->
+    <script th:inline="javascript">
+      const MessageSendBtn = document.getElementById("messageSendBtn");
+
+      MessageSendBtn.addEventListener("click", () => {
+        send(session.loginUser.id, images.id);
+      });
+
+      function Enter_Check() {
+        if (event.keyCode == 13) {
+          MessageSendBtn.click();
+        }
+      }
+    </script>
     <script src="/js/comment.js"></script>
     <script src="/js/like.js"></script>
     <script src="/js/board.js"></script>
