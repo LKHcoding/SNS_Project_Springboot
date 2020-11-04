@@ -54,6 +54,7 @@ public class ChatController {
 		}
 		model.addAttribute("SelectedUser", userService.특정회원(SelectedUserId));
 		model.addAttribute("MessageList", chatService.ChattingLoad(loginUser.getId(), SelectedUserId));
+		model.addAttribute("notis", notiService.알림리스트(loginUser.getId()));
 		return "chat/direct-message";
 	}
 
