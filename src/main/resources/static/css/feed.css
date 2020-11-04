@@ -157,3 +157,11 @@
 .feed__trash__attribute {
   color: lightsteelblue;
 }
+.comment-btn {
+    width: 50px;
+    text-decoration: none;
+    color: rgba(var(--d69, 0, 149, 246), 1);
+    pointer-events: auto;
+    font-weight: 700;
+    padding: 5px 5px;
+}
