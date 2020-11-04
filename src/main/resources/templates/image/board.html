@@ -192,17 +192,19 @@
                         th:value="${images.id}"
                       />
                       <textarea
+                        type="text"
                         th:id="|content-${images.id}|"
                         name="content"
                         placeholder="댓글 달기..."
+                        onkeydown="JavaScript:Enter_Check();"
                       ></textarea>
                     </form>
                     <i
+                      id="messageSendBtn"
                       th:onclick="|commentSend('${images.id}');|"
                       class="comment-btn"
                       >게시</i
                     >
-
                     <!-- 아래는 댓글달기 버튼 원본 -->
                     <!-- <i
                     th:onclick="|commentSend('${images.id}');|"
@@ -251,6 +253,19 @@
           <!-- 새로만든 모달창 끝 -->
         </div>
         <!-- {{/images}} -->
+        <script th:inline="javascript">
+          const MessageSendBtn = document.getElementById("messageSendBtn");
+
+          MessageSendBtn.addEventListener("click", () => {
+            send(session.loginUser.id, images.id);
+          });
+
+          function Enter_Check() {
+            if (event.keyCode == 13) {
+              MessageSendBtn.click();
+            }
+          }
+        </script>
         <script src="/js/comment.js"></script>
         <script src="/js/like.js"></script>
         <script src="/js/board.js"></script>
