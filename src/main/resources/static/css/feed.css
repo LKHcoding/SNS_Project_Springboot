@@ -1,4 +1,3 @@
-
 #feed {
   display: flex;
   flex-direction: column;
@@ -106,13 +105,13 @@
 
 .photo__add-comment-container input {
   /* padding: 15px 0; */
+  padding-top: 19px;
   padding-bottom: 5px;
   border: 0;
   resize: none;
   width: 95%;
   font-size: 14px;
   overflow: hidden;
-  line-height: 50px;
 }
 
 .photo__add-comment-container input:focus {
@@ -145,7 +144,7 @@
   position: relative;
   flex-direction: column;
   max-width: 900px;
-  width: 100%;  
+  width: 100%;
 }
 /* 메인화면 반응형 */
 @media (max-width: 850px) {
