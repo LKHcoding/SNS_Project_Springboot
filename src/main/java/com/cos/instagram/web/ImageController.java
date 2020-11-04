@@ -64,6 +64,7 @@ public class ImageController {
 	@GetMapping("/image/explore")
 	public String imageExplore(@LoginUserAnnotation LoginUser loginUser, Model model) {
 		model.addAttribute("images", imageService.인기사진(loginUser.getId()));
+		model.addAttribute("notis", notiService.알림리스트(loginUser.getId()));
 		return "image/explore";
 	}
 

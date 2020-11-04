@@ -15,6 +15,7 @@ import com.cos.instagram.config.auth.LoginUserAnnotation;
 import com.cos.instagram.config.auth.dto.LoginUser;
 import com.cos.instagram.service.ChatService;
 import com.cos.instagram.service.CommentService;
+import com.cos.instagram.service.NotiService;
 import com.cos.instagram.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,8 @@ public class ChatController {
 	private UserService userService;
 	@Autowired
 	private ChatService chatService;
+	
+	private final NotiService notiService;
 
 	// LKH chat pagecontroller부분
 	@GetMapping("/chat")
@@ -37,6 +40,7 @@ public class ChatController {
 		} else {
 			model.addAttribute("AllUserList", userService.DM회원검색(searchInput, loginUser.getId()));
 		}
+		model.addAttribute("notis", notiService.알림리스트(loginUser.getId()));
 		return "chat/direct-message";
 	}
 
