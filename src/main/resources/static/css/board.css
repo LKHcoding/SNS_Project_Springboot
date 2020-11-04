@@ -15,7 +15,6 @@
 .photo__add-comment-container input {
   height: 50px;
   padding: 16px 10px;
-  
 }
 .photo__info .photo__add-comment-container {
   border: none;
@@ -53,12 +52,12 @@
   width: 335px;
   height: auto;
   max-height: 600px;
+  border-left: 1px solid rgba(0, 0, 0, 0.0975);
 }
 .contentBox-bottomSection {
   height: auto;
   width: 334px;
   overflow: hidden;
-  border-left: 1px solid rgba(0, 0, 0, 0.0975);
 }
 .icon-margin {
   padding: 0px 12px;
@@ -76,8 +75,7 @@
   display: flex;
   align-items: center;
   height: fit-content;
-  max-height: 584px;
-  min-height: 1px;
+  max-height: 496px;
   height: auto;
   width: 100%;
 }
@@ -112,7 +110,6 @@
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  border-left: 1px solid rgba(0, 0, 0, 0.0975);
 }
 
 .border__photo__header img {
