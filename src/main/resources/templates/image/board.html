@@ -191,13 +191,13 @@
                         name="imageId"
                         th:value="${images.id}"
                       />
-                      <textarea
+                      <input
                         type="text"
                         th:id="|content-${images.id}|"
                         name="content"
                         placeholder="댓글 달기..."
-                        onkeydown="JavaScript:Enter_Check();"
-                      ></textarea>
+                        onkeypress="JavaScript:Enter_Check();"
+                      ></input>
                     </form>
                     <i
                       id="messageSendBtn"
@@ -256,9 +256,9 @@
         <script th:inline="javascript">
           const MessageSendBtn = document.getElementById("messageSendBtn");
 
-          MessageSendBtn.addEventListener("click", () => {
-            send(session.loginUser.id, images.id);
-          });
+          // MessageSendBtn.addEventListener("click", () => {
+          //   //send(session.loginUser.id, images.id);
+          // });
 
           function Enter_Check() {
             if (event.keyCode == 13) {

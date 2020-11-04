@@ -152,12 +152,12 @@
                       name="imageId"
                       th:value="${images.id}"
                     />
-                    <textarea
+                    <input
                       th:id="|content-${images.id}|"
                       name="content"
                       placeholder="댓글 달기..."
                       onkeydown="JavaScript:Enter_Check();"
-                    ></textarea>
+                    ></input>
                   </form>
                   <i
                     id="messageSendBtn"
