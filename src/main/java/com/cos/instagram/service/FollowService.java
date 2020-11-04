@@ -40,7 +40,7 @@ public class FollowService {
 				.setParameter(1, loginUserId)
 				.setParameter(2, loginUserId)
 				.setParameter(3, pageUserId)
-				.setParameter(4, loginUserId);
+				.setParameter(4, pageUserId);
 		List<FollowRespDto> followListEntity = query.getResultList();
 		return followListEntity;
 	}
@@ -60,7 +60,7 @@ public class FollowService {
 				.setParameter(1, loginUserId)
 				.setParameter(2, loginUserId)
 				.setParameter(3, pageUserId)
-				.setParameter(4, loginUserId);		
+				.setParameter(4, pageUserId);		
 		List<FollowRespDto> followerListEntity = query.getResultList();
 		return followerListEntity;
 	}
