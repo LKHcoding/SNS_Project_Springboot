@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html
   xmlns:th="http://www.thymeleaf.org"
   xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
@@ -32,7 +32,7 @@
             </div>
 
             <div id="contents-boxing">
-              <header class="border__photo__header">
+              <header class="photo__header">
                 <a th:href="|/user/${images.user.id}|">
                   <img
                     src="/upload/"
@@ -191,17 +191,21 @@
                         name="imageId"
                         th:value="${images.id}"
                       />
-                      <input
+                      <textarea
                         type="text"
                         th:id="|content-${images.id}|"
                         name="content"
                         placeholder="댓글 달기..."
-                        th:onkeypress="JavaScript:Enter_Check([[${images.id}]],[[${images.user.username}]], [[${session.loginUser.id}]]);"
-                      ></input>
+                        onkeydown="JavaScript:Enter_Check();"
+                      ></textarea>
                     </form>
                     <i
+<<<<<<< HEAD
                       id="messageSendBtn"
+                      th:onclick="|commentSend('${images.id}');|"
+=======
                       th:onclick="commentSend([[${images.id}]],[[${images.user.username}]], [[${session.loginUser.id}]]);"
+>>>>>>> 67118954cb390218f2615926c3d7459e36b346ad
                       class="comment-btn"
                       >게시</i
                     >
@@ -256,14 +260,13 @@
         <script th:inline="javascript">
           const MessageSendBtn = document.getElementById("messageSendBtn");
 
-          // MessageSendBtn.addEventListener("click", () => {
-          //   //send(session.loginUser.id, images.id);
-          // });
+          MessageSendBtn.addEventListener("click", () => {
+            send(session.loginUser.id, images.id);
+          });
 
-          function Enter_Check(imageId, imageUsername, imageUserId) {
+          function Enter_Check() {
             if (event.keyCode == 13) {
-              // MessageSendBtn.click();
-              commentSend(imageId, imageUsername, imageUserId)
+              MessageSendBtn.click();
             }
           }
         </script>

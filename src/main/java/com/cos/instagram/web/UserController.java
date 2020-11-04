@@ -22,10 +22,14 @@ import com.cos.instagram.config.auth.dto.LoginUser;
 import com.cos.instagram.domain.image.Image;
 import com.cos.instagram.domain.message.Message;
 import com.cos.instagram.domain.user.User;
+import com.cos.instagram.service.CommentService;
 import com.cos.instagram.service.FollowService;
+import com.cos.instagram.service.NotiService;
 import com.cos.instagram.service.UserService;
 import com.cos.instagram.web.dto.UserProfileRespDto;
 
+import lombok.RequiredArgsConstructor;
+@RequiredArgsConstructor
 @Controller
 public class UserController {
 
@@ -34,6 +38,8 @@ public class UserController {
 
 	@Autowired
 	private FollowService followService;
+	
+	private final NotiService notiService;
 
 	// 팔로워,팔로우 모달창에 구현
 	@GetMapping("/user/{pageUserId}")
@@ -42,6 +48,7 @@ public class UserController {
 		model.addAttribute("respDto", userProfileRespDto);
 		model.addAttribute("followingList", followService.팔로잉리스트(loginUser.getId(), pageUserId));
 		model.addAttribute("followerList", followService.팔로워리스트(loginUser.getId(), pageUserId));
+		model.addAttribute("notis", notiService.알림리스트(loginUser.getId()));
 
 		// 프로필 페이지에서 특정 회원의 게시물정보를 받아오기위해 추가한 부분
 		List<Image> UserBoard = userService.특정유저게시물(pageUserId, loginUser.getId());
@@ -52,10 +59,10 @@ public class UserController {
 	@GetMapping("/user/profileEdit")
 	public String profileEdit(@LoginUserAnnotation LoginUser loginUser, Model model) {
 		User userEntity = userService.회원정보(loginUser);
-
 //		model.addAttribute("respDto", userProfileRespDto);
 		model.addAttribute("respDto",userService.회원프로필(loginUser.getId(), loginUser));
 		model.addAttribute("user", userEntity);
+		model.addAttribute("notis", notiService.알림리스트(loginUser.getId()));
 		return "user/profile-edit";
 	}
 	

@@ -15,7 +15,6 @@
 .photo__add-comment-container input {
   height: 50px;
   padding: 16px 10px;
-  
 }
 .photo__info .photo__add-comment-container {
   border: none;
@@ -32,7 +31,7 @@
 .for-devide1 {
   border-top: 1px solid rgba(0, 0, 0, 0.0975);
   width: 100%;
-  margin: 9px 0px;
+  margin-top: 9px;
 }
 
 .photo__comments {
@@ -53,6 +52,7 @@
   width: 335px;
   height: auto;
   max-height: 600px;
+  border-left: 1px solid rgba(0, 0, 0, 0.0975);
 }
 .contentBox-bottomSection {
   height: auto;
@@ -62,14 +62,22 @@
 .icon-margin {
   padding: 0px 12px;
 }
+
+.photo_post_image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(var(--b3f, 250, 250, 250), 1);
+  width: 600px;
+}
+
 .photo_post_image img {
   display: flex;
   align-items: center;
   height: fit-content;
-  /* max-height: 542px; */
-  max-height: 600px;
-  min-height: 600px;
-  /* min-height: 457px; */
+  max-height: 496px;
+  height: auto;
+  width: 100%;
 }
 .content-padding {
   padding: 17px;
@@ -89,10 +97,24 @@
 }
 
 .comments__ul__div {
-  min-height: 316px;
+  min-height: 230px;
   max-height: 328px;
 }
 
 .margin__bottom {
   margin-bottom: 150px;
+}
+
+.photo .border__photo__header {
+  padding: 15px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+.border__photo__header img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
 }

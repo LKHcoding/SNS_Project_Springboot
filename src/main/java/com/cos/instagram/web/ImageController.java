@@ -64,6 +64,7 @@ public class ImageController {
 	@GetMapping("/image/explore")
 	public String imageExplore(@LoginUserAnnotation LoginUser loginUser, Model model) {
 		model.addAttribute("images", imageService.인기사진(loginUser.getId()));
+		model.addAttribute("notis", notiService.알림리스트(loginUser.getId()));
 		return "image/explore";
 	}
 
@@ -71,6 +72,7 @@ public class ImageController {
 	@GetMapping("image/{imageid}")
 	public String board(Model model, @PathVariable int imageid, @LoginUserAnnotation LoginUser loginUser) {
 		model.addAttribute("board", imageService.단독게시물(loginUser.getId(), imageid));
+		model.addAttribute("notis", notiService.알림리스트(loginUser.getId()));
 		return "image/board";
 	}
 
