@@ -28,7 +28,26 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- 모달창 만들기 위한 bootstrap4 링크들 끝 -->
 
+    <!-- bootstrap notify start  -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/css/notify.min.css" />
+    <link rel="stylesheet" href="/css/animate.min.css" />
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+    <script src="/js/notify.min.js"></script>
+    <script src="/js/notify.js"></script>
+    <script src="/js/header.js"></script>
+    <!-- bootstrap notify end  -->
+
     <link rel="stylesheet" href="/css/styles.css" />
+
+    <!-- stomp 라이브러리 추가 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
+    <!-- stomp 라이브러리 추가 -->
   </head>
 
   <body>
@@ -43,6 +62,14 @@
             <i class="fa fa-search" style="font-size: 15px"></i>
           </button>
         </form>
+        <!-- <button
+          id="btntest11"
+          class="btn btn-sm btn-block btn-primary"
+          onclick="notifyClick();"
+        >
+          클릭해주세요.
+        </button> -->
+        <!-- <a href="#run-sample">Generate Notify!</a> -->
 
         <div class="navigation__links">
           <!-- 홈버튼 구현 -->
@@ -179,6 +206,89 @@
           </div>
         </div>
       </div>
+      <script th:inline="javascript">
+
+
+        // LKH 타임리프 내에서 자바스크립트 사용할때
+           // LKH backend 단에서 모델이나 세션에 등록해둔 객체를 그대로 사용가능한 방법임
+
+           //아래는 초기화영역
+           /*<![CDATA[*/
+           var stompClient = null;
+           var LoginUser = /*[[ ${session.loginUser} ]]*/;
+
+             connect(LoginUser.username);
+
+           /*]]*/
+
+           //Stomp 소켓 연결시키기
+           function connect(name) {
+             console.log(name);
+             var socket = new SockJS("/chat"); // 해당 경로로 websocket 을 요청한다.
+             stompClient = Stomp.over(socket); // WebSocket 위에 Stomp를 얻는다.
+             stompClient.connect({}, function (frame) {
+               console.log(frame);
+               // 연결 성공
+               stompClient.send("/app/user", {}, JSON.stringify({ name: name })); // 유저를 등록하기 위해 보냄
+
+               stompClient.subscribe("/topic/user/" + name, function (message) {
+                 if (JSON.parse(message.body).notiType === "message") {
+                   var fromUser = JSON.parse(message.body).fromUser;
+                   var toUser = JSON.parse(message.body).toUser;
+                   var msg = JSON.parse(message.body).message;
+                   // addChatLine(id, msg, false);
+                   addDirectMessageLine(fromUser, toUser, msg, false, "message");
+                 }
+                 if(JSON.parse(message.body).notiType != "message"){
+                   var fromUser = JSON.parse(message.body).fromUser;
+                   var toUser = JSON.parse(message.body).toUser;
+                   var msg = JSON.parse(message.body).message;
+                   var notiType = JSON.parse(message.body).notiType;
+                   var UrlId = JSON.parse(message.body).UrlId;
+                   var imageId = JSON.parse(message.body).imageId;
+                   // addChatLine(id, msg, false);
+                   // addDirectMessageLine(fromUser, toUser, msg, false);
+                   if(LoginUser.username != fromUser){
+                    if(window.location.pathname.indexOf("chat") != -1 && notiType === "message"){
+                   }
+                   else{
+                     notifyClick(fromUser, toUser, msg, UrlId, notiType, imageId);
+                   }
+                   }
+
+                 }
+               });
+             });
+           }
+
+           /**
+            * 타켓팅 되는 유저에게 보냅니다.
+            */
+           function send(fromUser,toUser, message, isMe, notiType, UrlId, imageId) {
+             var message =
+               // 어떻게 보낼 지 메시지의 형태를 정합니다.
+               {
+                 fromUser: fromUser,
+                 toUser: toUser,
+                 message: message,
+                 notiType: notiType,
+                 UrlId: UrlId,
+                 imageId: imageId
+               };
+               if(window.location.pathname.indexOf("chat") >= 0){
+
+                 addDirectMessageLine(message.fromUser, message.toUser, message.message, true, message.notiType);
+               }
+             //addChatLine(message.id, message.message, true); // 내가 보내는 내용을 chat 창에 띄웁니다.
+
+             stompClient.send(
+               "/topic/user/" + toUser,
+               {},
+               JSON.stringify(message)
+             ); // example , 경로가 "topic/user/minshik"인 녀석에게 메시지를 보냅니다.
+             // "topic/user/{id}" 로 매핑된 메소드 실행
+           }
+      </script>
     </nav>
   </body>
 </html>

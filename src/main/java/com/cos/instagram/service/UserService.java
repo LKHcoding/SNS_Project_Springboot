@@ -11,6 +11,7 @@ import java.util.function.Supplier;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -39,6 +40,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Service
 public class UserService {
+
+	private final HttpSession session;
 
 	@PersistenceContext
 	private EntityManager em;
@@ -72,6 +75,10 @@ public class UserService {
 
 		// 더티체킹
 		userEntity.setProfileImage(imageFilename);
+
+		// LKH 자신의 프로필 이미지 변경 후에 세션에 변경된 이미지가 적용되도록 다시 등록해주기
+		loginUser.setImageUrl(imageFilename);
+		session.setAttribute("loginUser", loginUser);
 	}
 
 	@Transactional
@@ -102,7 +109,7 @@ public class UserService {
 		User user = 회원정보(loginUser);
 
 		passwordCK = encoder.matches(rawPassword, user.getPassword());
-		System.out.println("passwordCK: "+passwordCK);
+		System.out.println("passwordCK: " + passwordCK);
 
 		if (passwordCK == true) {
 
@@ -125,7 +132,7 @@ public class UserService {
 			}
 
 		} else {
-			System.out.println("oldPassword and DBpassword matches: "+passwordCK);
+			System.out.println("oldPassword and DBpassword matches: " + passwordCK);
 			System.out.println("비밀번호 변경 실패!!");
 			throw new MyPasswordCheckException("현재 비밀번호를 확인해주세요.");
 		}

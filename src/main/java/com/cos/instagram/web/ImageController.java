@@ -20,7 +20,6 @@ import com.cos.instagram.service.ImageService;
 import com.cos.instagram.service.NotiService;
 import com.cos.instagram.service.UserService;
 import com.cos.instagram.web.dto.ImageReqDto;
-import com.cos.instagram.web.dto.UserProfileRespDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -39,7 +38,6 @@ public class ImageController {
 		System.out.println("loginUser : " + loginUser);
 		model.addAttribute("images", imageService.피드사진(loginUser.getId(), tag));
 		model.addAttribute("recommendation", userService.추천유저(loginUser.getId()));
-
 		model.addAttribute("notis", notiService.알림리스트(loginUser.getId()));
 
 		return "image/feed";
@@ -68,7 +66,6 @@ public class ImageController {
 		model.addAttribute("images", imageService.인기사진(loginUser.getId()));
 		return "image/explore";
 	}
-	
 
 	// LKH 단독게시물 데이터 가져오는부분
 	@GetMapping("image/{imageid}")

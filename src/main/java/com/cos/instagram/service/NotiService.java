@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cos.instagram.domain.noti.Noti;
 import com.cos.instagram.domain.noti.NotiRepository;
-import com.cos.instagram.domain.user.User;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,26 +18,24 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class NotiService {
 	private final NotiRepository notiRepository;
-	
 
 	HttpServletRequest req;
-	
+
 	@Autowired
 	private HttpSession session;
 	/*
 	 * private HttpSession session = req.getSession();
-	 */	
-	
+	 */
+
 	@Transactional(readOnly = true)
-	public List<Noti> 알림리스트(int loginUserId){
+	public List<Noti> 알림리스트(int loginUserId) {
 		List<Noti> Noti = notiRepository.mNotiForHeader(loginUserId);
 		/*
 		 * List<Noti> Noti = notiRepository.findByToUserId(loginUserId);
-		 */		
+		 */
+
 		session.setAttribute("staticNoti", Noti);
 		return Noti;
 	}
-	
 
-	
 }

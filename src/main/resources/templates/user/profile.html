@@ -56,7 +56,7 @@
               <div th:if=" ${respDto.followState} == false ">
                 <a th:href="|#|">
                   <button
-                    th:onclick="|follow(${respDto.user.id})|"
+                    th:onclick="follow([[${respDto.user.id}]],[[${respDto.user.username}]])"
                     class="profile_follow_btn"
                   >
                     팔로우
@@ -355,7 +355,7 @@
 						</div>
 					</div>
 					<button th:if="${list.followState == true}" class="profile_follow_btn" th:onclick="|unFollow(${list.id});|">팔로우취소</button>
-					<button th:unless="${list.followState == true}"	class="profile_edit_btn" th:onclick="|follow(${list.id});|">팔로우</button>
+					<button th:unless="${list.followState == true}"	class="profile_edit_btn" th:onclick="follow([[${list.id}]],[[${list.username}]]);">팔로우</button>
 				</li>
 		       </ul>
 		      </div>
@@ -398,7 +398,7 @@
 							</div>
 						</div>
 						<button th:if="${list2.followState == true}" class="profile_follow_btn" th:onclick="|unFollow(${list2.id});|">팔로우취소</button>
-						<button th:unless="${list2.followState == true}"	class="profile_edit_btn" th:onclick="|follow(${list2.id});|">팔로우</button>
+						<button th:unless="${list2.followState == true}"	class="profile_edit_btn" th:onclick="follow([[${list2.id}]],[[${list2.username}]]);">팔로우</button>
 					</li>		
 				</ul>		
 		      </div>
@@ -462,15 +462,8 @@
         });
       });
     </script>
-
-    <script>
-      $(function () {
-        $("#profile__overlay-link3").thinScrollbar();
-      });
-    </script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="/js/thinScrollbar.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/js/thinScrollbar.js"></script> -->
 
     <script src="/js/follow.js"></script>
     <footer th:replace="layout/footer :: footer"></footer>
