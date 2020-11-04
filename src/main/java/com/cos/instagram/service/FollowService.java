@@ -32,13 +32,15 @@ public class FollowService {
 		sb.append("if(u.id = ?, true, false) equalUserState,");
 		sb.append("if((select true from follow where fromUserId = ? and toUserId = u.id), true, false) as followState ");
 		sb.append("from follow f inner join user u on f.toUserId = u.id ");
-		sb.append("and f.fromUserId = ?");
+		sb.append("and f.fromUserId = ? ");
+		sb.append("and u.id != ? ");
 		String q = sb.toString();
 		System.out.println("팔로잉리스트 : "+q);
 		Query query = em.createNativeQuery(q, "FollowRespDtoMapping")
 				.setParameter(1, loginUserId)
 				.setParameter(2, loginUserId)
-				.setParameter(3, pageUserId);
+				.setParameter(3, pageUserId)
+				.setParameter(4, loginUserId);
 		List<FollowRespDto> followListEntity = query.getResultList();
 		return followListEntity;
 	}
@@ -50,13 +52,15 @@ public class FollowService {
 		sb.append("if(u.id = ?, true, false) equalUserState,");
 		sb.append("if((select true from follow where fromUserId = ? and toUserId = u.id), true, false) as followState ");
 		sb.append("from follow f inner join user u on f.fromUserId = u.id ");
-		sb.append("and f.toUserId = ?");
+		sb.append("and f.toUserId = ? ");
+		sb.append("and u.id != ? ");
 		String q = sb.toString();
 		
 		Query query = em.createNativeQuery(q, "FollowRespDtoMapping")
 				.setParameter(1, loginUserId)
 				.setParameter(2, loginUserId)
-				.setParameter(3, pageUserId);
+				.setParameter(3, pageUserId)
+				.setParameter(4, loginUserId);		
 		List<FollowRespDto> followerListEntity = query.getResultList();
 		return followerListEntity;
 	}
