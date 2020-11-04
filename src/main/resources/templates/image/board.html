@@ -196,7 +196,7 @@
                         th:id="|content-${images.id}|"
                         name="content"
                         placeholder="댓글 달기..."
-                        onkeypress="JavaScript:Enter_Check();"
+                        th:onkeypress="JavaScript:Enter_Check([[${images.id}]],[[${images.user.username}]], [[${session.loginUser.id}]]);"
                       ></input>
                     </form>
                     <i
@@ -260,9 +260,10 @@
           //   //send(session.loginUser.id, images.id);
           // });
 
-          function Enter_Check() {
+          function Enter_Check(imageId, imageUsername, imageUserId) {
             if (event.keyCode == 13) {
-              MessageSendBtn.click();
+              // MessageSendBtn.click();
+              commentSend(imageId, imageUsername, imageUserId)
             }
           }
         </script>

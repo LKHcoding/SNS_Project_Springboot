@@ -156,8 +156,8 @@
                       th:id="|content-${images.id}|"
                       name="content"
                       placeholder="댓글 달기..."
-                      onkeydown="JavaScript:Enter_Check();"
-                    ></input>
+                      th:onkeydown="JavaScript:Enter_Check([[${images.id}]],[[${images.user.username}]], [[${session.loginUser.id}]]);"
+                    />
                   </form>
                   <i
                     id="messageSendBtn"
@@ -251,15 +251,10 @@
       
     </script> -->
     <script th:inline="javascript">
-      const MessageSendBtn = document.getElementById("messageSendBtn");
-
-      MessageSendBtn.addEventListener("click", () => {
-        send(session.loginUser.id, images.id);
-      });
-
-      function Enter_Check() {
+      function Enter_Check(imageId, imageUsername, imageUserId) {
         if (event.keyCode == 13) {
-          MessageSendBtn.click();
+          // MessageSendBtn.click();
+          commentSend(imageId, imageUsername, imageUserId);
         }
       }
     </script>
