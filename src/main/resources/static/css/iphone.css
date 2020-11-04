@@ -13,6 +13,10 @@
   .photo .photo__add-comment-container {
     display: none;
   }
+  
+  .photo__info {
+  	padding-bottom:20px;
+  }
 
   .u-default-box {
     background-color: transparent;
