@@ -215,7 +215,7 @@ public class UserService {
 		sb.append("select im.id, im.imageUrl, im.userId,");
 		sb.append("(select count(*) from likes lk where lk.imageId = im.id) as likeCount, ");
 		sb.append("(select count(*) from comment ct where ct.imageId = im.id) as commentCount ");
-		sb.append("from image im where im.userId = ? ");
+		sb.append("from image im where im.userId = ? order by createDate desc");
 		String q = sb.toString();
 		Query query = em.createNativeQuery(q, "UserProfileImageRespDtoMapping").setParameter(1, id);
 		List<UserProfileImageRespDto> imagesEntity = query.getResultList();
