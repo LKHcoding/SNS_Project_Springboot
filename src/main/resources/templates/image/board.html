@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html
   xmlns:th="http://www.thymeleaf.org"
   xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
@@ -15,7 +15,7 @@
 
       <div
         class="feed_only"
-        style="width: 935px; max-height: 600px"
+        style="width: 935px; max-height: 600px; margin-top: 100px;"
         th:fragment="board(board)"
       >
         <div
@@ -197,6 +197,7 @@
                         name="content"
                         placeholder="댓글 달기..."
                         th:onkeypress="JavaScript:Enter_Check([[${images.id}]],[[${images.user.username}]], [[${session.loginUser.id}]]);"
+                        style="height: 42px;"
                       ></input>
                     </form>
                     <i

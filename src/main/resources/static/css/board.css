@@ -39,7 +39,7 @@
   overflow-y: scroll;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
-  max-height: 316px;
+  max-height: 230px;
 }
 .photo__comments::-webkit-scrollbar {
   display: none;
@@ -51,7 +51,8 @@
 #contents-boxing {
   width: 335px;
   height: auto;
-  max-height: 600px;
+  max-height: 496px;
+  /* max-height: 600px; */
   border-left: 1px solid rgba(0, 0, 0, 0.0975);
 }
 .contentBox-bottomSection {
@@ -75,12 +76,14 @@
   display: flex;
   align-items: center;
   height: fit-content;
-  max-height: 496px;
+  /* max-height: 496px; */
+  max-height: 479px;
   height: auto;
   width: 100%;
 }
 .content-padding {
   padding: 17px;
+  max-height: 302px;
   /* padding-bottom: 80px; */
 }
 .photo__header {
@@ -98,7 +101,7 @@
 
 .comments__ul__div {
   min-height: 230px;
-  max-height: 328px;
+  max-height: 248px;
 }
 
 .margin__bottom {
