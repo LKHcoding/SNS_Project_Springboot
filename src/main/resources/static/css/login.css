@@ -242,7 +242,6 @@
   top: 4px;
   left: 7px;
   font-size: 10px;
-  color: #5264ae;
 }
 
 .login__form input[type="submit"] {
@@ -329,16 +328,16 @@ input[type="submit"] {
   width: 100%;
 }*/
 
-#login #for__join{
-	width:100%;
+#login #for__join {
+  width: 100%;
 }
 
 #eiCW- {
-    color: #ed4956;
-    color: rgba(var(--i30,237,73,86),1);
-    margin: 10px 10px;
-    margin-bottom: 15px;
-    margin-top: -5px;
+  color: #ed4956;
+  color: rgba(var(--i30, 237, 73, 86), 1);
+  margin: 10px 10px;
+  margin-bottom: 15px;
+  margin-top: -5px;
 }
 
 .login__form input[type="button"] {
@@ -352,12 +351,3 @@ input[type="submit"] {
   height: 31px;
   margin-top: 15px;
 }
-
-
-
-
-
-
-
-
-
