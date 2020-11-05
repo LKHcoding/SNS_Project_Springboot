@@ -76,14 +76,13 @@
   display: flex;
   align-items: center;
   height: fit-content;
-  /* max-height: 496px; */
   max-height: 479px;
   height: auto;
   width: 100%;
 }
 .content-padding {
   padding: 17px;
-  max-height: 302px;
+  max-height: 288px;
   /* padding-bottom: 80px; */
 }
 .photo__header {
