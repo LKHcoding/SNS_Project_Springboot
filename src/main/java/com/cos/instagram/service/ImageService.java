@@ -51,6 +51,7 @@ public class ImageService {
 				images = imageRepository.mAllFeeds(loginUserId);
 			}
 		} else {
+			tag="%"+tag+"%";
 			images = imageRepository.mFeeds(tag);
 		}
 
