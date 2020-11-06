@@ -22,7 +22,7 @@ public interface ImageRepository extends JpaRepository<Image, Integer> {
 	List<Image> mAllFeeds(int loginUserId);
 
 	// 태그로 검색하는 부분
-	@Query(value = "select * from image where id in (select imageId from tag where name=?1)", nativeQuery = true)
+	@Query(value = "select * from image where id in (select imageId from tag where name like ?1)", nativeQuery = true)
 	List<Image> mFeeds(String tag);
 
 	// 단독 게시물 조회하는 부분
