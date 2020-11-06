@@ -107,10 +107,12 @@
                 th:classappend="${MessageList.fromUser.id} == ${session.loginUser.id} ? 'msg-right' : 'msg-left'"
               >
                 <div class="msg-left-sub">
-                  <img
-                    th:src="|/upload/${MessageList.fromUser.profileImage}|"
-                    onerror="this.src='/images/avatar.jpg'"
-                  />
+                  <a th:href="|/user/${MessageList.fromUser.id}|">
+                    <img
+                      th:src="|/upload/${MessageList.fromUser.profileImage}|"
+                      onerror="this.src='/images/avatar.jpg'"
+                    />
+                  </a>
                   <div class="msg-desc" th:text="${MessageList.message}">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit,
                     sed do eiusmod tempor incididunt ut labore et dolore magna
