@@ -17,6 +17,6 @@ public interface ChattingRepository extends JpaRepository<Chatting, Integer> {
 
 	// LKH JPQL 문법을 사용해서 채팅리스트 불러오기
 	@Query("select m from Chatting as m where (m.fromUser.id = :fromUserId and m.toUser.id = :toUserId) or "
-			+ "(m.toUser.id = :fromUserId and m.fromUser.id = :toUserId)")
+			+ "(m.toUser.id = :fromUserId and m.fromUser.id = :toUserId) order by createDate")
 	List<Chatting> mChatList(@Param("fromUserId") int fromUserId, @Param("toUserId") int toUserId);
 }
