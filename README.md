@@ -82,8 +82,7 @@ from follow f1;
 
 
 ## Explore 페이지(전체 게시물)
-![image](https://user-images.githubusercontent.com/55027765/101132365-3fc09e80-364a-11eb-9ff1-3cb311e3d977.png)
-
+![image](https://user-images.githubusercontent.com/55027765/101133295-caee6400-364b-11eb-8463-7360c90f32a7.png)
 
 ## 회원 프로필 페이지
 ![image](https://user-images.githubusercontent.com/55027765/101130958-cb84fb80-3647-11eb-9b50-e7fb2d7945e4.png)
