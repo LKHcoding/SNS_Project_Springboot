@@ -78,7 +78,7 @@ from follow f1;
 
 
 ## Direct-Message 페이지(채팅)
-<img src="https://user-images.githubusercontent.com/55027765/101132431-5c5cd680-364a-11eb-9a04-85617e612d4e.png" width="100%">
+<img src="https://user-images.githubusercontent.com/55027765/101132431-5c5cd680-364a-11eb-9a04-85617e612d4e.png" width="100vw">
 
 
 ## Explore 페이지(전체 게시물)
