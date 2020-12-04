@@ -74,20 +74,25 @@ from follow f1;
 ```
 
 ## 회원 프로필 페이지
-![blog](https://postfiles.pstatic.net/MjAyMDA4MzFfMTY0/MDAxNTk4ODQ2ODIyMjE1.h6LvLgpw7k-xjJAuGU04sx397NJovgMY8ktL_fuMPdcg._83FHpv7Y8ly5By_Z5-_56kewhkiCD5bgKOjf3L0pjAg.PNG.getinthere/Screenshot_1.png?type=w773)
+![image](https://user-images.githubusercontent.com/55027765/101130958-cb84fb80-3647-11eb-9b50-e7fb2d7945e4.png)
+
 
 - WebMvcConfig.java 수정
 ```java
 // 이미지 경로 찾기를 위해 추가 시작
-@Value("${file.path}")
-private String uploadFolder;
-
 @Override
-public void addResourceHandlers(ResourceHandlerRegistry registry) {
-	WebMvcConfigurer.super.addResourceHandlers(registry);
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		WebMvcConfigurer.super.addResourceHandlers(registry);
+		String uploadFolder = System.getProperty("user.dir");
+		System.out.println("여기는 addResourceHandler : "+ uploadFolder);
+		uploadFolder = uploadFolder + "/src/main/resources/static/upload/";
 
-	registry.addResourceHandler("/upload/**").addResourceLocations("file:///" + uploadFolder).setCachePeriod(3600)
-			.resourceChain(true).addResolver(new PathResourceResolver());
-}
-// 이미지 경로 찾기를 위해 추가 끝
+		registry
+			.addResourceHandler("/upload/**")
+			.addResourceLocations("file:///" + uploadFolder)
+			.setCachePeriod(3600)
+			.resourceChain(true)
+			.addResolver(new PathResourceResolver());
+	}
+	// 이미지 경로 찾기를 위해 추가 끝
 ```
