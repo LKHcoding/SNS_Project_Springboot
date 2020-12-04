@@ -73,6 +73,18 @@ and f1.toUserId = f2.fromUserId
 from follow f1;
 ```
 
+## 메인 페이지(피드)
+![image](https://user-images.githubusercontent.com/55027765/101132220-f5d7b880-3649-11eb-9c41-5423daab03ff.png)
+
+
+## Direct-Message 페이지(채팅)
+![image](https://user-images.githubusercontent.com/55027765/101132431-5c5cd680-364a-11eb-9a04-85617e612d4e.png)
+
+
+## Explore 페이지(전체 게시물)
+![image](https://user-images.githubusercontent.com/55027765/101132365-3fc09e80-364a-11eb-9ff1-3cb311e3d977.png)
+
+
 ## 회원 프로필 페이지
 ![image](https://user-images.githubusercontent.com/55027765/101130958-cb84fb80-3647-11eb-9b50-e7fb2d7945e4.png)
 
