@@ -90,7 +90,7 @@ from follow f1;
 
 
 ## 좋아요 및 댓글 알림(실시간)
-![image](https://user-images.githubusercontent.com/55027765/101133747-b52d6e80-364c-11eb-88c4-3fb8c1ef1624.png)
+![image](https://user-images.githubusercontent.com/55027765/101133893-e9089400-364c-11eb-8829-187bea7f4481.png)
 
 
 
