@@ -6,7 +6,7 @@ https://instagramweb.herokuapp.com/
 <img src="https://user-images.githubusercontent.com/55027765/101129823-b1e2b480-3645-11eb-95a3-84ed96792e91.png" width="100%">
 
 
-## 사용기술
+## DB & 사용기술
 ![image](https://user-images.githubusercontent.com/55027765/101130369-b2c81600-3646-11eb-908a-574f1a3c43c3.png)
 ![image](https://user-images.githubusercontent.com/55027765/101130487-e86cff00-3646-11eb-8788-96dafd645e0d.png)
 
