@@ -6,8 +6,11 @@ https://instagramweb.herokuapp.com/
 <img src="https://user-images.githubusercontent.com/55027765/101129823-b1e2b480-3645-11eb-95a3-84ed96792e91.png" width="100%">
 
 
-## 의존성
-![blog](<https://postfiles.pstatic.net/MjAyMDA4MjRfMTA2/MDAxNTk4MjMyNzA1OTgz.BQb6a4IR5Q22aWTKnwII-hIaHZx_N7-htey0g0Tp3ykg.5waKQmAt8kPgPKodIC_pfsP-4We7tYdrm3HKgbYOrlsg.JPEG.aryeong2/ERD_%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8_(1).jpg?type=w966>)
+## 사용기술
+![image](https://user-images.githubusercontent.com/55027765/101130369-b2c81600-3646-11eb-908a-574f1a3c43c3.png)
+![image](https://user-images.githubusercontent.com/55027765/101130487-e86cff00-3646-11eb-8788-96dafd645e0d.png)
+
+
 
 
 ## MySQL 세팅
