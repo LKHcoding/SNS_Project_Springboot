@@ -3,11 +3,12 @@
 ### -Heroku Demo(heroku는 시스템권한 설정 불가로 인해 영어만 입력가능)
 https://instagramweb.herokuapp.com/
 
+<img src="https://user-images.githubusercontent.com/55027765/101129823-b1e2b480-3645-11eb-95a3-84ed96792e91.png" width="100%">
+
+
 ## 의존성
-
-![blog](https://postfiles.pstatic.net/MjAyMDA4MjBfMTM5/MDAxNTk3ODgzNDIyMDYz.wZ5P4Ig9VYkJJLswXvdtkqY22qzxXBQjxrFGCIxQ33kg.X-uXGvkC2bYaAvyVxhxjPQsj61XGB1fa9iZ8UcQPRigg.PNG.getinthere/Screenshot_42.png?type=w773)
-
 ![blog](<https://postfiles.pstatic.net/MjAyMDA4MjRfMTA2/MDAxNTk4MjMyNzA1OTgz.BQb6a4IR5Q22aWTKnwII-hIaHZx_N7-htey0g0Tp3ykg.5waKQmAt8kPgPKodIC_pfsP-4We7tYdrm3HKgbYOrlsg.JPEG.aryeong2/ERD_%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8_(1).jpg?type=w966>)
+
 
 ## MySQL 세팅
 
@@ -34,50 +35,6 @@ character-set-server=utf8
 - create database insta;
 - use insta;
 
-## application.yml 설정
-
-```yml
-server:
-  port: 8080
-  servlet:
-    context-path: /
-    encoding:
-      charset: UTF-8
-      enabled: true
-      force: true
-
-spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/insta?serverTimezone=Asia/Seoul&useSSL=false&allowPublicKeyRetrieval=true
-    username: insta
-    password: bitc5600
-
-  jpa:
-    open-in-view: true
-    hibernate:
-      ddl-auto: create
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      use-new-id-generator-mappings: false
-    show-sql: true
-
-  servlet:
-    multipart:
-      enabled: true
-      max-file-size: 2MB
-
-  security:
-    user:
-      name: cos
-      password: 1234
-
-cos:
-  secret: 겟인데어
-
-file:
-  path: C:/src/jwtoauthwork/instagram/src/main/resources/upload/
-```
 
 ## 맞팔 쿼리, 좋아요 카운트 쿼리
 
