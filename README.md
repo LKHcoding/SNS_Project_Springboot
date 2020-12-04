@@ -86,7 +86,12 @@ from follow f1;
 
 
 ## 회원 프로필 페이지
-![image](https://user-images.githubusercontent.com/55027765/101130958-cb84fb80-3647-11eb-9b50-e7fb2d7945e4.png)
+![image](https://user-images.githubusercontent.com/55027765/101133678-8e6f3800-364c-11eb-8769-c7bba4c863c6.png)
+
+
+## 좋아요 및 댓글 알림(실시간)
+![image](https://user-images.githubusercontent.com/55027765/101133747-b52d6e80-364c-11eb-88c4-3fb8c1ef1624.png)
+
 
 
 - WebMvcConfig.java 수정
