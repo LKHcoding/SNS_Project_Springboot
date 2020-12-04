@@ -75,23 +75,23 @@ from follow f1;
 
 ## 메인 페이지(피드)
 ![image](https://user-images.githubusercontent.com/55027765/101133580-57008b80-364c-11eb-8bdd-917532e5e0b3.png)
-
+--------------------------------------------------------
 
 ## Direct-Message 페이지(채팅)
 ![image](https://user-images.githubusercontent.com/55027765/101132431-5c5cd680-364a-11eb-9a04-85617e612d4e.png)
-
+--------------------------------------------------------
 
 ## Explore 페이지(전체 게시물)
 ![image](https://user-images.githubusercontent.com/55027765/101133295-caee6400-364b-11eb-8463-7360c90f32a7.png)
-
+--------------------------------------------------------
 
 ## 회원 프로필 페이지
 ![image](https://user-images.githubusercontent.com/55027765/101133678-8e6f3800-364c-11eb-8769-c7bba4c863c6.png)
-
+--------------------------------------------------------
 
 ## 좋아요 및 댓글 알림(실시간)
 ![image](https://user-images.githubusercontent.com/55027765/101133893-e9089400-364c-11eb-8829-187bea7f4481.png)
-
+--------------------------------------------------------
 
 
 - WebMvcConfig.java 수정
