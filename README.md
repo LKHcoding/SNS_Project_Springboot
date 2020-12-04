@@ -1,6 +1,6 @@
 # 스프링부트 JPA, MySQL, Security 인스타그램
 ------------------------------------------------------------
-#####Heroku Demo(heroku는 시스템권한 설정 불가로 인해 영어만 입력가능)
+##### Heroku Demo(heroku는 시스템권한 설정 불가로 인해 영어만 입력가능)
 https://instagramweb.herokuapp.com/
 
 ## 의존성
