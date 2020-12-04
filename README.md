@@ -41,7 +41,7 @@ character-set-server=utf8
 
 ## 맞팔 쿼리, 좋아요 카운트 쿼리
 
-1. 좋아요 수 쿼리 (스칼라 서브쿼리)
+1. 좋아요 수 쿼리 (스칼라 서브쿼리)<br/>
 ![blog](https://postfiles.pstatic.net/MjAyMDA4MjRfMTYw/MDAxNTk4MjM5NzUwMjMy.VZH7JMI_P8AwMhJCSXxHfFSQq8uaJ7w6ufEjsvlae44g.mJoyoc69PAY-kHK5jeQW2JtrpOUA6i_qQFGcpqeHNNAg.PNG.getinthere/Screenshot_49.png?type=w773)
 
 ```sql
@@ -52,7 +52,7 @@ i.caption,
 from image i;
 ```
 
-2. 맞팔 유무 쿼리 (Left outer Join 과 스칼라 서브쿼리)
+2. 맞팔 유무 쿼리 (Left outer Join 과 스칼라 서브쿼리)<br/>
 ![blog](https://postfiles.pstatic.net/MjAyMDA4MjRfMjAy/MDAxNTk4MjM3ODE4MjUw.pDKhnS9IE1usJqVXVVo9iNJOo5FPbC7YDOLBP4IwCQIg.3tTT-qYv5b27K9AMP-dZP1YauCvD-7MJLm_j6FvIvJkg.PNG.getinthere/Screenshot_48.png?type=w773)
 
 ```sql
