@@ -1,8 +1,13 @@
 # 스프링부트 JPA, MySQL, Security 인스타그램
 ------------------------------------------------------------
+### -Instagram clone Demo (Linux 서버 배포)
+http://insta.yi.or.kr:8080/
+
 ### -Heroku Demo
 (heroku 서버는 시스템권한 설정 불가로 인해 영어만 입력 가능하며, 업로드된 이미지는 일정 시간 후 삭제됩니다.)
 https://instagramweb.herokuapp.com/
+
+
 
 <img src="https://user-images.githubusercontent.com/55027765/101129823-b1e2b480-3645-11eb-95a3-84ed96792e91.png" width="100%">
 
